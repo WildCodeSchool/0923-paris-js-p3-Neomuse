@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -58,4 +60,5 @@ table {
 body {
   padding: 0.1rem;
   background-color: #f6f3ec;
+  font-family: "Playfair Display", Helvetica, sans-serif;
 }

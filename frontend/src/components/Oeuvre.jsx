@@ -4,7 +4,6 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
-import "./oeuvre.css";
 
 function Oeuvre({ product }) {
   return (
@@ -13,8 +12,9 @@ function Oeuvre({ product }) {
         sx={{
           bgcolor: "#D1C8E1",
           border: " 0.1rem solid #605f5d",
+          borderRadius: "0px",
           boxShadow: "0px 4px 4px #00000040",
-          padding: "0.5rem",
+          padding: "0.7rem",
           overflow: "hidden",
           "&:hover": {
             boxShadow: "md",
@@ -27,10 +27,10 @@ function Oeuvre({ product }) {
               className="box"
               sx={{
                 border: "0.6rem solid white",
-                width: "90%",
-                height: "90%",
+                width: "93%",
+                height: "93%",
                 margin: "0 auto",
-
+                overflow: "hidden",
                 "&:hover": { opacity: "0.8", cursor: "pointer" },
               }}
             >
@@ -39,7 +39,10 @@ function Oeuvre({ product }) {
                 srcSet={product.thumbnail}
                 loading="lazy"
                 alt=""
-                className="imageoeuvre"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
               />
             </Box>
           </Box>
@@ -47,29 +50,58 @@ function Oeuvre({ product }) {
         <Stack
           direction="row"
           justifyContent="space-between"
+          alignItems="center"
+          bgcolor="white"
+          margin="-0.5rem"
+          marginTop="0.4rem"
+          lineHeight="8px"
           sx={{
-            bgcolor: "white",
+            fontSize: "25rem",
+            "@media screen and (min-width: 1024px)": {
+              fontSize: "24px",
+            },
           }}
         >
-          <Box lineHeight={2} paddingLeft={2} overflow="hidden">
-            <Typography level="title-sm" className="soustitreoeuvre ">
+          <Box padding={0.5} overflow="hidden">
+            <Typography
+              sx={{
+                fontSize: "13px",
+                "@media screen and (min-width: 1024px)": {
+                  fontSize: "24px",
+                },
+              }}
+              level="title-sm"
+            >
               {product.title}
             </Typography>
-            <Typography level="body-sm" className="soustitreoeuvre">
+            <Typography
+              level="body-sm"
+              sx={{
+                fontSize: "13px",
+                "@media screen and (min-width: 1024px)": {
+                  fontSize: "24px",
+                },
+              }}
+            >
               {product.brand}
             </Typography>
             <Typography
               fontSize="title-sm"
               fontWeight="lg"
-              className="soustitreoeuvre"
+              sx={{
+                fontSize: "13px",
+                "@media screen and (min-width: 1024px)": {
+                  fontSize: "24px",
+                },
+              }}
             >
-              ${product.price}
+              {product.price} €
             </Typography>
           </Box>
           <Favorite
             sx={{
               fontWeight: "md",
-              fontSize: "2rem",
+              fontSize: "1.9rem",
               color: "text.secondary",
               "&:hover": { color: "#CB1F27" },
             }}

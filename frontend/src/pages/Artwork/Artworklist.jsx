@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Grid from "@mui/joy/Grid";
-import Oeuvre from "../../components/Artwork/Oeuvre";
+import Oeuvre from "../../components/Oeuvre";
 
 import "./artwork.css";
 
