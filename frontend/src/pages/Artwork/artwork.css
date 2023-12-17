@@ -1,0 +1,47 @@
+.list {
+  width: 80%;
+  margin: 0 auto;
+}
+.h1oeuvres {
+  font-weight: bold;
+  border: 2px solid;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+.bouttonworklist {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  margin: 1rem;
+}
+.boutonoeuvrelist {
+  color: black;
+  font-weight: bold;
+  padding: 0.3rem 0.4rem;
+  border: solid 0.3rem #87255b;
+  border-radius: 0.8rem;
+  background-color: #d9d9d9;
+  font-size: 12px;
+}
+.boutonoeuvrelist:hover {
+  background-color: #eac2c2;
+}
+/* RESPONSIVE */
+@media screen and (min-width: 1200px) {
+  .h1oeuvres {
+    font-size: 2rem;
+  }
+  .boutonoeuvrelist {
+    font-size: 1.6rem;
+
+    padding: 0.8rem 2rem;
+    border: solid 0.3rem #87255b;
+    border-radius: 0.8rem;
+    background-color: #d9d9d9;
+  }
+  .soustitreoeuvre {
+  }
+}

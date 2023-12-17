@@ -5,11 +5,11 @@ import "./App.css";
 
 function App() {
   return (
-    <>
+    <body>
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </body>
   );
 }
 
