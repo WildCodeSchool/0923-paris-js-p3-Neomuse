@@ -10,7 +10,7 @@ function Oeuvre({ product }) {
     <section>
       <Card
         sx={{
-          bgcolor: "#D1C8E1",
+          bgcolor: "#d1c8e1;",
           border: " 0.1rem solid #605f5d",
           borderRadius: "0px",
           boxShadow: "0px 4px 4px #00000040",
@@ -52,7 +52,7 @@ function Oeuvre({ product }) {
           justifyContent="space-between"
           alignItems="center"
           bgcolor="white"
-          margin="-0.5rem"
+          margin="-0.3rem"
           marginTop="0.4rem"
           lineHeight="8px"
           sx={{

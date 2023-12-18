@@ -7,18 +7,18 @@ import "./artwork.css";
 function Artworklist() {
   const { products } = useLoaderData();
   return (
-    <section className="artworklist">
+    <section className="artWorkList">
       <div className="list">
-        <h1 className="h1oeuvres">Découvrir nos oeuvres</h1>
+        <h1 className="h1Oeuvres">Découvrir nos oeuvres</h1>
 
-        <div className="bouttonworklist">
-          <button type="button" className="boutonoeuvrelist">
+        <div className="bouttonWorklist">
+          <button type="button" className="bouttonOeuvreList">
             Peinture
           </button>
-          <button type="button" className="boutonoeuvrelist">
+          <button type="button" className="bouttonOeuvreList">
             Scuplture
           </button>
-          <button type="button" className="boutonoeuvrelist">
+          <button type="button" className="bouttonOeuvreList">
             Photographie
           </button>
         </div>
