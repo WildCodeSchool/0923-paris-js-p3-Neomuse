@@ -1,0 +1,85 @@
+.boximgOeuvreDetail {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 17px solid #fff;
+  box-shadow: 16px 7px 4px 0px #d1c8e1;
+}
+.imgOeuvreDetail {
+  width: 11rem;
+  height: 9.7rem;
+  flex-shrink: 0;
+}
+.enTeteOeuvreDetais {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+.titreOeuvre {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: normal;
+}
+.descripOeuvreTitre {
+  margin: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 900;
+  line-height: 0.9rem;
+  letter-spacing: 0.05rem;
+}
+.descripOeuvre {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  font-weight: 500;
+}
+.descripOeuvre-1 {
+  width: 40%;
+}
+.dimensionimage {
+  font-size: 0.95rem;
+  line-height: 2rem;
+  font-weight: 600;
+}
+.Titreslid {
+  margin: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 900;
+  line-height: 0.9rem;
+  letter-spacing: 0.05rem;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 1200px) {
+  .sectionOeuvreD {
+    display: flex;
+    justify-content: center;
+  }
+  .boximgOeuvreDetail {
+    width: 35%;
+    border: 17px solid #fff;
+    box-shadow: 19px 9px 4px 0px #d1c8e1;
+  }
+  .imgOeuvreDetail {
+    width: 100%;
+    height: 20rem;
+    flex-shrink: 0;
+  }
+  .aside {
+    width: 50%;
+    margin-left: -5rem;
+    margin-right: 1rem;
+  }
+  .imageOeuvreDetail {
+    border: 2rem solid white;
+  }
+  .bouttonOeuvreList {
+    font-size: 2rem;
+    width: 20rem;
+  }
+}
