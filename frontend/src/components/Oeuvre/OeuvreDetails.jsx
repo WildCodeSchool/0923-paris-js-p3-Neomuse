@@ -27,20 +27,22 @@ function Artwork() {
                 <p>{product.category}</p>
                 <p>{product.price} €</p>
               </div>
-              <Button
-                startDecorator={<FavoriteBorder />}
-                sx={{
-                  fontFamily: "Lobster",
-                  fontWeight: "400",
-                  fontSize: "  1rem",
-                  bgcolor: "black",
-                  color: "white",
-                  margin: "0px",
-                  "--Button-gap": "0px",
-                }}
-              >
-                Ajouter en favoris{" "}
-              </Button>
+              <div className="boxboutton">
+                <Button
+                  startDecorator={<FavoriteBorder />}
+                  sx={{
+                    fontFamily: "Lobster",
+                    fontWeight: "400",
+                    fontSize: "  1rem",
+                    bgcolor: "black",
+                    color: "white",
+                    margin: "0px",
+                    "--Button-gap": "0px",
+                  }}
+                >
+                  Ajouter en favoris{" "}
+                </Button>
+              </div>
             </div>
             <h2 className="descripOeuvreTitre">Description de l'œuvre</h2>
             <div className="descripOeuvre">

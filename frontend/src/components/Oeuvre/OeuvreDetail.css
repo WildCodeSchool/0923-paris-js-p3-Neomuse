@@ -55,7 +55,7 @@
   text-decoration: underline;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1024px) {
   .sectionOeuvreD {
     display: flex;
     justify-content: center;
@@ -75,11 +75,35 @@
     margin-left: -5rem;
     margin-right: 1rem;
   }
+  .titreOeuvre {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
   .imageOeuvreDetail {
     border: 2rem solid white;
   }
-  .bouttonOeuvreList {
-    font-size: 2rem;
-    width: 20rem;
+  .boxboutton {
+    padding-top: 4rem;
+  }
+  .descripOeuvre {
+    display: initial;
+  }
+  .descripOeuvreTitre {
+    margin: 1rem;
+    text-align: initial;
+  }
+  .descripOeuvre-1 {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .descripOeuvre-2 {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  .Titreslid {
+    margin: 3rem;
+    font-size: 1.3rem;
   }
 }
