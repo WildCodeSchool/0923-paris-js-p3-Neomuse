@@ -8,7 +8,7 @@ import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
 import Artistlist from "./pages/Artist/Artistlist";
 import Artworklist from "./pages/Artwork/Artworklist";
-import Artwork from "./pages/Artwork/Artwork";
+import Artwork from "./pages/Artwork/ArtworkDetail";
 import Contact from "./pages/Contact/Contact";
 import Users from "./pages/Users/Users";
 

@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500&family=Playfair+Display:wght@500&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -58,7 +57,9 @@ table {
 /*  */
 
 body {
-  padding: 0.1rem;
   background-color: #f6f3ec;
   font-family: "Playfair Display", Helvetica, sans-serif;
+  /* font-family: 'Lobster', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Playfair Display', serif; */
 }

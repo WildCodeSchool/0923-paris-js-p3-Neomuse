@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import Grid from "@mui/joy/Grid";
 import Oeuvre from "../../components/Oeuvre";
 
@@ -30,7 +30,9 @@ function Artworklist() {
         >
           {products.map((product) => (
             <Grid xs={2} sm={4} md={4} key={product.id}>
-              <Oeuvre product={product} />
+              <Link className="LinkOeuvreId" to={`/artworks/${product.id}`}>
+                <Oeuvre product={product} />
+              </Link>
             </Grid>
           ))}
         </Grid>
