@@ -49,7 +49,6 @@ const router = createBrowserRouter([
       {
         path: "/artworks/:id",
         element: <Artwork />,
-        // loader: DetailLoader,
       },
       {
         path: "/about",

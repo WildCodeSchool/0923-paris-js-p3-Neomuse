@@ -1,4 +1,3 @@
-// import expo from "../../assets/expo.jpg";
 import "./about.css";
 
 function About() {
