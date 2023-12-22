@@ -5,7 +5,6 @@ import "./artistlist.css";
 
 function Artistlist() {
   const portraits = useLoaderData();
-  console.info(portraits);
   const [searchTerm, setSearchTerm] = useState("");
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
