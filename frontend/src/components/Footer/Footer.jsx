@@ -28,7 +28,7 @@ function Footer() {
         <p className="footer_2_3"> +33130394834</p>
       </div>
       <div className="footer_3">
-        <p className="footer_3_1">Suivez-Nous</p>
+        <p className="footer_3_1">Suivez-nous !</p>
         <div className="footer_3_2">
           <ul className="social_icon">
             <li>

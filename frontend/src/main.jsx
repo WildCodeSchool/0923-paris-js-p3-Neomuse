@@ -46,10 +46,18 @@ const router = createBrowserRouter([
       {
         path: "/artworks",
         element: <Artworklist />,
+        loader: () => {
+          return fetch("https://dummyjson.com/products");
+        },
       },
       {
         path: "/artworks/:id",
         element: <Artwork />,
+        // loader: DetailLoader,
+      },
+      {
+        path: "/user",
+        element: <Users />,
         // loader: DetailLoader,
       },
     ],
