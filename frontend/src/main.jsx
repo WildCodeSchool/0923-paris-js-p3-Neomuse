@@ -11,6 +11,7 @@ import Artworklist from "./pages/Artwork/Artworklist";
 import Artwork from "./pages/Artwork/ArtworkDetail";
 import Contact from "./pages/Contact/Contact";
 import Users from "./pages/Users/Users";
+import About from "./pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +33,13 @@ const router = createBrowserRouter([
       {
         path: "/artists",
         element: <Artistlist />,
+        loader: () => {
+          return fetch("https://akabab.github.io/superhero-api/api/all.json");
+        },
       },
       {
         path: "/artists/:id",
         element: <Artist />,
-        // loader: DetailLoader,
       },
       {
         path: "/artworks",
@@ -48,7 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/artworks/:id",
         element: <Artwork />,
-        // loader: DetailLoader,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },
