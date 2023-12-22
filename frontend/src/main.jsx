@@ -41,7 +41,6 @@ const router = createBrowserRouter([
       {
         path: "/artists/:id",
         element: <Artist />,
-        // loader: DetailLoader,
       },
       {
         path: "/artworks",
@@ -53,12 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/artworks/:id",
         element: <Artwork />,
-        // loader: DetailLoader,
       },
       {
         path: "/user",
         element: <Users />,
-        // loader: DetailLoader,
       },
     ],
   },
