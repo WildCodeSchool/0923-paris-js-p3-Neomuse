@@ -1,4 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@900&family=Playfair+Display:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500&family=Playfair+Display:wght@500&display=swap");
+
+.app-overall {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-outlet {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  flex-grow: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,11 +28,10 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 menu,
-nav,
+,
 section {
   display: block;
 }

@@ -10,8 +10,8 @@ import Artistlist from "./pages/Artist/Artistlist";
 import Artworklist from "./pages/Artwork/Artworklist";
 import Artwork from "./pages/Artwork/ArtworkDetail";
 import Contact from "./pages/Contact/Contact";
-import Users from "./pages/Users/Users";
 import About from "./pages/About/About";
+import Users from "./pages/Users/Users";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/users",
@@ -53,8 +57,8 @@ const router = createBrowserRouter([
         element: <Artwork />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/user",
+        element: <Users />,
       },
     ],
   },
