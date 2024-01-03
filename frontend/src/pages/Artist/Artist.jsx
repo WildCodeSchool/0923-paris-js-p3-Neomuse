@@ -21,7 +21,7 @@ function Artist() {
         className="art-imgtop"
       />
       <h3 className="art-name">
-        Artistes / (artist.firstname artist.lastname){" "}
+        <p>{products.name}</p>
       </h3>
       <div className="art-bio-container">
         <img
