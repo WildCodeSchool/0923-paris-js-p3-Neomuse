@@ -1,5 +1,11 @@
+import Connexion from "../../components/Modal/Connexion";
+
 function Users() {
-  return <div>Users</div>;
+  return (
+    <div>
+      <Connexion />
+    </div>
+  );
 }
 
 export default Users;
