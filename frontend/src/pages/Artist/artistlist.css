@@ -1,12 +1,5 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding-top: 0.5rem;
-}
-#logo_sign {
-  width: 63px;
-  height: 63px;
+.body_artistlist {
+  padding: 2rem;
 }
 .container_search {
   display: flex;
@@ -18,10 +11,8 @@
   color: rgba(255, 255, 255, 1);
   font-family: "Playfair display";
   font-weight: bold;
-  font-size: 15px;
-  margin-left: 20%;
-  margin-top: 25%;
   border-radius: 50px;
+  margin-top: 2rem;
 }
 .input_search {
   width: 100%;
@@ -29,8 +20,9 @@
   background-color: #ffffff;
   border-style: none;
   color: black;
-  font-size: 20px;
+  font-size: 1rem;
   border-radius: 50px;
+  outline: none;
 }
 #icon_search {
   margin-right: 5px;
@@ -39,26 +31,19 @@
   border: none;
   outline: none;
 }
-.title {
-  color: black;
-  font-size: 30px;
-  font-family: "Playfair Display";
-  font-weight: bold;
-  text-align: center;
-}
-.title_box {
-  border: 3px solid black;
-  padding: 20px;
-  margin-top: 60px;
-  margin-bottom: 20px;
-  width: 100%;
-  margin-left: 20%;
-  border-radius: 25px;
-}
+
 .header_artistlist {
   display: flex;
   justify-content: space-between;
-  margin-right: 8%;
+}
+.h1_artistes {
+  font-weight: bold;
+  border: 2px solid;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 0.5rem;
+  font-size: 2rem;
 }
 .portraits {
   display: flex;
@@ -92,21 +77,13 @@
 @media screen and (max-width: 426px) {
   .header_artistlist {
     display: flex;
-    flex-direction: column-reverse;
-    margin-bottom: 30%;
-  }
-  .title_box {
-    padding: 8px;
-    margin-top: 60px;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    margin-right: 9%;
+    flex-direction: column;
   }
   .container_search {
-    width: 100%;
-    margin-left: 5%;
-    margin-top: 40%;
-    margin-right: 5%;
+    margin-top: 0rem;
+  }
+  .h1_artistes {
+    font-size: 1.6rem;
   }
   .portrait_artist {
     grid-template-columns: repeat(1, 30fr);

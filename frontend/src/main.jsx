@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { AllDataProvider } from "./contexts/AllDataContext";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
@@ -50,9 +49,6 @@ const router = createBrowserRouter([
       {
         path: "/artworks",
         element: <Artworklist />,
-        loader: () => {
-          return fetch("https://dummyjson.com/products");
-        },
       },
       {
         path: "/artworks/:id",
@@ -78,6 +74,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AllDataProvider>
+      <RouterProvider router={router} />
+    </AllDataProvider>
   </React.StrictMode>
 );
