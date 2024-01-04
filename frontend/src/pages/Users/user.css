@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500;900&family=Playfair+Display:wght@500&display=swap");
+
+.paragraphe-user-1 {
+  display: none;
+}
+
+.paragraphe-user-2 {
+  display: none;
+}
+
+.paragraphe-user-3 {
+  display: none;
+}
+
+.maxi-flex-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.h1-user {
+  font-size: 40px;
+  font-weight: 800;
+  font-family: "Playfair Display";
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.biguserprofil {
+  width: 40%;
+}
+
+.text-user-information {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: "Playfair Display";
+  text-decoration: none;
+  color: black;
+}
+
+.button-user-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 6rem 1rem;
+  border: 4px #d1c8e1 solid;
+  border-radius: 10px;
+  gap: 0.5rem;
+}
+
+.favorisheart {
+  width: 45%;
+}
+
+.text-user-favoris {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: "Playfair Display";
+  text-decoration: none;
+  color: black;
+}
+
+.button-user-favoris {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.1rem 6.7rem 1.1rem;
+  border: 4px #d1c8e1 solid;
+  border-radius: 10px;
+  gap: 0.5rem;
+}
+
+.deconnexion-user {
+  border: 2px black solid;
+  background-color: black;
+  color: white;
+  padding: 0.7rem 3rem 0.7rem;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: "Playfair Display";
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .background-user {
+    background-image: url(../../assets/images/backgrounduser.png);
+    min-height: 400px;
+    background-size: cover;
+    position: relative;
+    min-height: 400px;
+    background-position: 50% 40%;
+    background-repeat: no-repeat;
+    margin-bottom: 2rem;
+  }
+
+  .paragraphe-user-1 {
+    font-size: 20px;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    display: block;
+  }
+
+  .paragraphe-user-2 {
+    font-size: 18px;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    display: block;
+  }
+
+  .paragraphe-user-3 {
+    font-size: 18px;
+    padding-left: 1rem;
+    padding-bottom: 4rem;
+    display: block;
+  }
+
+  .h1-user {
+    display: none;
+  }
+
+  .button-user-favoris {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2rem 12.8rem 1.2rem;
+    border: 8px #d1c8e1 solid;
+    border-radius: 10px;
+    gap: 0.5rem;
+  }
+
+  .button-user-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.1rem 12rem 1.1rem;
+    border: 8px #d1c8e1 solid;
+    border-radius: 10px;
+    gap: 0.5rem;
+  }
+
+  .deconnexion-user {
+    margin-top: 0rem;
+  }
+  .text-user-favoris {
+    font-size: 20px;
+  }
+  .text-user-information {
+    font-size: 20px;
+  }
+}
