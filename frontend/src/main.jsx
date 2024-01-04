@@ -12,6 +12,8 @@ import Artwork from "./pages/Artwork/ArtworkDetail";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Users from "./pages/Users/Users";
+import Favoris from "./pages/Favoris/Favoris";
+import Information from "./pages/Information/Information";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ const router = createBrowserRouter([
       {
         path: "/user",
         element: <Users />,
+      },
+      {
+        path: "/favoris",
+        element: <Favoris />,
+      },
+      {
+        path: "/information",
+        element: <Information />,
       },
     ],
   },
