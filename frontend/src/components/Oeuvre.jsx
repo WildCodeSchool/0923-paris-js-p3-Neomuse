@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
 
-function Oeuvre({ product }) {
+function Oeuvre({ artwork }) {
   return (
     <section>
       <Card
@@ -35,8 +35,8 @@ function Oeuvre({ product }) {
               }}
             >
               <img
-                src={product.thumbnail}
-                srcSet={product.thumbnail}
+                src={artwork.thumbnail}
+                srcSet={artwork.thumbnail}
                 loading="lazy"
                 alt=""
                 style={{
@@ -55,47 +55,41 @@ function Oeuvre({ product }) {
           margin="-0.3rem"
           marginTop="0.4rem"
           lineHeight="8px"
-          sx={{
-            fontSize: "25rem",
-            "@media screen and (min-width: 1024px)": {
-              fontSize: "24px",
-            },
-          }}
         >
           <Box padding={0.5} overflow="hidden">
             <Typography
               sx={{
-                fontSize: "13px",
+                fontSize: "0.6rem",
                 "@media screen and (min-width: 1024px)": {
-                  fontSize: "24px",
+                  fontSize: "1rem",
                 },
               }}
               level="title-sm"
             >
-              {product.title}
+              {artwork.title}
             </Typography>
             <Typography
               level="body-sm"
               sx={{
-                fontSize: "13px",
+                fontSize: "0.6rem",
                 "@media screen and (min-width: 1024px)": {
-                  fontSize: "24px",
+                  fontSize: "1rem",
                 },
               }}
             >
-              {product.brand}
+              {artwork.dimension_height} x {artwork.dimension_depth} cm
             </Typography>
             <Typography
               fontSize="title-sm"
               fontWeight="lg"
               sx={{
-                fontSize: "13px",
+                fontSize: "0.6rem",
                 "@media screen and (min-width: 1024px)": {
-                  fontSize: "24px",
+                  fontSize: "1rem",
                 },
               }}
             >
-              {product.price} €
+              {artwork.price} €
             </Typography>
           </Box>
           <Favorite

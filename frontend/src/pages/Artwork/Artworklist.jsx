@@ -1,11 +1,12 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from "@mui/joy/Grid";
+import useAllDataContext from "../../contexts/AllDataContext";
 import Oeuvre from "../../components/Oeuvre";
 
 import "./artwork.css";
 
 function Artworklist() {
-  const { products } = useLoaderData();
+  const { artworks } = useAllDataContext();
   return (
     <section className="artWorkList">
       <div className="list">
@@ -28,10 +29,10 @@ function Artworklist() {
           columns={{ xs: 4, sm: 8, md: 12 }}
           sx={{ flexGrow: 1 }}
         >
-          {products.map((product) => (
-            <Grid xs={2} sm={4} md={4} key={product.id}>
-              <Link className="LinkOeuvreId" to={`/artworks/${product.id}`}>
-                <Oeuvre product={product} />
+          {artworks.map((artwork) => (
+            <Grid xs={2} sm={4} md={4} key={artwork.id}>
+              <Link className="LinkOeuvreId" to={`/artworks/${artwork.id}`}>
+                <Oeuvre artwork={artwork} />
               </Link>
             </Grid>
           ))}
