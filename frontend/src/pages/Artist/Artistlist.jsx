@@ -14,12 +14,10 @@ function Artistlist() {
     document.title = "Découvrir nos artistes";
   }, []);
   return (
-    <>
+    <div className="body_artistlist">
       <section className="header_artistlist">
-        <div className="title">
-          <div className="title_box">
-            <h1>Découvrir nos artistes</h1>
-          </div>
+        <div className="title_artislist">
+          <h1 className="h1_artistes">Découvrir nos artistes</h1>
         </div>
         <div className="searchbar">
           <div className="container_search">
@@ -56,7 +54,7 @@ function Artistlist() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
