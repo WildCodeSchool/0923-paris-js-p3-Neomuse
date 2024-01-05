@@ -6,6 +6,7 @@ import "./artistlist.css";
 function Artistlist() {
   const portraits = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
+
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -13,6 +14,9 @@ function Artistlist() {
   useEffect(() => {
     document.title = "Découvrir nos artistes";
   }, []);
+  const searchbar = portraits.filter((portrait) =>
+    portrait.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="body_artistlist">
       <section className="header_artistlist">
@@ -42,7 +46,7 @@ function Artistlist() {
       </section>
       <div className="portraits">
         <div className="portrait_artist">
-          {portraits?.map((portrait) => (
+          {searchbar?.map((portrait) => (
             <div key={portrait.id}>
               {portrait.images?.sm && (
                 <img className="image_artist" src={portrait.images.sm} alt="" />

@@ -48,9 +48,6 @@ table {
 body {
   background-color: #f6f3ec;
   font-family: "Playfair Display", Helvetica, sans-serif;
-  /* font-family: 'Lobster', sans-serif;
-font-family: 'Montserrat', sans-serif;
-font-family: 'Playfair Display', serif; */
 }
 .app-overall {
   display: flex;

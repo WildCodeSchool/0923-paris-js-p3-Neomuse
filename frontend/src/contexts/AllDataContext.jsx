@@ -97,7 +97,28 @@ export function AllDataProvider({ children }) {
       artwork_technique: "Peinture",
     },
   ]);
-  const value = useMemo(() => ({ artworks }), [artworks]);
+  const [artworkTechnique] = useState([
+    {
+      id: 1,
+      name: "Peinture",
+    },
+    {
+      id: 2,
+      name: "Sculpture",
+    },
+    {
+      id: 3,
+      name: "Photographie",
+    },
+  ]);
+
+  const value = useMemo(
+    () => ({
+      artworks,
+      artworkTechnique,
+    }),
+    [artworks, artworkTechnique]
+  );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>
   );

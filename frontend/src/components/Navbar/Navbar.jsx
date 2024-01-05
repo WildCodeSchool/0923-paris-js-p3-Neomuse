@@ -44,11 +44,6 @@ function MyNavbar() {
             </Link>
           </li>
           <li>
-            <Link to="/user" className="menu__item">
-              Mon compte
-            </Link>
-          </li>
-          <li>
             <Link to="/about" className="menu__item">
               A propos
             </Link>
@@ -56,6 +51,11 @@ function MyNavbar() {
           <li>
             <Link to="/contact" className="menu__item">
               Contact
+            </Link>
+          </li>
+          <li>
+            <Link to="/user" className="menu__item">
+              Mon compte
             </Link>
           </li>
         </div>

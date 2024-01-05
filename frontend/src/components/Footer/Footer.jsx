@@ -60,6 +60,7 @@ function Footer() {
             </li>
           </ul>
         </div>
+        <p>© 2023 Neo Muse</p>
       </div>
     </footer>
   );
