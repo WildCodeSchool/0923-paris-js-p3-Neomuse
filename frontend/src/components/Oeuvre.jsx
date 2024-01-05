@@ -53,8 +53,7 @@ function Oeuvre({ artwork }) {
           alignItems="center"
           bgcolor="white"
           margin="-0.3rem"
-          marginTop="0.4rem"
-          lineHeight="8px"
+          lineHeight="0px"
         >
           <Box padding={0.5} overflow="hidden">
             <Typography
@@ -70,6 +69,7 @@ function Oeuvre({ artwork }) {
             </Typography>
             <Typography
               level="body-sm"
+              lineHeight="8px"
               sx={{
                 fontSize: "0.6rem",
                 "@media screen and (min-width: 1024px)": {
