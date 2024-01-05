@@ -17,6 +17,7 @@ function Artistlist() {
   const searchbar = portraits.filter((portrait) =>
     portrait.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <div className="body_artistlist">
       <section className="header_artistlist">
@@ -33,9 +34,9 @@ function Artistlist() {
               onChange={handleInputChange}
             />
             <Icon
+              onClick={handleSearch}
               id="icon_search"
               type="button"
-              onClick={handleSearch}
               icon="arcticons:searchbar-ex"
               color="#B370B0"
               width="50"
