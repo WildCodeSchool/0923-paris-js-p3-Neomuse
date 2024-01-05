@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import { AllDataProvider } from "./contexts/AllDataContext";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
@@ -10,8 +9,10 @@ import Artistlist from "./pages/Artist/Artistlist";
 import Artworklist from "./pages/Artwork/Artworklist";
 import Artwork from "./pages/Artwork/ArtworkDetail";
 import Contact from "./pages/Contact/Contact";
-import Users from "./pages/Users/Users";
 import About from "./pages/About/About";
+import Users from "./pages/Users/Users";
+import Favoris from "./pages/Favoris/Favoris";
+import Information from "./pages/Information/Information";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/users",
@@ -44,17 +49,22 @@ const router = createBrowserRouter([
       {
         path: "/artworks",
         element: <Artworklist />,
-        loader: () => {
-          return fetch("https://dummyjson.com/products");
-        },
       },
       {
         path: "/artworks/:id",
         element: <Artwork />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "/user",
+        element: <Users />,
+      },
+      {
+        path: "/favoris",
+        element: <Favoris />,
+      },
+      {
+        path: "/information",
+        element: <Information />,
       },
     ],
   },
@@ -64,6 +74,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AllDataProvider>
+      <RouterProvider router={router} />
+    </AllDataProvider>
   </React.StrictMode>
 );

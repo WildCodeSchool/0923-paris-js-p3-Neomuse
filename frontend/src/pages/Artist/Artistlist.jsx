@@ -6,17 +6,23 @@ import "./artistlist.css";
 function Artistlist() {
   const portraits = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
+
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  const handleSearch = () => {};
+  useEffect(() => {
+    document.title = "Découvrir nos artistes";
+  }, []);
+  const searchbar = portraits.filter((portrait) =>
+    portrait.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <>
+    <div className="body_artistlist">
       <section className="header_artistlist">
-        <div className="title">
-          <div className="title_box">
-            <h1>Découvrir nos artistes</h1>
-          </div>
+        <div className="title_artislist">
+          <h1 className="h1_artistes">Découvrir nos artistes</h1>
         </div>
         <div className="searchbar">
           <div className="container_search">
@@ -28,6 +34,7 @@ function Artistlist() {
               onChange={handleInputChange}
             />
             <Icon
+              onClick={handleSearch}
               id="icon_search"
               type="button"
               icon="arcticons:searchbar-ex"
@@ -40,7 +47,7 @@ function Artistlist() {
       </section>
       <div className="portraits">
         <div className="portrait_artist">
-          {portraits?.map((portrait) => (
+          {searchbar?.map((portrait) => (
             <div key={portrait.id}>
               {portrait.images?.sm && (
                 <img className="image_artist" src={portrait.images.sm} alt="" />
@@ -52,7 +59,7 @@ function Artistlist() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
