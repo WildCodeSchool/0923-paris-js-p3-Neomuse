@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import "./artistlist.css";
@@ -9,10 +9,7 @@ function Artistlist() {
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
-  const handleSearch = () => {};
-  useEffect(() => {
-    document.title = "Découvrir nos artistes";
-  }, []);
+
   return (
     <>
       <section className="header_artistlist">
@@ -33,7 +30,6 @@ function Artistlist() {
             <Icon
               id="icon_search"
               type="button"
-              onClick={handleSearch}
               icon="arcticons:searchbar-ex"
               color="#B370B0"
               width="50"
