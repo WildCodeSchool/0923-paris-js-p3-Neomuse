@@ -1,10 +1,8 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import "./artist.css";
-/* import Grid from "@mui/joy/Grid"; */
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-/* import Oeuvre from "../../components/Oeuvre"; */
 import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Artist() {
