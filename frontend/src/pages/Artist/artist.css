@@ -20,6 +20,7 @@
   }
 
   .art-biography {
+    border-radius: 0.3rem;
     background-color: #d9d9d9;
     text-align: center;
     padding: 1rem;
@@ -47,6 +48,12 @@
   .header {
     font-size: 42px;
   }
+  .art-bio-seemore {
+    margin-top: 0.2rem;
+    border: 0.1rem solid;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+  }
 }
 @media screen and (min-width: 1024px) {
   .art-imgtop {
@@ -64,6 +71,7 @@
   }
 
   .art-biography {
+    border-radius: 0.3rem;
     background-color: #d9d9d9;
     text-align: center;
     padding: 2rem;
@@ -77,6 +85,7 @@
 
   .art-thumb-desk {
     margin-right: 1rem;
+    border-radius: 0.3rem;
   }
   .art-bio-container {
     display: flex;
@@ -84,5 +93,11 @@
   }
   .art-display {
     width: 50%;
+  }
+  .art-bio-seemore {
+    margin-top: 0.2rem;
+    border: 0.1rem solid;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
   }
 }
