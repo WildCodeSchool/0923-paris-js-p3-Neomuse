@@ -1,9 +1,11 @@
+import React from "react";
 import { useLoaderData } from "react-router-dom";
 import "./artist.css";
-import Grid from "@mui/joy/Grid";
+/* import Grid from "@mui/joy/Grid"; */
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Oeuvre from "../../components/Oeuvre";
+/* import Oeuvre from "../../components/Oeuvre"; */
+import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Artist() {
   const { products } = useLoaderData();
@@ -20,9 +22,7 @@ function Artist() {
         alt="mr-jonesthumb"
         className="art-imgtop"
       />
-      <h3 className="art-name">
-        <p>{products.name}</p>
-      </h3>
+      <h3 className="art-name">nom de l'artiste</h3>
       <div className="art-bio-container">
         <img
           src="https://i.ibb.co/PMgHS6z/mr-jones.png"
@@ -45,18 +45,7 @@ function Artist() {
         </p>
       </div>
       <h3 className="art-title">Oeuvres de l'artiste</h3>
-      <Grid
-        container
-        spacing={{ xs: 3, md: 10 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        sx={{ flexGrow: 1 }}
-      >
-        {products.map((product) => (
-          <Grid xs={2} sm={4} md={4} key={product.id}>
-            <Oeuvre product={product} />
-          </Grid>
-        ))}
-      </Grid>
+      <SliderOeuvre products={products} />
     </>
   );
 }
