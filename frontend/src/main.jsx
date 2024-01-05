@@ -45,6 +45,9 @@ const router = createBrowserRouter([
       {
         path: "/artists/:id",
         element: <Artist />,
+        loader: () => {
+          return fetch("https://dummyjson.com/products");
+        },
       },
       {
         path: "/artworks",

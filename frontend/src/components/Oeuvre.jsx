@@ -10,6 +10,7 @@ function Oeuvre({ artwork }) {
     <section>
       <Card
         sx={{
+          margin: "1rem",
           bgcolor: "#d1c8e1",
           border: " 0.1rem solid #605f5d",
           borderRadius: "0px",
