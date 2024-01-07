@@ -6,9 +6,15 @@ function Home() {
   return (
     <div>
       <Carousel />
-      <Button text="Voir tous les artistes" />
-      <Carousel />
-      <Button text="Voir toutes les oeuvres" />
+
+      <div className="slide_artist">
+        <h2>Des artistes uniques</h2>
+        <Button text="Voir tous les artistes" />
+      </div>
+      <div className="slide_oeuvre">
+        <h2>Des artistes uniques</h2>
+        <Button text="Voir toutes les oeuvres" />
+      </div>
     </div>
   );
 }

@@ -1,32 +1,59 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Carousel } from "react-responsive-carousel";
+import { Icon } from "@iconify/react";
+import useAllDataContext from "../../contexts/AllDataContext";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "./carousel.css";
-import Images from "./Images";
 
-function Carousel() {
+function Slider() {
+  const { artworks } = useAllDataContext();
   return (
     <div className="content">
-      <h1 className="header">Car Gallery</h1>
       <div className="container">
-        <Slider
-          dots="true"
-          infinite="true"
-          speed={500}
-          slidesToShow={1}
-          slidesToScroll={1}
-          autoplay="true"
-          autoplaySpeed={1000}
+        <Carousel
+          autoPlay
+          interval={6000}
+          infiniteLoop
+          showThumbs={false}
+          showIndicators={false}
+          showStatus={false}
+          transitionTime={1000}
         >
-          {Images.map((item) => (
-            <div key={item.id}>
-              <img src={item.src} alt={item.alt} className="img" />
+          {artworks.map((artwork) => (
+            <div key={artwork.id}>
+              <img
+                src={artwork.thumbnail}
+                srcSet={artwork.thumbnail}
+                loading="lazy"
+                className="img_event"
+                alt=""
+              />
+              <div className="overlay">
+                <h2 className="overlay_title">{artwork.title}</h2>
+                <div className="overlay_text">
+                  <Icon
+                    icon="simple-icons:googlemaps"
+                    color="white"
+                    height="20"
+                    className="place"
+                  />
+                  <p className="">{artwork.artwork_technique}</p>
+                </div>
+                <div className="overlay_text">
+                  <Icon
+                    icon="uiw:date"
+                    color="white"
+                    height="20"
+                    className="date"
+                  />
+                  <p className="">{artwork.date_creation}</p>
+                </div>
+              </div>
             </div>
           ))}
-        </Slider>
+        </Carousel>
       </div>
     </div>
   );
 }
 
-export default Carousel;
+export default Slider;
