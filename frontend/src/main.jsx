@@ -13,6 +13,7 @@ import About from "./pages/About/About";
 import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
+import LoginSignup from "./pages/LoginSignup";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/users",
+        path: "/login",
+        element: <LoginSignup />,
+      },
+      {
+        path: "/users/:id",
         element: <Users />,
       },
       {
@@ -58,7 +63,7 @@ const router = createBrowserRouter([
         element: <Artwork />,
       },
       {
-        path: "/user",
+        path: "/user/:id",
         element: <Users />,
       },
       {

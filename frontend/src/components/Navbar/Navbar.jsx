@@ -54,7 +54,7 @@ function MyNavbar() {
             </Link>
           </li>
           <li>
-            <Link to="/user" className="menu__item">
+            <Link to="/login" className="menu__item">
               Mon compte
             </Link>
           </li>
@@ -78,7 +78,7 @@ function MyNavbar() {
         </Link>
       </div>
       <div className="div-nav-user">
-        <Link to="/user" className="div-user-compte">
+        <Link to="/login" className="div-user-compte">
           <img className="logouser" src={logouser} alt="logouser" />
           <p>Compte</p>
         </Link>

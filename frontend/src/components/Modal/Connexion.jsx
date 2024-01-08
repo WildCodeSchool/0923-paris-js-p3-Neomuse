@@ -52,7 +52,7 @@ function Connexion() {
       </form>
       <form className="monlogin">
         <h2 className="titre_login">Vous n'etes pas encore inscrit?</h2>
-        <p>Créez gratuitement votre compte </p>
+        <center>Créez gratuitement votre compte </center>
         <div className="box_connexion">
           <button type="button" className="bout_signup" onClick={createSignup}>
             Créer un compte
