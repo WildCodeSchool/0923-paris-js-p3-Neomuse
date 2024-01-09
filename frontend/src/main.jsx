@@ -13,6 +13,7 @@ import About from "./pages/About/About";
 import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/artists",

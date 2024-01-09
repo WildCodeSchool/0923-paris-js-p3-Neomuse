@@ -2,7 +2,6 @@ import "./contact.css";
 import ImagePageContact from "../../assets/image_page_contact.jpg";
 import CarteContact from "../../assets/CarteContact.jpg";
 
-
 function Contact() {
   return (
     <section className="contact_page">
