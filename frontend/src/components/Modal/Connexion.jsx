@@ -58,6 +58,7 @@ function Connexion() {
             type="mail"
             placeholder="email@gmail.com"
             ref={email}
+            required
           />
           <p className="titre_email">Votre mot de passe</p>
           <div className="imput">
@@ -67,6 +68,7 @@ function Connexion() {
               ref={password}
               type={passwordVisible ? "text" : "password"}
               className="input_login"
+              required
             />
             <div
               onClick={() => setPasswordVisible((prevState) => !prevState)}

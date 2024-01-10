@@ -1,22 +1,23 @@
 import "./user.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import biguserprofil from "../../assets/svg/biguserprofil.svg";
 import favorisheart from "../../assets/svg/favorisheart.svg";
 import useUser from "../../contexts/UserContext";
 
 function Users() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
   return (
     <>
       <div className="background-user" />
-      {user && (
-        <p className="paragraphe-user-1">
-          Bonjour{" "}
-          <strong>
-            {user.Firstname} {user.lastname}
-          </strong>
-        </p>
-      )}
+
+      <p className="paragraphe-user-1">
+        Bonjour{" "}
+        <strong>
+          {user.Firstname} {user.lastname}
+        </strong>
+      </p>
+
       <p className="paragraphe-user-2">Bienvenue dans votre espace personnel</p>
       <p className="paragraphe-user-3">
         Retrouvez ici l'historique de vos favoris et gérez vos informations
@@ -40,7 +41,16 @@ function Users() {
             VOS FAVORIS
           </Link>
         </div>
-        <div className="deconnexion-user"> Déconnexion</div>
+        <button
+          type="button"
+          className="deconnexion-user"
+          onClick={() => {
+            setUser(null);
+            navigate("/");
+          }}
+        >
+          Déconnexion
+        </button>
       </div>
     </>
   );

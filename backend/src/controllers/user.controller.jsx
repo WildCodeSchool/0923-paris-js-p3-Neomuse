@@ -22,7 +22,7 @@ const login = async (req, res, next) => {
     if (!user) res.sendStatus(422);
     else if (await argon.verify(user.password, password)) {
       const token = jwt.sign(
-        { id: user.id, admin: user.role.admin },
+        { id: user.users_id, role: user.role },
         process.env.APP_SECRET,
         { expiresIn: "30d" }
       );

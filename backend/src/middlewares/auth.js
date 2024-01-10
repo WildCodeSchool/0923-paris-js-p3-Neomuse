@@ -24,7 +24,7 @@ const isAuth = async (req, res, next) => {
     const token = req.cookies["auth-token"];
     const decoded = jwt.verify(token, process.env.APP_SECRET);
     req.body.userID = decoded.id;
-    req.body.admin = decoded.admin;
+    req.body.role = decoded.role;
     next();
   } catch (error) {
     console.error(error);

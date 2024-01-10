@@ -11,7 +11,7 @@ const insert = (user) => {
 };
 
 const findById = (id) => {
-  return db.query("SELECT * FROM users WHERE id  = ?", [id]);
+  return db.query("SELECT * FROM users WHERE users_id  = ?", [id]);
 };
 const findByEmail = (email) => {
   return db.query("SELECT * FROM users WHERE email = ?", [email]);

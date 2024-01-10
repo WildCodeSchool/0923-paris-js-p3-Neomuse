@@ -66,6 +66,7 @@ function ModalSignup() {
               name="firstname"
               ref={firstname}
               className="input_login"
+              required
             />
           </div>
           <div className="">
@@ -77,6 +78,7 @@ function ModalSignup() {
               name="lastname"
               ref={lastname}
               className="input_login"
+              required
             />
           </div>
 
@@ -89,6 +91,7 @@ function ModalSignup() {
               name="phone"
               ref={phone}
               className="input_login"
+              required
             />
           </div>
           <div>
@@ -100,6 +103,7 @@ function ModalSignup() {
               name="adress"
               ref={adress}
               className="input_login"
+              required
             />
           </div>
 
@@ -111,7 +115,9 @@ function ModalSignup() {
               type="email"
               name="creationMail"
               ref={email}
+              placeholder="email@gmail.com"
               className="input_login"
+              required
             />
           </div>
           <div>
@@ -125,6 +131,7 @@ function ModalSignup() {
                 value={password}
                 onChange={handlePasswordChange}
                 className="input_login"
+                required
               />
               <div
                 onClick={() => setPasswordIsVisible((prev) => !prev)}
@@ -152,6 +159,7 @@ function ModalSignup() {
                 className="input_login"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
+                required
               />
               <div
                 onClick={() => setPasswordIsVisible((prevState) => !prevState)}
@@ -169,7 +177,11 @@ function ModalSignup() {
                 )}
               </div>
             </div>
-            {password === confirmPassword ? "✅" : "Mot de passe non identique"}
+            {password === confirmPassword ? (
+              <Icon icon="charm:square-tick" color="#87255b" width="20" />
+            ) : (
+              "Mot de passe non identique"
+            )}
           </div>
         </div>
         <div className="flex justify-center">
