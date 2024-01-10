@@ -101,7 +101,7 @@ function Connexion() {
         </div>
       </form>
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
-        <ModalSignup />
+        <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>
     </div>
   );
