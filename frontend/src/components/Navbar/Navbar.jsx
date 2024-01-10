@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./navbar.css";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
+import useUser from "../../contexts/UserContext";
+import "./navbar.css";
 import logouser from "../../assets/images/userprofil.png";
 import logoneomuse from "../../assets/images/logoneomuse.png";
 
 function MyNavbar() {
+  const { user } = useUser();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -27,7 +30,7 @@ function MyNavbar() {
           />
         </label>
         <div
-          className={`menu__box ${isMenuOpen ? "menu-open" : ""}`}
+          className={`menu__box ${isMenuOpen ? "menu-open" : "true"}`}
           onClick={closeMenu}
           onKeyDown={closeMenu}
           tabIndex="0"
@@ -53,11 +56,19 @@ function MyNavbar() {
               Contact
             </Link>
           </li>
-          <li>
-            <Link to="/login" className="menu__item">
-              Mon compte
-            </Link>
-          </li>
+          {!user ? (
+            <li>
+              <Link to="/login" className="menu__item">
+                Mon compte
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/user/:id" className="menu__item">
+                Mon compte
+              </Link>
+            </li>
+          )}
         </div>
       </div>
       <Link to="/" className="navbar-brand">
@@ -78,10 +89,21 @@ function MyNavbar() {
         </Link>
       </div>
       <div className="div-nav-user">
-        <Link to="/login" className="div-user-compte">
-          <img className="logouser" src={logouser} alt="logouser" />
-          <p>Compte</p>
-        </Link>
+        {!user ? (
+          <Link to="/login" className="div-user-compte">
+            <img className="logouser" src={logouser} alt="logouser" />
+            <p>Compte</p>
+          </Link>
+        ) : (
+          <Link to="/user/:id" className="icon">
+            <Icon
+              icon="mdi:account-check-outline"
+              color="#87255b"
+              width="40"
+              height="40"
+            />
+          </Link>
+        )}
       </div>
     </nav>
   );

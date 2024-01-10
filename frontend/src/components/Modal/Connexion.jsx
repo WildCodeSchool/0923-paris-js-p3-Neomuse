@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+// import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
+  // const navigate = useNavigate();
+  const email = useRef();
+  const password = useRef();
+
   const [openSignup, setOpenSignup] = useState(false);
   const createSignup = () => setOpenSignup(true);
 
-  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   return (
     <div className="container_inscription">
@@ -19,30 +25,34 @@ function Connexion() {
           <input
             className="input_login"
             id="mailConnection"
-            // value={mailConnection}
             name="mail"
-            // onChange={handleChange}
             type="mail"
             placeholder="email@gmail.com"
+            ref={email}
           />
           <p className="titre_email">Votre mot de passe</p>
-          <input
-            id="passwordConnection"
-            // value={passwordConnection}
-            name="password"
-            // onChange={handleChange}
-            type={passwordIsVisible ? "text" : "password"}
-            className="input_login"
-          />
-          <button
-            type="button"
-            onClick={() => setPasswordIsVisible((prevState) => !prevState)}
-            className="text_cacher"
-          >
-            {passwordIsVisible
-              ? "Cacher le mot de passe"
-              : "Afficher le mot de passe"}
-          </button>
+          <div className="imput">
+            <input
+              id="passwordConnection"
+              name="password"
+              ref={password}
+              type={passwordVisible ? "text" : "password"}
+              className="input_login"
+            />
+            <div
+              onClick={() => setPasswordVisible((prevState) => !prevState)}
+              className="text_visible"
+              onKeyDown={() => setPasswordVisible((prevState) => !prevState)}
+              tabIndex="0"
+              role="button"
+            >
+              {passwordVisible ? (
+                <Icon icon="gridicons:not-visible" width="20" />
+              ) : (
+                <Icon icon="gridicons:visible" width="20" />
+              )}
+            </div>
+          </div>
         </div>
         <div className="box_connexion">
           <button type="submit" className="bout_login">
