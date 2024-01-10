@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
+import useUser from "../../contexts/UserContext";
 import "./connexion.css";
 
 function ModalSignup() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -37,10 +39,10 @@ function ModalSignup() {
           }),
         }
       );
-
+      console.info(response.status);
       if (response.status === 201) {
         const user = await response.json();
-        console.info(user);
+        setUser(user);
         navigate("/");
       } else {
         console.error("veuillez verifier votre saisie.");
@@ -171,7 +173,7 @@ function ModalSignup() {
           </div>
         </div>
         <div className="flex justify-center">
-          <button type="submit" className="bout_login" onClick={handleSubmit}>
+          <button type="button" className="bout_login" onClick={handleSubmit}>
             Créer votre compte
           </button>
         </div>

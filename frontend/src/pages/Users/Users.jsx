@@ -2,12 +2,21 @@ import "./user.css";
 import { Link } from "react-router-dom";
 import biguserprofil from "../../assets/svg/biguserprofil.svg";
 import favorisheart from "../../assets/svg/favorisheart.svg";
+import useUser from "../../contexts/UserContext";
 
 function Users() {
+  const { user } = useUser();
   return (
     <>
       <div className="background-user" />
-      <p className="paragraphe-user-1">Bonjour User,</p>
+      {user && (
+        <p className="paragraphe-user-1">
+          Bonjour{" "}
+          <strong>
+            {user.Firstname} {user.lastname}
+          </strong>
+        </p>
+      )}
       <p className="paragraphe-user-2">Bienvenue dans votre espace personnel</p>
       <p className="paragraphe-user-3">
         Retrouvez ici l'historique de vos favoris et gérez vos informations

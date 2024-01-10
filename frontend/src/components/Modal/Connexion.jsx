@@ -1,13 +1,15 @@
 import { useState, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
+import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { setUser } = useUser();
   const email = useRef();
   const password = useRef();
 
@@ -15,6 +17,33 @@ function Connexion() {
   const createSignup = () => setOpenSignup(true);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: email.current.value,
+            password: password.current.value,
+          }),
+        }
+      );
+      if (response.status === 200) {
+        const user = await response.json();
+        setUser(user);
+        navigate("/");
+      } else {
+        console.error("veuillez verifier votre saisie.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="container_inscription">
@@ -55,7 +84,7 @@ function Connexion() {
           </div>
         </div>
         <div className="box_connexion">
-          <button type="submit" className="bout_login">
+          <button type="button" className="bout_login" onClick={handleSubmit}>
             connectez-vous
           </button>
         </div>
