@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@media screen and (max-width: 428px) {
+  body {
+    background-color: #f6f3ec;
+    font-family: "Playfair Display", Helvetica, sans-serif;
+  }
+  .art-imgtop-desk {
+    display: none;
+  }
+  .art-imgtop {
+    width: 100%;
+    height: auto;
+  }
+
+  .bio-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .art-biography {
+    border-radius: 0.3rem;
+    background-color: #d9d9d9;
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem;
+  }
+  .art-title {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+  }
+  .art-thumb-desk {
+    display: none;
+  }
+  .art-name {
+    margin-left: 0.5rem;
+  }
+  .art-display {
+    width: 30%;
+  }
+
+  .content {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .header {
+    font-size: 42px;
+  }
+  .art-bio-seemore {
+    margin-top: 0.2rem;
+    border: 0.1rem solid;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .art-imgtop {
+    display: none;
+  }
+  .art-imgtop-desk {
+    width: 100%;
+    height: auto;
+  }
+  .art-name {
+    text-align: center;
+    margin-top: 2rem;
+    margin-right: 10rem;
+    font-size: xx-large;
+  }
+
+  .art-biography {
+    border-radius: 0.3rem;
+    background-color: #d9d9d9;
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem;
+  }
+  .art-title {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+  }
+
+  .art-thumb-desk {
+    margin-right: 1rem;
+    border-radius: 0.3rem;
+  }
+  .art-bio-container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .art-display {
+    width: 50%;
+  }
+  .art-bio-seemore {
+    margin-top: 0.2rem;
+    border: 0.1rem solid;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+  }
+}

@@ -1,4 +1,5 @@
-import { useState, useRef, useNavigate } from "react";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./connexion.css";
 
 function ModalSignup() {
@@ -7,6 +8,7 @@ function ModalSignup() {
   const lastname = useRef();
   const email = useRef();
   const password = useRef();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -26,7 +28,7 @@ function ModalSignup() {
       if (response.status === 201) {
         const user = await response.json();
         console.info(user);
-        useNavigate("/");
+        navigate("/");
       } else {
         console.error("veuillez verifier votre saisie.");
       }
@@ -116,7 +118,7 @@ function ModalSignup() {
           </div>
         </div>
         <div className="flex justify-center">
-          <button type="submit" className="bout_login" onClick={handleSubmit}>
+          <button type="button" className="bout_login" onClick={handleSubmit}>
             Créer votre compte
           </button>
         </div>

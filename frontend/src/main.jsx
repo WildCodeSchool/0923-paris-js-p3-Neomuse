@@ -13,7 +13,7 @@ import About from "./pages/About/About";
 import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
-import Login from "./pages/Login";
+import LoginSignup from "./pages/LoginSignup";
 
 const router = createBrowserRouter([
   {
@@ -33,12 +33,16 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/users",
+        path: "/login",
+        element: <LoginSignup />,
+      },
+      {
+        path: "/users/:id",
         element: <Users />,
       },
       {
         path: "/login",
-        element: <Login />,
+        element: <LoginSignup />,
       },
       {
         path: "/artists",
@@ -50,6 +54,9 @@ const router = createBrowserRouter([
       {
         path: "/artists/:id",
         element: <Artist />,
+        loader: () => {
+          return fetch("https://dummyjson.com/products");
+        },
       },
       {
         path: "/artworks",
@@ -60,7 +67,7 @@ const router = createBrowserRouter([
         element: <Artwork />,
       },
       {
-        path: "/user",
+        path: "/user/:id",
         element: <Users />,
       },
       {
