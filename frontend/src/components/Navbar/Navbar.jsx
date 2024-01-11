@@ -59,7 +59,7 @@ function MyNavbar() {
           {!user ? (
             <li>
               <Link to="/login" className="menu__item">
-                Mon compte
+                Connexion
               </Link>
             </li>
           ) : (
@@ -92,10 +92,10 @@ function MyNavbar() {
         {!user ? (
           <Link to="/login" className="div-user-compte">
             <img className="logouser" src={logouser} alt="logouser" />
-            <p>Compte</p>
+            <p>Connexion</p>
           </Link>
         ) : (
-          <Link to="/user/:id" className="icon">
+          <Link to="/users" className="icon">
             <Icon
               icon="mdi:account-check-outline"
               color="#87255b"

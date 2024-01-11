@@ -1,8 +1,7 @@
-import { useLoaderData } from "react-router-dom";
+import React from "react";
 
 function Favoris() {
-  const users = useLoaderData();
-  return <div>{users && users.map((user) => <p>{user.email}</p>)}</div>;
+  return <div>Favoris</div>;
 }
 
 export default Favoris;

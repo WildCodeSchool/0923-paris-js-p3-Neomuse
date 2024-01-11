@@ -38,16 +38,7 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
-const getAll = async (req, res, next) => {
-  try {
-    const [users] = await userModel.findAll();
-    res.status(200).json(users);
-  } catch (error) {
-    next(error);
-  }
-};
 module.exports = {
   add,
   login,
-  getAll,
 };

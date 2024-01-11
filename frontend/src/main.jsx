@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <LoginSignup />,
       },
       {
-        path: "/users/:id",
+        path: "/users",
         element: <Users />,
       },
       {
@@ -70,11 +70,6 @@ const router = createBrowserRouter([
       {
         path: "/favoris",
         element: <Favoris />,
-        loader: () => {
-          return fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
-            credentials: "include",
-          });
-        },
       },
       {
         path: "/information",
