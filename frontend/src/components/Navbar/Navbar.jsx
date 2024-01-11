@@ -64,7 +64,7 @@ function MyNavbar() {
             </li>
           ) : (
             <li>
-              <Link to="/user/:id" className="menu__item">
+              <Link to="/users" className="menu__item">
                 Mon compte
               </Link>
             </li>
