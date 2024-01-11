@@ -1,17 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500;900&family=Playfair+Display:wght@500&display=swap");
-
-.paragraphe-user-1 {
-  display: none;
-}
-
-.paragraphe-user-2 {
-  display: none;
-}
-
-.paragraphe-user-3 {
-  display: none;
-}
-
 .maxi-flex-user {
   display: flex;
   flex-direction: column;

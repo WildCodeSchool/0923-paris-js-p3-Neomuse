@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AllDataProvider } from "./contexts/AllDataContext";
+import { UserProvider } from "./contexts/UserContext";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
         element: <LoginSignup />,
       },
       {
-        path: "/users/:id",
+        path: "/users",
         element: <Users />,
       },
       {
@@ -82,8 +83,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <AllDataProvider>
-      <RouterProvider router={router} />
-    </AllDataProvider>
+    <UserProvider>
+      <AllDataProvider>
+        <RouterProvider router={router} />
+      </AllDataProvider>
+    </UserProvider>
   </React.StrictMode>
 );
