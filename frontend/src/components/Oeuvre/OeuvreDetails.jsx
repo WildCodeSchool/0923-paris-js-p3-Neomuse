@@ -1,31 +1,52 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from "@mui/joy/Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import "./OeuvreDetail.css";
 
 function Artwork() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const [artwork, setArtwork] = useState([]);
+
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
+    const Id = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtwork(data);
+        } else {
+          console.error("Pas d'oeuvre par technique trouvé");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    Id();
   }, []);
 
   return (
     <section>
-      {product && (
+      <Link to="/artworks">Toute la collection</Link>
+      {artwork && (
         <div className="sectionOeuvreD">
           <figure className="boximgOeuvreDetail">
-            <img src={product.images[0]} alt="" className="imgOeuvreDetail" />
+            <img src={artwork.thumbnail} alt="" className="imgOeuvreDetail" />
           </figure>
           <div className="aside">
             <div className="enTeteOeuvreDetais">
               <div className="titreOeuvre">
-                <p>{product.title}</p>
-                <p>{product.category}</p>
-                <p>{product.price} €</p>
+                <p>{artwork.title}</p>
+                <p>{artwork.category}</p>
+                <p>{artwork.price} €</p>
+                <p>
+                  {artwork.dimension_height} x {artwork.dimension_width} cm
+                </p>
               </div>
               <div className="boxboutton">
                 <Button
@@ -46,19 +67,21 @@ function Artwork() {
             </div>
             <h2 className="descripOeuvreTitre">Description de l'œuvre</h2>
             <div className="descripOeuvre">
-              <p className="descripOeuvre-1">{product.description}</p>
+              <p className="descripOeuvre-1">{artwork.description}</p>
               <div className="descripOeuvre-2">
                 <div>
                   <span className="dimensionimage">Dimensions:</span>{" "}
-                  <span>{product.title}</span>{" "}
+                  <span>
+                    {artwork.dimension_height} x {artwork.dimension_width} cm
+                  </span>{" "}
                 </div>
                 <div>
                   <span className="dimensionimage">Theme :</span>{" "}
-                  <span>{product.title}</span>
+                  <span>{artwork.art_theme}</span>
                 </div>
                 <div>
-                  <span className="dimensionimage">Technique :</span>{" "}
-                  <span>{product.title}</span>
+                  <span className="dimensionimage">Artiste :</span>{" "}
+                  <span>{artwork.title}</span>
                 </div>
               </div>
             </div>
