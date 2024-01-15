@@ -1,14 +1,47 @@
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
+import authContext from "../../contexts/AuthContext";
 
 function Connexion() {
+  const navigate = useNavigate();
   const [openSignup, setOpenSignup] = useState(false);
   const createSignup = () => setOpenSignup(true);
-
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const email = useRef();
+  const password = useRef();
+  const auth = useContext(authContext);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: email.current.value,
+            password: password.current.value,
+          }),
+        }
+      );
+      if (response.status === 200) {
+        const user = await response.json();
+        auth.setUser(user);
+        navigate("/");
+      } else {
+        console.error("veuillez verifier votre saisie.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="container_inscription">
@@ -24,6 +57,7 @@ function Connexion() {
             // onChange={handleChange}
             type="mail"
             placeholder="email@gmail.com"
+            ref={email}
           />
           <p className="titre_email">Votre mot de passe</p>
           <input
@@ -33,6 +67,7 @@ function Connexion() {
             // onChange={handleChange}
             type={passwordIsVisible ? "text" : "password"}
             className="input_login"
+            ref={password}
           />
           <button
             type="button"
@@ -45,7 +80,7 @@ function Connexion() {
           </button>
         </div>
         <div className="box_connexion">
-          <button type="submit" className="bout_login">
+          <button type="button" className="bout_login" onClick={handleSubmit}>
             connectez-vous
           </button>
         </div>

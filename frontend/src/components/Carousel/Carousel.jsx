@@ -2,25 +2,27 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
-import Images from "./Images";
+import ArtistlistHome from "../ArtistListHome";
+import useAllDataContext from "../../contexts/AllDataContext";
 
 function Carousel() {
+  const [artists] = useAllDataContext();
   return (
     <div className="content">
-      <h1 className="header">Car Gallery</h1>
+      <h1 className="header">Des artistes uniques</h1>
       <div className="container">
         <Slider
           dots="true"
           infinite="true"
-          speed={500}
+          speed="500"
           slidesToShow={1}
           slidesToScroll={1}
           autoplay="true"
-          autoplaySpeed={1000}
+          autoplaySpeed={3000}
         >
-          {Images.map((item) => (
-            <div key={item.id}>
-              <img src={item.src} alt={item.alt} className="img" />
+          {artists?.map((artist) => (
+            <div key={artist?.id}>
+              <ArtistlistHome artist={artist} />
             </div>
           ))}
         </Slider>

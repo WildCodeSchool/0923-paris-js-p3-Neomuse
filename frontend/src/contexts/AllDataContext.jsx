@@ -1,7 +1,7 @@
 import { useMemo, useState, createContext, useContext } from "react";
-import Oeuvre1 from "../assets/oeuvre1.webp";
+/* import Oeuvre1 from "../assets/oeuvre1.webp";
 import Oeuvre2 from "../assets/oeuvre2.webp";
-import Oeuvre3 from "../assets/oeuvre3.webp";
+import Oeuvre3 from "../assets/oeuvre3.webp"; */
 
 const AllDataContext = createContext();
 export function AllDataProvider({ children }) {
@@ -16,7 +16,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre1,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Peinture",
@@ -31,7 +31,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre1,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Photographie",
@@ -46,7 +46,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre2,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Sculpture",
@@ -61,7 +61,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre3,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Photographie",
@@ -76,7 +76,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre3,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Sculpture",
@@ -91,7 +91,7 @@ export function AllDataProvider({ children }) {
       date_creation: "10/10/2023",
       dimension_height: "19",
       dimension_depth: "19",
-      thumbnail: Oeuvre2,
+      thumbnail: "https://i.ibb.co/1GXBrtn/mr-jones-artwork.jpg",
       price_on_demand: "1",
       artists: "Elie Lemarque",
       artwork_technique: "Peinture",
@@ -112,12 +112,43 @@ export function AllDataProvider({ children }) {
     },
   ]);
 
+  const [artists] = useState([
+    {
+      id: 1,
+      artist_name: "ECRK!",
+      firstname: "will",
+      lastname: "Smith",
+      date_registration: "2023-10-01",
+      thumbnail: "https://i.ibb.co/3vcZJCY/mr-jones.png",
+      biography: "aime les frites",
+    },
+    {
+      id: 2,
+      artist_name: "La poutre",
+      firstname: "rara",
+      lastname: "BG",
+      date_registration: "2023-11-06",
+      thumbnail: "https://i.ibb.co/3vcZJCY/mr-jones.png",
+      biography: "BG ultime",
+    },
+    {
+      id: 3,
+      artist_name: "Big J",
+      firstname: "Ju",
+      lastname: "Lius",
+      date_registration: "2023-11-01",
+      thumbnail: "https://i.ibb.co/3vcZJCY/mr-jones.png",
+      biography: "Adore Booba",
+    },
+  ]);
+
   const value = useMemo(
     () => ({
       artworks,
       artworkTechnique,
+      artists,
     }),
-    [artworks, artworkTechnique]
+    [artworks, artworkTechnique, artists]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>

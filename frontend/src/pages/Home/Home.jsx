@@ -1,13 +1,15 @@
+import React from "react";
 import Button from "../../components/Button/Button";
-import Carousel from "../../components/Carousel/Carousel";
+import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 import "./home.css";
+import Carousel from "../../components/Carousel/Carousel";
 
 function Home() {
   return (
     <div>
       <Carousel />
       <Button text="Voir tous les artistes" />
-      <Carousel />
+      <SliderOeuvre />
       <Button text="Voir toutes les oeuvres" />
     </div>
   );

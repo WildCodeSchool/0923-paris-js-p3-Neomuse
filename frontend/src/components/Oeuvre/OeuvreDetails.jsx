@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Button from "@mui/joy/Button";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import "./OeuvreDetail.css";
+/* import SliderOeuvre from "../Slider/SliderOeuvre"; */
 
 function Artwork() {
   const { id } = useParams();

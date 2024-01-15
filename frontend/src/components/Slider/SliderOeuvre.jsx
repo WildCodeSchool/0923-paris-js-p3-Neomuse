@@ -1,11 +1,13 @@
 import React from "react";
 import Slider from "react-slick";
 import Oeuvre from "../Oeuvre";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./sliderOeuvre.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function SliderOeuvre({ products }) {
+function SliderOeuvre() {
+  const { artworks } = useAllDataContext();
   return (
     <div className="containerSlider">
       <div className="containtSlider">
@@ -24,9 +26,9 @@ function SliderOeuvre({ products }) {
             },
           ]}
         >
-          {products.map((product) => (
-            <div key={product.id}>
-              <Oeuvre product={product} />
+          {artworks.map((artwork) => (
+            <div key={artwork?.id}>
+              <Oeuvre artwork={artwork} />
             </div>
           ))}
         </Slider>

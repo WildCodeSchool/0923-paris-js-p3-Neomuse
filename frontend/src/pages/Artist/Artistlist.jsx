@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./artistlist.css";
 
 function Artistlist() {
-  const portraits = useLoaderData();
+  const [portraits] = useAllDataContext();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
@@ -48,12 +48,16 @@ function Artistlist() {
       <div className="portraits">
         <div className="portrait_artist">
           {searchbar?.map((portrait) => (
-            <div key={portrait.id}>
-              {portrait.images?.sm && (
-                <img className="image_artist" src={portrait.images.sm} alt="" />
+            <div key={portrait?.id}>
+              {portrait?.thumbnail.sm && (
+                <img
+                  className="image_artist"
+                  src={portrait?.thumbnail.sm}
+                  alt=""
+                />
               )}
               <div className="name_artist">
-                <p>{portrait.name}</p>
+                <p>{portrait?.artist_name}</p>
               </div>
             </div>
           ))}
