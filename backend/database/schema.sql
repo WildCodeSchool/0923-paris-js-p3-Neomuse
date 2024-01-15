@@ -1,253 +1,135 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: neo_muse
--- ------------------------------------------------------
--- Server version	8.0.35
+-- MySQL Workbench Forward Engineering
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @OLD_UNIQUE_CHECKS = @ @UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
 
---
--- Table structure for table `artists`
---
+SET
+    @OLD_FOREIGN_KEY_CHECKS = @ @FOREIGN_KEY_CHECKS,
+    FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `artists`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `artists` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `artist_name` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `date_registration` datetime NOT NULL,
-  `thumbnail` text NOT NULL,
-  `biography` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SET
+    @OLD_SQL_MODE = @ @SQL_MODE,
+    SQL_MODE = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
---
--- Dumping data for table `artists`
---
+-- -----------------------------------------------------
+-- Schema neo_muse
+-- -----------------------------------------------------
 
-LOCK TABLES `artists` WRITE;
-/*!40000 ALTER TABLE `artists` DISABLE KEYS */;
-/*!40000 ALTER TABLE `artists` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Schema neo_muse
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `neo_muse` DEFAULT CHARACTER SET utf8;
 
---
--- Table structure for table `artwork_technique`
---
+USE `neo_muse`;
 
-DROP TABLE IF EXISTS `artwork_technique`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `artwork_technique` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `sub_technique_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_artwork_technique_sub_technique1_idx` (`sub_technique_id`),
-  CONSTRAINT `fk_artwork_technique_sub_technique1` FOREIGN KEY (`sub_technique_id`) REFERENCES `sub_technique` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `neo_muse`.`artists`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artists` (
+        `artist_id` INT NOT NULL AUTO_INCREMENT,
+        `artist_name` VARCHAR(255) NOT NULL,
+        `firstname` VARCHAR(255) NOT NULL,
+        `lastname` VARCHAR(255) NOT NULL,
+        `date_registration` DATETIME NOT NULL,
+        `thumbnail` TEXT NOT NULL,
+        `biography` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`artist_id`)
+    );
 
---
--- Dumping data for table `artwork_technique`
---
+-- -----------------------------------------------------
+-- Table `neo_muse`.`events`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`events` (
+        `events_id` INT NOT NULL AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        `date` DATETIME NOT NULL,
+        `localisation` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`events_id`)
+    );
 
-LOCK TABLES `artwork_technique` WRITE;
-/*!40000 ALTER TABLE `artwork_technique` DISABLE KEYS */;
-/*!40000 ALTER TABLE `artwork_technique` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `neo_muse`.`sub_technique`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`sub_technique` (
+        `sub_technique_id` INT NOT NULL AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`sub_technique_id`),
+        UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE
+    );
 
---
--- Table structure for table `artworks`
---
+-- -----------------------------------------------------
+-- Table `neo_muse`.`artwork_technique`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artwork_technique` (
+        `artwork_technique_id` INT NOT NULL AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        `sub_technique_id` INT NOT NULL,
+        PRIMARY KEY (`artwork_technique_id`),
+        INDEX `fk_artwork_technique_sub_technique1_idx` (`sub_technique_id` ASC) VISIBLE,
+        CONSTRAINT `fk_artwork_technique_sub_technique1` FOREIGN KEY (`sub_technique_id`) REFERENCES `neo_muse`.`sub_technique` (`sub_technique_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    );
 
-DROP TABLE IF EXISTS `artworks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `artworks` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `art_theme` varchar(255) NOT NULL,
-  `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `price` int NOT NULL,
-  `dimension_height` int NOT NULL,
-  `dimension_width` int NOT NULL,
-  `dimension_depth` int NOT NULL,
-  `price_on_demand` tinyint NOT NULL,
-  `thumbnail` text NOT NULL,
-  `artists_id` int NOT NULL,
-  `artwork_technique_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_artworks_artists1_idx` (`artists_id`),
-  KEY `fk_artworks_artwork_technique1_idx` (`artwork_technique_id`),
-  CONSTRAINT `fk_artworks_artists1` FOREIGN KEY (`artists_id`) REFERENCES `artists` (`id`),
-  CONSTRAINT `fk_artworks_artwork_technique1` FOREIGN KEY (`artwork_technique_id`) REFERENCES `artwork_technique` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Table `neo_muse`.`users`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`users` (
+        `users_id` INT NOT NULL AUTO_INCREMENT,
+        `firstname` VARCHAR(255) NOT NULL,
+        `lastname` VARCHAR(255) NOT NULL,
+        `email` VARCHAR(255) NOT NULL,
+        `phone` VARCHAR(10) NOT NULL,
+        `adress` VARCHAR(255) NOT NULL,
+        `password` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`users_id`),
+        UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+        UNIQUE INDEX `phone_UNIQUE` (`phone` ASC) VISIBLE
+    );
 
---
--- Dumping data for table `artworks`
---
+-- -----------------------------------------------------
+-- Table `neo_muse`.`artworks`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artworks` (
+        `artworks_id` INT NOT NULL AUTO_INCREMENT,
+        `title` VARCHAR(255) NOT NULL,
+        `description` TEXT NOT NULL,
+        `art_theme` VARCHAR(255) NOT NULL,
+        `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `price` INT NOT NULL,
+        `dimension_height` INT NOT NULL,
+        `dimension_width` INT NOT NULL,
+        `dimension_depth` INT NOT NULL,
+        `price_on_demand` TINYINT NOT NULL,
+        `thumbnail` TEXT NOT NULL,
+        `artists_id` INT NOT NULL,
+        `artwork_technique_id` INT NOT NULL,
+        PRIMARY KEY (`artworks_id`),
+        INDEX `fk_artworks_artists1_idx` (`artists_id` ASC) VISIBLE,
+        INDEX `fk_artworks_artwork_technique1_idx` (`artwork_technique_id` ASC) VISIBLE,
+        CONSTRAINT `fk_artworks_artists1` FOREIGN KEY (`artists_id`) REFERENCES `neo_muse`.`artists` (`artist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+        CONSTRAINT `fk_artworks_artwork_technique1` FOREIGN KEY (`artwork_technique_id`) REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    );
 
-LOCK TABLES `artworks` WRITE;
-/*!40000 ALTER TABLE `artworks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `artworks` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `neo_muse`.`set_favorite`
+-- -----------------------------------------------------
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`set_favorite` (
+        `users_id` INT NOT NULL,
+        `artworks_id` INT NOT NULL,
+        PRIMARY KEY (`users_id`, `artworks_id`),
+        INDEX `fk_users_has_artworks_artworks1_idx` (`artworks_id` ASC) VISIBLE,
+        INDEX `fk_users_has_artworks_users1_idx` (`users_id` ASC) VISIBLE,
+        CONSTRAINT `fk_users_has_artworks_users1` FOREIGN KEY (`users_id`) REFERENCES `neo_muse`.`users` (`users_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+        CONSTRAINT `fk_users_has_artworks_artworks1` FOREIGN KEY (`artworks_id`) REFERENCES `neo_muse`.`artworks` (`artworks_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    );
 
---
--- Table structure for table `events`
---
+SET SQL_MODE = @OLD_SQL_MODE;
 
-DROP TABLE IF EXISTS `events`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `events` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `date` datetime NOT NULL,
-  `localisation` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
 
---
--- Dumping data for table `events`
---
-
-LOCK TABLES `events` WRITE;
-/*!40000 ALTER TABLE `events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `exhibit`
---
-
-DROP TABLE IF EXISTS `exhibit`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `exhibit` (
-  `events_id` int NOT NULL,
-  `artworks_id` int NOT NULL,
-  PRIMARY KEY (`events_id`,`artworks_id`),
-  KEY `fk_events_has_artworks_artworks1_idx` (`artworks_id`),
-  KEY `fk_events_has_artworks_events1_idx` (`events_id`),
-  CONSTRAINT `fk_events_has_artworks_artworks1` FOREIGN KEY (`artworks_id`) REFERENCES `artworks` (`id`),
-  CONSTRAINT `fk_events_has_artworks_events1` FOREIGN KEY (`events_id`) REFERENCES `events` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `exhibit`
---
-
-LOCK TABLES `exhibit` WRITE;
-/*!40000 ALTER TABLE `exhibit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `exhibit` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `set_favorite`
---
-
-DROP TABLE IF EXISTS `set_favorite`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `set_favorite` (
-  `users_id` int NOT NULL,
-  `artworks_id` int NOT NULL,
-  PRIMARY KEY (`users_id`,`artworks_id`),
-  KEY `fk_users_has_artworks_artworks1_idx` (`artworks_id`),
-  KEY `fk_users_has_artworks_users1_idx` (`users_id`),
-  CONSTRAINT `fk_users_has_artworks_artworks1` FOREIGN KEY (`artworks_id`) REFERENCES `artworks` (`id`),
-  CONSTRAINT `fk_users_has_artworks_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `set_favorite`
---
-
-LOCK TABLES `set_favorite` WRITE;
-/*!40000 ALTER TABLE `set_favorite` DISABLE KEYS */;
-/*!40000 ALTER TABLE `set_favorite` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sub_technique`
---
-
-DROP TABLE IF EXISTS `sub_technique`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sub_technique` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sub_technique`
---
-
-LOCK TABLES `sub_technique` WRITE;
-/*!40000 ALTER TABLE `sub_technique` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sub_technique` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` int NOT NULL,
-  `adress` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('user','admin') NOT NULL DEFAULT 'user',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-01-08 16:38:30
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;

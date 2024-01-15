@@ -9,7 +9,6 @@ const hashingOptions = {
 };
 
 const hashPassword = async (req, res, next) => {
-  console.info(req.body);
   const { password } = req.body;
 
   try {
@@ -20,7 +19,6 @@ const hashPassword = async (req, res, next) => {
     res.status(500).json(error.message);
   }
 };
-
 const isAuth = async (req, res, next) => {
   try {
     const token = req.cookies["auth-token"];
@@ -33,7 +31,6 @@ const isAuth = async (req, res, next) => {
     res.status(401).json(error.message);
   }
 };
-
 module.exports = {
   hashPassword,
   isAuth,

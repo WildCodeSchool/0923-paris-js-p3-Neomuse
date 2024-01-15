@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AllDataProvider } from "./contexts/AllDataContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import { UserProvider } from "./contexts/UserContext";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
@@ -38,22 +39,16 @@ const router = createBrowserRouter([
         element: <LoginSignup />,
       },
       {
-        path: "/users/:id",
+        path: "/users",
         element: <Users />,
       },
       {
         path: "/artists",
         element: <Artistlist />,
-        loader: () => {
-          return fetch("https://akabab.github.io/superhero-api/api/all.json");
-        },
       },
       {
         path: "/artists/:id",
         element: <Artist />,
-        loader: () => {
-          return fetch("https://dummyjson.com/products");
-        },
       },
       {
         path: "/artworks",
@@ -88,5 +83,10 @@ root.render(
         <RouterProvider router={router} />
       </AllDataProvider>
     </AuthProvider>
+    <UserProvider>
+      <AllDataProvider>
+        <RouterProvider router={router} />
+      </AllDataProvider>
+    </UserProvider>
   </React.StrictMode>
 );

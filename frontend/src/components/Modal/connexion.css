@@ -45,11 +45,18 @@
     box-shadow: 0 0 0 2px #b370b0;
   }
 }
-.text_cacher {
-  font-size: 0.6rem;
-  margin-top: 0.4rem;
-}
 
+.imput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.text_visible {
+  margin-left: -2rem;
+  margin-top: 0.6rem;
+  color: #848484;
+  cursor: pointer;
+}
 .box_connexion {
   width: 50%;
   margin: 0 auto;
@@ -97,5 +104,8 @@
     justify-content: space-around;
     gap: 2rem;
     padding: 4rem;
+  }
+  .text_visible {
+    right: 19rem;
   }
 }

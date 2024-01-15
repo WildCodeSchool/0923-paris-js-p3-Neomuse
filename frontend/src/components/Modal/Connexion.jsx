@@ -1,24 +1,26 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
+import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
-import authContext from "../../contexts/AuthContext";
 
 function Connexion() {
   const navigate = useNavigate();
-  const [openSignup, setOpenSignup] = useState(false);
-  const createSignup = () => setOpenSignup(true);
-  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+  const { setUser } = useUser();
   const email = useRef();
   const password = useRef();
-  const auth = useContext(authContext);
 
+  const [openSignup, setOpenSignup] = useState(false);
+  const createSignup = () => setOpenSignup(true);
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
         {
           method: "POST",
           headers: {
@@ -33,7 +35,7 @@ function Connexion() {
       );
       if (response.status === 200) {
         const user = await response.json();
-        auth.setUser(user);
+        setUser(user);
         navigate("/");
       } else {
         console.error("veuillez verifier votre saisie.");
@@ -52,32 +54,36 @@ function Connexion() {
           <input
             className="input_login"
             id="mailConnection"
-            // value={mailConnection}
             name="mail"
-            // onChange={handleChange}
             type="mail"
             placeholder="email@gmail.com"
             ref={email}
+            required
           />
           <p className="titre_email">Votre mot de passe</p>
-          <input
-            id="passwordConnection"
-            // value={passwordConnection}
-            name="password"
-            // onChange={handleChange}
-            type={passwordIsVisible ? "text" : "password"}
-            className="input_login"
-            ref={password}
-          />
-          <button
-            type="button"
-            onClick={() => setPasswordIsVisible((prevState) => !prevState)}
-            className="text_cacher"
-          >
-            {passwordIsVisible
-              ? "Cacher le mot de passe"
-              : "Afficher le mot de passe"}
-          </button>
+          <div className="imput">
+            <input
+              id="passwordConnection"
+              name="password"
+              ref={password}
+              type={passwordVisible ? "text" : "password"}
+              className="input_login"
+              required
+            />
+            <div
+              onClick={() => setPasswordVisible((prevState) => !prevState)}
+              className="text_visible"
+              onKeyDown={() => setPasswordVisible((prevState) => !prevState)}
+              tabIndex="0"
+              role="button"
+            >
+              {passwordVisible ? (
+                <Icon icon="gridicons:not-visible" width="20" />
+              ) : (
+                <Icon icon="gridicons:visible" width="20" />
+              )}
+            </div>
+          </div>
         </div>
         <div className="box_connexion">
           <button type="button" className="bout_login" onClick={handleSubmit}>
@@ -95,7 +101,7 @@ function Connexion() {
         </div>
       </form>
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
-        <ModalSignup />
+        <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>
     </div>
   );
