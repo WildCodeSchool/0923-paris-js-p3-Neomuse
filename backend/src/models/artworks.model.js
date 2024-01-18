@@ -26,9 +26,18 @@ const findAll = () => {
   return db.query("SELECT * FROM artworks ");
 };
 
-const findById = (id) => {
-  return db.query("SELECT * FROM artworks WHERE artworks_id  = ?", [id]);
+const findByArtworkTechniqueList = (id) => {
+  return db.query("select * from artworks where `artwork_technique_id` = ?", [
+    id,
+  ]);
 };
+const findById = (id) => {
+  return db.query(
+    "SELECT a.artworks_id, a.title, a.description, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, a.artwork_technique_id, t.name as technique_name FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id  WHERE artworks_id  = ?",
+    [id]
+  );
+};
+
 const TechAll = () => {
   return db.query("SELECT * FROM artwork_technique ");
 };
@@ -37,6 +46,9 @@ const findBytech = () => {
     "SELECT a.artworks_id, a.title, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, t.name as technique_name FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id"
   );
 };
+const AllArtist = () => {
+  return db.query("SELECT * FROM artists ");
+};
 
 module.exports = {
   insert,
@@ -44,4 +56,6 @@ module.exports = {
   findById,
   TechAll,
   findBytech,
+  AllArtist,
+  findByArtworkTechniqueList,
 };

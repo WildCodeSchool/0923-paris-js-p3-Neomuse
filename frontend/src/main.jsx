@@ -15,6 +15,7 @@ import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
 import LoginSignup from "./pages/LoginSignup";
+import PageAdmin from "./pages/Admin/PageAdmin";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/information",
         element: <Information />,
+      },
+      {
+        path: "/Admin",
+        element: <PageAdmin />,
       },
     ],
   },

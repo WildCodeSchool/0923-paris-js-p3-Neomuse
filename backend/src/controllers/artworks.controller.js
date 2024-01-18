@@ -25,8 +25,19 @@ const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const [[artwork]] = await artworkModel.findById(id);
+    const [ArtworkTecniqueList] = await artworkModel.findByArtworkTechniqueList(
+      artwork.artwork_technique_id
+    );
+    // console.log(artwork.artworks_id);
 
-    if (artwork) res.status(200).json(artwork);
+    const fiterArtworkTecniqueList = ArtworkTecniqueList.filter(
+      (oeuvreUnique) => artwork.artworks_id !== oeuvreUnique.artworks_id
+    );
+    if (artwork)
+      res.status(200).json({
+        artworkUnique: artwork,
+        artworkList: fiterArtworkTecniqueList,
+      });
     else res.sendStatus(422);
   } catch (error) {
     next(error);
@@ -48,10 +59,20 @@ const getBytech = async (req, res, next) => {
     next(error);
   }
 };
+const getArtistAll = async (req, res, next) => {
+  try {
+    const [artist] = await artworkModel.AllArtist();
+    res.status(200).json(artist);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
   getALL,
   getById,
   getTechAll,
   getBytech,
+  getArtistAll,
 };
