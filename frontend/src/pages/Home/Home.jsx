@@ -1,14 +1,34 @@
-import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Carousel />
-      <Button text="Voir tous les artistes" />
-      <Carousel />
-      <Button text="Voir toutes les oeuvres" />
+
+      <div className="slide_artist">
+        <h2>Des artistes uniques</h2>
+        <button
+          type="button"
+          className="bouton_voir"
+          onClick={() => navigate("/artists")}
+        >
+          Voir tous les artistes
+        </button>
+      </div>
+      <div className="slide_oeuvre">
+        <h2>Des artistes uniques</h2>
+        <button
+          type="button"
+          className="bouton_voir"
+          onClick={() => navigate("/artworks")}
+        >
+          Voir toutes les oeuvres
+        </button>
+      </div>
     </div>
   );
 }

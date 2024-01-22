@@ -7,15 +7,32 @@ import useUser from "../../contexts/UserContext";
 function Users() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const logout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (response.status === 200) {
+        setUser(null);
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <div className="background-user" />
 
       <p className="paragraphe-user-1">
-        Bonjour{" "}
-        <strong>
-          {user.Firstname} {user.lastname}
-        </strong>
+        <p>
+          {" "}
+          Bonjour {user?.firstname} {user?.lastname}
+        </p>
       </p>
 
       <p className="paragraphe-user-2">Bienvenue dans votre espace personnel</p>
@@ -41,14 +58,7 @@ function Users() {
             VOS FAVORIS
           </Link>
         </div>
-        <button
-          type="button"
-          className="deconnexion-user"
-          onClick={() => {
-            setUser(null);
-            navigate("/");
-          }}
-        >
+        <button type="button" className="deconnexion-user" onClick={logout}>
           Déconnexion
         </button>
       </div>

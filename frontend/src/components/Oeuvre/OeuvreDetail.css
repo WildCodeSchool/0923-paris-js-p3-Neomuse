@@ -1,6 +1,7 @@
 .boximgOeuvreDetail {
   display: block;
   width: 50%;
+  height: 50%;
   margin: 0 auto;
   overflow: hidden;
   border: 17px solid #fff;
@@ -22,6 +23,8 @@
   line-height: normal;
 }
 .descripOeuvreTitre {
+  padding-top: 2rem;
+  border-top: 1px solid #d2d2d2;
   margin: 1.5rem;
   font-size: 1.1rem;
   text-align: center;
@@ -39,6 +42,7 @@
 }
 .descripOeuvre-1 {
   width: 40%;
+  text-align: justify;
 }
 .dimensionimage {
   font-size: 0.95rem;
@@ -91,11 +95,11 @@
   }
   .descripOeuvreTitre {
     margin: 1rem;
-    text-align: initial;
   }
   .descripOeuvre-1 {
     width: 90%;
     margin: 0 auto;
+    line-height: 2rem;
   }
   .descripOeuvre-2 {
     width: 50%;

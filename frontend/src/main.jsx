@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 import { AllDataProvider } from "./contexts/AllDataContext";
-import { UserProvider } from "./contexts/UserContext";
+import useUser, { UserProvider } from "./contexts/UserContext";
 import App from "./App";
 import Home from "./pages/Home/Home";
 import Artist from "./pages/Artist/Artist";
@@ -15,7 +19,24 @@ import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
 import LoginSignup from "./pages/LoginSignup";
+import PageAdmin from "./pages/Admin/PageAdmin";
 
+function PrivateRoute({ children }) {
+  const { user } = useUser();
+  const redirect = useNavigate();
+  useEffect(() => {
+    if (!user) redirect("./login");
+  }, [user]);
+  return children;
+}
+function PublicRoute({ children }) {
+  const { user } = useUser();
+  const redirect = useNavigate();
+  useEffect(() => {
+    if (user) redirect(-2);
+  }, [user]);
+  return children;
+}
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,11 +56,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <LoginSignup />,
+        element: (
+          <PublicRoute>
+            <LoginSignup />
+          </PublicRoute>
+        ),
       },
       {
         path: "/users",
-        element: <Users />,
+        element: (
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/artists",
@@ -64,16 +93,24 @@ const router = createBrowserRouter([
         element: <Artwork />,
       },
       {
-        path: "/user/:id",
-        element: <Users />,
-      },
-      {
         path: "/favoris",
-        element: <Favoris />,
+        element: (
+          <PrivateRoute>
+            <Favoris />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/information",
-        element: <Information />,
+        element: (
+          <PrivateRoute>
+            <Information />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/Admin",
+        element: <PageAdmin />,
       },
     ],
   },
