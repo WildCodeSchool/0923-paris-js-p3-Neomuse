@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const userRouter = require("./routes/users.route");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -7,14 +6,14 @@ const userRouter = require("./routes/users.route");
 
 // Import routes here
 const itemRouter = require("./routes/items.route");
-const artistController = require("./controllers/artist.controller");
-
-router.get("/artists", artistController.findAll);
-
+const userRouter = require("./routes/user.route");
+const artistRouter = require("./routes/artists.route");
+const artworkRouter = require("./routes/artworks.route");
 // Apply routes
 router.use(itemRouter);
 router.use(userRouter);
-
+router.use(artworkRouter);
+router.use(artistRouter);
 /* ************************************************************************* */
 
 module.exports = router;

@@ -34,5 +34,3 @@ function ArtistlistHome({ artist }) {
 }
 
 export default ArtistlistHome;
-
-/* <img className="image_artist" src={artist.thumbnail} alt="" />; */

@@ -7,20 +7,20 @@ import "./technique.css";
 import Oeuvre from "../Oeuvre";
 
 function TechniqueList() {
-  const { artworks, artworkTechnique } = useAllDataContext();
+  const { artworkBytech, artworkTechnic } = useAllDataContext();
   const [selectedTechnique, setSelectedTechnique] = useState(null);
 
-  const filteredArtworks = artworks.filter((artwork) => {
+  const filteredArtworks = artworkBytech.filter((artwork) => {
     if (!selectedTechnique) {
       return true;
     }
-    return artwork.artwork_technique
+    return artwork.technique_name
       .toLowerCase()
       .includes(selectedTechnique.toLowerCase());
   });
 
-  const handleTechniqueChange = (technique) => {
-    setSelectedTechnique(technique);
+  const handleTechniqueChange = (artworkTech) => {
+    setSelectedTechnique(artworkTech);
   };
   const handleResetFilter = () => {
     setSelectedTechnique(null);
@@ -28,14 +28,14 @@ function TechniqueList() {
   return (
     <>
       <div className="bouttonWorklist">
-        {artworkTechnique.map((technique) => (
+        {artworkTechnic.map((artworkTech) => (
           <button
             type="button"
-            key={technique.id}
-            onClick={() => handleTechniqueChange(technique.name)}
+            key={artworkTech.artwork_technique_id}
+            onClick={() => handleTechniqueChange(artworkTech.name)}
             className="bouttonOeuvreList"
           >
-            {technique.name}
+            {artworkTech.name}
           </button>
         ))}
         <button
@@ -54,10 +54,13 @@ function TechniqueList() {
           columns={{ xs: 4, sm: 8, md: 15 }}
           sx={{ flexGrow: 1 }}
         >
-          {filteredArtworks.map((artwork) => (
-            <Grid xs={2} sm={4} md={4.6} key={artwork.id}>
-              <Link className="LinkOeuvreId" to={`/artworks/${artwork.id}`}>
-                <Oeuvre artwork={artwork} />
+          {filteredArtworks.map((oeuvre) => (
+            <Grid xs={2} sm={4} md={4.6} key={oeuvre.artworks_id}>
+              <Link
+                className="LinkOeuvreId"
+                to={`/artworks/${oeuvre.artworks_id}`}
+              >
+                <Oeuvre artwork={oeuvre} />
               </Link>
             </Grid>
           ))}

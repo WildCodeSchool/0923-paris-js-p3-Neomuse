@@ -78,7 +78,7 @@ function Oeuvre({ artwork }) {
                 },
               }}
             >
-              {artwork?.dimension_height} x {artwork?.dimension_depth} cm
+              {artwork.dimension_height} x {artwork.dimension_width} cm
             </Typography>
             <Typography
               fontSize="title-sm"
