@@ -7,6 +7,9 @@ const userRouter = require("./routes/users.route");
 
 // Import routes here
 const itemRouter = require("./routes/items.route");
+const artistController = require("./controllers/artist.controller");
+
+router.get("/artists", artistController.findAll);
 
 // Apply routes
 router.use(itemRouter);
