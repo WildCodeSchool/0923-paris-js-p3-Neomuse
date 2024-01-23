@@ -1,13 +1,13 @@
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS = @ @UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
 
 SET
-    @OLD_FOREIGN_KEY_CHECKS = @ @FOREIGN_KEY_CHECKS,
+    @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS,
     FOREIGN_KEY_CHECKS = 0;
 
 SET
-    @OLD_SQL_MODE = @ @SQL_MODE,
+    @OLD_SQL_MODE = @@SQL_MODE,
     SQL_MODE = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
@@ -43,8 +43,10 @@ CREATE TABLE
     IF NOT EXISTS `neo_muse`.`events` (
         `events_id` INT NOT NULL AUTO_INCREMENT,
         `name` VARCHAR(255) NOT NULL,
-        `date` DATETIME NOT NULL,
+        `start_date` DATETIME NOT NULL,
         `localisation` VARCHAR(255) NOT NULL,
+        `end_date` DATETIME NOT NULL,
+        `thumbnail` TEXT NOT NULL,
         PRIMARY KEY (`events_id`)
     );
 
@@ -84,6 +86,7 @@ CREATE TABLE
         `phone` VARCHAR(10) NOT NULL,
         `adress` VARCHAR(255) NOT NULL,
         `password` VARCHAR(255) NOT NULL,
+        `role` ENUM('user', 'admin') DEFAULT 'user',
         PRIMARY KEY (`users_id`),
         UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
         UNIQUE INDEX `phone_UNIQUE` (`phone` ASC) VISIBLE

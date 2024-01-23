@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
-
 import "./connexion.css";
 
 function ModalSignup({ onClose }) {

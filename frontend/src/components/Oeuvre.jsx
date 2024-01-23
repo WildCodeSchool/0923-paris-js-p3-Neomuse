@@ -36,8 +36,8 @@ function Oeuvre({ artwork }) {
               }}
             >
               <img
-                src={artwork.thumbnail}
-                srcSet={artwork.thumbnail}
+                src={artwork?.thumbnail}
+                srcSet={artwork?.thumbnail}
                 loading="lazy"
                 alt=""
                 style={{
@@ -66,7 +66,7 @@ function Oeuvre({ artwork }) {
               }}
               level="title-sm"
             >
-              {artwork.title}
+              {artwork?.title}
             </Typography>
             <Typography
               level="body-sm"
@@ -90,7 +90,7 @@ function Oeuvre({ artwork }) {
                 },
               }}
             >
-              {artwork.price} €
+              {artwork?.price} €
             </Typography>
           </Box>
           <Favorite

@@ -73,16 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/artists",
         element: <Artistlist />,
-        loader: () => {
-          return fetch("https://akabab.github.io/superhero-api/api/all.json");
-        },
       },
       {
         path: "/artists/:id",
         element: <Artist />,
-        loader: () => {
-          return fetch("https://dummyjson.com/products");
-        },
       },
       {
         path: "/artworks",
