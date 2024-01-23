@@ -1,0 +1,23 @@
+.list {
+  width: 90%;
+  margin: 0 auto;
+  font-family: "Playfair Display", Helvetica, sans-serif;
+}
+.h1Oeuvres {
+  font-weight: bold;
+  border: 2px solid;
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 0.5rem;
+}
+.LinkOeuvreId {
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media screen and (min-width: 1024px) {
+  .h1Oeuvres {
+    font-size: 2rem;
+  }
+}
