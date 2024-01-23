@@ -46,6 +46,7 @@ CREATE TABLE
         `start_date` DATETIME NOT NULL,
         `localisation` VARCHAR(255) NOT NULL,
         `end_date` DATETIME NOT NULL,
+        `thumbnail` TEXT NOT NULL,
         PRIMARY KEY (`events_id`)
     );
 

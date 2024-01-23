@@ -23,7 +23,7 @@ const findAll = async (req, res, next) => {
   }
 };
 
-const findById = async (req, res) => {
+const findById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const artist = await artistModel.findById(id);
@@ -31,10 +31,11 @@ const findById = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json();
+    next(error);
   }
 };
 
-const findByName = async (req, res) => {
+const findByName = async (req, res, next) => {
   try {
     const { name } = req.query;
     const artists = await artistModel.findByName(name);
@@ -42,6 +43,7 @@ const findByName = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json();
+    next(error);
   }
 };
 

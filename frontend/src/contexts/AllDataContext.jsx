@@ -80,7 +80,7 @@ export function AllDataProvider({ children }) {
         );
         if (response.status === 200) {
           const data = await response.json();
-          setArtworks(data);
+          setArtists(data);
         } else {
           console.error("Pas d'artistes trouvés");
         }
@@ -90,6 +90,7 @@ export function AllDataProvider({ children }) {
     };
     artiste();
   }, []);
+
   const value = useMemo(
     () => ({
       artworks,

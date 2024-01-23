@@ -430,18 +430,24 @@ const events = [
     start_date: "2023-11-01 09:00:00",
     localisation: "Paris 20",
     end_date: "2023-11-05 19:00:00",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2022/05/03/09/11/abstract-art-7171276_1280.jpg",
   },
   {
     name: "Casanov'art",
     start_date: "2023-12-01 09:00:00",
     localisation: "Paris 20",
     end_date: "2023-12-05 19:00:00",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2017/08/25/18/43/abstract-2681021_1280.jpg",
   },
   {
     name: "L'expo de JOJO",
     start_date: "2024-01-16 09:00:00",
     localisation: "Paris 20",
     end_date: "2024-01-17 19:00:00",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2015/06/03/14/36/sand-castle-796488_1280.jpg",
   },
 ];
 
@@ -457,7 +463,7 @@ const seed = async () => {
 
     // Optional: Truncate tables (remove existing data)
     await database.query("DELETE from artists");
-    /* await database.query("DELETE from users"); */
+    await database.query("DELETE from users");
     await database.query("DELETE from artwork_technique");
     await database.query("DELETE from sub_technique");
     await database.query("DELETE from artworks");
@@ -546,8 +552,14 @@ const seed = async () => {
     for (const event of events) {
       queries.push(
         await database.query(
-          "INSERT INTO events(name, start_date, localisation, end_date) VALUES (?,?,?,?)",
-          [event.name, event.start_date, event.localisation, event.end_date]
+          "INSERT INTO events(name, start_date, localisation, end_date, thumbnail) VALUES (?,?,?,?,?)",
+          [
+            event.name,
+            event.start_date,
+            event.localisation,
+            event.end_date,
+            event.thumbnail,
+          ]
         )
       );
     }
