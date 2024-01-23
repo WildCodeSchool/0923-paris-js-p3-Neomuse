@@ -122,6 +122,7 @@ CREATE TABLE
 -- -----------------------------------------------------
 CREATE TABLE
     IF NOT EXISTS `neo_muse`.`set_favorite` (
+        `set_favorite_id` INT NOT NULL AUTO_INCREMENT,
         `users_id` INT NOT NULL,
         `artworks_id` INT NOT NULL,
         PRIMARY KEY (`users_id`, `artworks_id`),
