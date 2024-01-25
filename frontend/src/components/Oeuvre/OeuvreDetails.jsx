@@ -49,6 +49,11 @@ function Artwork() {
             <div className="enTeteOeuvreDetais">
               <div className="titreOeuvre">
                 <p>{artwork.artworkUnique?.title}</p>
+                <p>
+                  {" "}
+                  by {artwork.artworkUnique?.lastname}{" "}
+                  {artwork.artworkUnique?.firstane}
+                </p>
                 <p>{artwork.artworkUnique?.category}</p>
                 <p>{artwork.artworkUnique?.price} €</p>
                 <p>
