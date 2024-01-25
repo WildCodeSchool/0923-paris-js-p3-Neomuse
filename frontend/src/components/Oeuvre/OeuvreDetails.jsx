@@ -5,7 +5,6 @@ import Grid from "@mui/joy/Grid";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import "./OeuvreDetail.css";
 import Oeuvre from "../Oeuvre";
-// import Oeuvre from "../Oeuvre";
 
 function Artwork() {
   const { id } = useParams();

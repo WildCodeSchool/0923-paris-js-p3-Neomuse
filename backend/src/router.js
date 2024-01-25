@@ -1,6 +1,4 @@
-const express = require("express");
-
-const router = express.Router();
+const router = require("express").Router();
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -9,6 +7,7 @@ const router = express.Router();
 // Import routes here
 const itemRouter = require("./routes/items.route");
 const userRouter = require("./routes/user.route");
+const artistRouter = require("./routes/artists.route");
 const artworkRouter = require("./routes/artworks.route");
 const eventRouter = require("./routes/events.route");
 // Apply routes
@@ -16,7 +15,7 @@ router.use(itemRouter);
 router.use(userRouter);
 router.use(artworkRouter);
 router.use(eventRouter);
-
+router.use(artistRouter);
 /* ************************************************************************* */
 
 module.exports = router;
