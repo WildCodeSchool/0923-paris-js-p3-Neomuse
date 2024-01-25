@@ -74,6 +74,31 @@ export function AllDataProvider({ children }) {
     bytech();
   }, []);
 
+  const [favoris, setFavoris] = useState([]);
+
+  useEffect(() => {
+    const favorite = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setFavoris(data);
+        } else {
+          console.error("Pas de favori trouvé");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    favorite();
+  }, []);
+
   const value = useMemo(
     () => ({
       artworks,
@@ -82,8 +107,10 @@ export function AllDataProvider({ children }) {
       setArtworkTechnic,
       artworkBytech,
       setArtworkBytech,
+      favoris,
+      setFavoris,
     }),
-    [artworks, artworkTechnic, artworkBytech]
+    [artworks, artworkTechnic, artworkBytech, favoris]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>

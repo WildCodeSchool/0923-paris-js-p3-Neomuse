@@ -3,14 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import Button from "@mui/joy/Button";
 import Grid from "@mui/joy/Grid";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import "./OeuvreDetail.css";
 import Oeuvre from "../Oeuvre";
-// import Oeuvre from "../Oeuvre";
+import "./OeuvreDetail.css";
 
 function Artwork() {
   const { id } = useParams();
   const [artwork, setArtwork] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
+  function toggleFavorite() {
+    setIsFavorite(!isFavorite);
+  }
   useEffect(() => {
     const Id = async () => {
       try {
@@ -24,7 +27,7 @@ function Artwork() {
           const data = await response.json();
           setArtwork(data);
         } else {
-          console.error("Pas d'oeuvre par technique trouvé");
+          console.error("Pas d'oeuvre par technique trouvée");
         }
       } catch (error) {
         console.error(error);
@@ -57,20 +60,22 @@ function Artwork() {
                 </p>
               </div>
               <div className="boxboutton">
-                <Button
-                  startDecorator={<FavoriteBorder />}
-                  sx={{
-                    fontFamily: "Lobster",
-                    fontWeight: "400",
-                    fontSize: "  1rem",
-                    bgcolor: "black",
-                    color: "white",
-                    margin: "0px",
-                    "--Button-gap": "0px",
-                  }}
-                >
-                  Ajouter en favoris{" "}
-                </Button>
+                <button type="button" onClick={toggleFavorite}>
+                  <Button
+                    startDecorator={<FavoriteBorder />}
+                    sx={{
+                      fontFamily: "Lobster",
+                      fontWeight: "400",
+                      fontSize: "  1rem",
+                      bgcolor: isFavorite ? "red" : "black",
+                      color: "white",
+                      margin: "0px",
+                      "--Button-gap": "0px",
+                    }}
+                  >
+                    Ajouter en favoris{" "}
+                  </Button>
+                </button>
               </div>
             </div>
             <h2 className="descripOeuvreTitre">Description de l'œuvre</h2>
@@ -111,12 +116,7 @@ function Artwork() {
         >
           {artwork.artworkList?.map((oeuvre) => (
             <Grid xs={2} sm={4} md={4.6} key={oeuvre.artworks_id}>
-              <Link
-                className="LinkOeuvreId"
-                to={`/artworks/${oeuvre.artworks_id}`}
-              >
-                <Oeuvre artwork={oeuvre} />
-              </Link>
+              <Oeuvre artwork={oeuvre} />
             </Grid>
           ))}
         </Grid>
