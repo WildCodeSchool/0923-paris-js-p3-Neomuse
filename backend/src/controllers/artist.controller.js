@@ -16,6 +16,7 @@ const insert = async (req, res, next) => {
 const findAll = async (req, res, next) => {
   try {
     const [artists] = await artistModel.findAll();
+    /* console.log(artists); */
     res.status(200).json(artists);
   } catch (error) {
     next(error);

@@ -77,6 +77,15 @@ const router = createBrowserRouter([
       {
         path: "/artists/:id",
         element: <Artist />,
+        loader: ({ params }) =>
+          fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/api/artworks/artists/${
+              params.id
+            }`,
+            {
+              method: "GET",
+            }
+          ),
       },
       {
         path: "/artworks",

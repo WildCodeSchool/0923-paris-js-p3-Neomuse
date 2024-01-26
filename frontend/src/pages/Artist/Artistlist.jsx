@@ -40,10 +40,6 @@ function Artistlist() {
     document.title = "Découvrir nos artistes";
   }, []);
 
-  /* const searchbar = artists.filter((artist) =>
-    artist.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ); */
-
   return (
     <div className="body_artistlist">
       <section className="header_artistlist">

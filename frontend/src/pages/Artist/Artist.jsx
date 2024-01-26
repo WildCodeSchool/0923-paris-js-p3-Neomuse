@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 /* import useAllDataContext from "../../contexts/AllDataContext"; */
 import "./artist.css";
@@ -8,39 +8,23 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Artist() {
   const { id } = useParams();
-  /* const { artists, artworks } = useAllDataContext(); */
+  const artworks = useLoaderData();
+  console.info(artworks);
   const [artists, setArtists] = useState([]);
-  const [artworks, setArtworks] = useState([]);
+  /* const [artworks, setArtworks] = useState([]); */
 
   useEffect(() => {
-    const fetchArtist = async () => {
+    const fetchArtists = async () => {
       try {
-        const artistResponse = await fetch(
+        const response = await fetch(
           `${import.meta.env.VITE_BACKEND_URL}/api/artists/${id}`,
           {
             method: "GET",
           }
         );
-        if (artistResponse.status === 200) {
-          const artistData = await artistResponse.json();
-          setArtists(artistData);
-          /* console.log(artistData); */
-
-          // Fetch artworks for the artist
-          const artworksResponse = await fetch(
-            `${import.meta.env.VITE_BACKEND_URL}/api/artworks?artistId=${id}`,
-            {
-              method: "GET",
-            }
-          );
-
-          if (artworksResponse.status === 200) {
-            const artworksData = await artworksResponse.json();
-            setArtworks(artworksData);
-            /* console.log(artistData); */
-          } else {
-            console.error("Pas d'oeuvres d'art trouvées");
-          }
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtists(data);
         } else {
           console.error("Pas d'artiste trouvé");
         }
@@ -49,7 +33,7 @@ function Artist() {
       }
     };
 
-    fetchArtist();
+    fetchArtists();
   }, [id]);
 
   return (
@@ -64,7 +48,7 @@ function Artist() {
         alt="mr-jonesthumb"
         className="art-imgtop"
       />
-      <h3 className="art-name">{artists?.artist_name}</h3>
+      <h3 className="art-name">Artiste : {artists?.artist_name}</h3>
       <div className="art-bio-container">
         <img
           src={artists?.thumbnail}
@@ -79,7 +63,7 @@ function Artist() {
         </p>
       </div>
       <h3 className="art-title">Oeuvres de l'artiste</h3>
-      <SliderOeuvre />
+      <SliderOeuvre artworks={artworks} />
     </>
   );
 }

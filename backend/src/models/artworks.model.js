@@ -26,6 +26,13 @@ const findAll = () => {
   return db.query("SELECT * FROM artworks ");
 };
 
+const findAllByArtist = (id) => {
+  return db.query(
+    "SELECT artworks.* FROM artworks JOIN artists ON artworks.artists_id = artists.artist_id WHERE artworks.artists_id = ?",
+    [id]
+  );
+};
+
 const findByArtworkTechniqueList = (id) => {
   return db.query("select * from artworks where `artwork_technique_id` = ?", [
     id,
@@ -54,4 +61,5 @@ module.exports = {
   TechAll,
   findBytech,
   findByArtworkTechniqueList,
+  findAllByArtist,
 };

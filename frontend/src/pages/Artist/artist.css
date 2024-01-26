@@ -5,11 +5,13 @@
     font-family: "Playfair Display", Helvetica, sans-serif;
   }
   .art-imgtop-desk {
-    display: none;
-  }
-  .art-imgtop {
+    /*display: none; */
     width: 100%;
     height: auto;
+  }
+  .art-imgtop {
+    display: none;
+    width: 100%;
   }
 
   .bio-container {
@@ -36,6 +38,7 @@
   }
   .art-name {
     margin-left: 0.5rem;
+    font-weight: bold;
   }
   .art-display {
     width: 30%;

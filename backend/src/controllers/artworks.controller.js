@@ -26,7 +26,7 @@ const getById = async (req, res, next) => {
     const { id } = req.params;
     const [[artwork]] = await artworkModel.findById(id);
     const [ArtworkTecniqueList] = await artworkModel.findByArtworkTechniqueList(
-      artwork.artwork_technique_id
+      artwork.artists_id
     );
     // console.log(artwork.artworks_id);
 
@@ -59,6 +59,15 @@ const getBytech = async (req, res, next) => {
     next(error);
   }
 };
+const findAllByArtist = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [artwork] = await artworkModel.findAllByArtist(id);
+    res.status(200).json(artwork);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   create,
@@ -66,4 +75,5 @@ module.exports = {
   getById,
   getTechAll,
   getBytech,
+  findAllByArtist,
 };
