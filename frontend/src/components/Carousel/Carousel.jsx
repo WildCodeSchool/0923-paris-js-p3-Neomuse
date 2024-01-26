@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { useState, useEffect } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "./carousel.css";
 
