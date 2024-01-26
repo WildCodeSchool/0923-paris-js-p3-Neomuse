@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./artistlist.css";
 
 function Artistlist() {
-  const portraits = useLoaderData();
+  const { artists } = useAllDataContext();
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  const filteredArtists = artists.filter((artist) =>
+    artist.artist_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleSearch = () => {};
   useEffect(() => {
     document.title = "Découvrir nos artistes";
   }, []);
-  const searchbar = portraits.filter((portrait) =>
-    portrait.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  /* const searchbar = artists.filter((artist) =>
+    artist.name.toLowerCase().includes(searchTerm.toLowerCase())
+  ); */
 
   return (
     <div className="body_artistlist">
@@ -47,13 +52,13 @@ function Artistlist() {
       </section>
       <div className="portraits">
         <div className="portrait_artist">
-          {searchbar?.map((portrait) => (
-            <div key={portrait.id}>
-              {portrait.images?.sm && (
-                <img className="image_artist" src={portrait.images.sm} alt="" />
+          {filteredArtists?.map((artist) => (
+            <div key={artist?.id}>
+              {artist?.thumbnail && (
+                <img className="image_artist" src={artist?.thumbnail} alt="" />
               )}
               <div className="name_artist">
-                <p>{portrait.name}</p>
+                <p>{artist?.artist_name}</p>
               </div>
             </div>
           ))}

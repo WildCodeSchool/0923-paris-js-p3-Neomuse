@@ -3,7 +3,6 @@ import { useMemo, useState, createContext, useContext, useEffect } from "react";
 const AllDataContext = createContext();
 export function AllDataProvider({ children }) {
   const [artworks, setArtworks] = useState([]);
-
   useEffect(() => {
     const oeuvre = async () => {
       try {
@@ -25,9 +24,7 @@ export function AllDataProvider({ children }) {
     };
     oeuvre();
   }, []);
-
   const [artworkTechnic, setArtworkTechnic] = useState([]);
-
   useEffect(() => {
     const technique = async () => {
       try {
@@ -49,9 +46,7 @@ export function AllDataProvider({ children }) {
     };
     technique();
   }, []);
-
   const [artworkBytech, setArtworkBytech] = useState([]);
-
   useEffect(() => {
     const bytech = async () => {
       try {
@@ -73,48 +68,44 @@ export function AllDataProvider({ children }) {
     };
     bytech();
   }, []);
-
-  const [favoris, setFavoris] = useState([]);
-
+  const [artists, setArtists] = useState([]);
   useEffect(() => {
-    const favorite = async () => {
+    const artiste = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/artists`,
           {
             method: "GET",
-            credentials: "include",
           }
         );
         if (response.status === 200) {
           const data = await response.json();
-          setFavoris(data);
+          setArtists(data);
         } else {
-          console.error("Pas de favori trouvé");
+          console.error("Pas d'artistes trouvés");
         }
       } catch (error) {
         console.error(error);
       }
     };
-    favorite();
+    artiste();
   }, []);
 
   const value = useMemo(
     () => ({
+      artists,
+      setArtists,
       artworks,
       setArtworks,
       artworkTechnic,
       setArtworkTechnic,
       artworkBytech,
       setArtworkBytech,
-      favoris,
-      setFavoris,
     }),
-    [artworks, artworkTechnic, artworkBytech, favoris]
+    [artists, artworks, artworkTechnic, artworkBytech]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>
   );
 }
-
 export default () => useContext(AllDataContext);

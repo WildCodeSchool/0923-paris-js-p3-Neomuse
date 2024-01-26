@@ -143,7 +143,7 @@ function Oeuvre({ artwork, setDeleted }) {
               }}
               level="title-sm"
             >
-              {artwork.title}
+              {artwork?.title}
             </Typography>
             <Typography
               level="body-sm"
@@ -167,7 +167,7 @@ function Oeuvre({ artwork, setDeleted }) {
                 },
               }}
             >
-              {artwork.price} €
+              {artwork?.price} €
             </Typography>
           </Box>
           <button type="button" onClick={toggleFavorite}>
