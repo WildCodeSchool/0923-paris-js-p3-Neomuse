@@ -1,11 +1,31 @@
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import useAllDataContext from "../../contexts/AllDataContext";
+import { Link } from "react-router-dom";
 import "./artistlist.css";
 
 function Artistlist() {
-  const { artists } = useAllDataContext();
-
+  const [artists, setArtists] = useState([]);
+  useEffect(() => {
+    const fetchArtist = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/artists/`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtists(data);
+        } else {
+          console.error("Pas d'artiste trouvé");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchArtist();
+  }, []);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
@@ -19,6 +39,7 @@ function Artistlist() {
   useEffect(() => {
     document.title = "Découvrir nos artistes";
   }, []);
+
   /* const searchbar = artists.filter((artist) =>
     artist.name.toLowerCase().includes(searchTerm.toLowerCase())
   ); */
@@ -54,9 +75,11 @@ function Artistlist() {
         <div className="portrait_artist">
           {filteredArtists?.map((artist) => (
             <div key={artist?.id}>
-              {artist?.thumbnail && (
-                <img className="image_artist" src={artist?.thumbnail} alt="" />
-              )}
+              <Link to={`/artists/${artist.artist_id}`}>
+                {artist?.thumbnail && (
+                  <img className="image_artist" src={artist.thumbnail} alt="" />
+                )}
+              </Link>
               <div className="name_artist">
                 <p>{artist?.artist_name}</p>
               </div>

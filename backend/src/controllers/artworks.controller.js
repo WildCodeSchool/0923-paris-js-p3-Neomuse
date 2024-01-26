@@ -59,14 +59,6 @@ const getBytech = async (req, res, next) => {
     next(error);
   }
 };
-const getArtistAll = async (req, res, next) => {
-  try {
-    const [artist] = await artworkModel.AllArtist();
-    res.status(200).json(artist);
-  } catch (error) {
-    next(error);
-  }
-};
 
 module.exports = {
   create,
@@ -74,5 +66,4 @@ module.exports = {
   getById,
   getTechAll,
   getBytech,
-  getArtistAll,
 };

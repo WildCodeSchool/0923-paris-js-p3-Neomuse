@@ -16,7 +16,8 @@ const artists = [
     firstname: "Baptiste",
     lastname: "De la rosa",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/F85c9pv/artist1.png",
+    thumbnail:
+      " https://cdn.pixabay.com/photo/2016/03/27/17/40/man-1283231_1280.jpg",
     biography: "aime les frites",
   },
   {
@@ -24,7 +25,8 @@ const artists = [
     firstname: "Leo",
     lastname: "HUMBERT",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/hctYYYr/artist6.png",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2014/08/28/08/31/model-429733_1280.jpg",
     biography: "Tu peux pas test",
   },
   {
@@ -32,7 +34,8 @@ const artists = [
     firstname: "Ju",
     lastname: "LIUS",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/dpSRtsY/artist4.png",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2022/10/17/15/02/photography-7527978_1280.jpg",
     biography: "Adore Booba et Joe Dassin",
   },
   {
@@ -40,7 +43,8 @@ const artists = [
     firstname: "Ines",
     lastname: "SEKA",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/WfdqmNR/artist3.png",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2020/01/24/08/43/redhead-4789668_1280.jpg",
     biography: "INCORAYABLE",
   },
   {
@@ -48,7 +52,8 @@ const artists = [
     firstname: "Jonathan",
     lastname: "DUFAG",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/smnLDT0/artist5.png",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg",
     biography: "aime les anime et le foot",
   },
   {
@@ -56,7 +61,8 @@ const artists = [
     firstname: "John",
     lastname: "Doe",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/DM5YNrC/artist2.png",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2015/03/14/19/45/suit-673697_1280.jpg",
     biography: "grapheur anonyme",
   },
 ];

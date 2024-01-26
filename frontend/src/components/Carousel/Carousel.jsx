@@ -1,11 +1,38 @@
 import { Icon } from "@iconify/react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import useAllDataContext from "../../contexts/AllDataContext";
+/* import useAllDataContext from "../../contexts/AllDataContext"; */
 import "./carousel.css";
 
 function Slider() {
-  const { artworks } = useAllDataContext();
+  const [artworks, setArtworks] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchArtworks = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtworks(data);
+        } else {
+          console.error("Pas d'oeuvre par technique trouvé");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchArtworks();
+  }, [id]);
+  /* const { artworks } = useAllDataContext(); */
   return (
     <div className="content">
       <div className="container">

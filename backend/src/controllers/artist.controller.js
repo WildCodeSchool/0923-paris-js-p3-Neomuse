@@ -3,22 +3,21 @@ const artistModel = require("../models/artist.model");
 const insert = async (req, res, next) => {
   try {
     const artist = req.body;
-    await artistModel.insert(artist);
-    res.status(201).json();
+    const [result] = await artistModel.insert(artist);
+    if (result.insertId) {
+      const [[newartist]] = await artistModel.findById(result.insertId);
+      res.status(201).json(newartist);
+    } else res.sendStatus(422);
   } catch (error) {
-    console.error(error);
-    res.status(500).json();
     next(error);
   }
 };
 
 const findAll = async (req, res, next) => {
   try {
-    const artists = await artistModel.findAll();
-    res.json(artists);
+    const [artists] = await artistModel.findAll();
+    res.status(200).json(artists);
   } catch (error) {
-    console.error(error);
-    res.status(500).json();
     next(error);
   }
 };
@@ -26,11 +25,10 @@ const findAll = async (req, res, next) => {
 const findById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const artist = await artistModel.findById(id);
-    res.json(artist);
+    const [[artist]] = await artistModel.findById(id);
+    if (artist) res.status(200).json(artist);
+    else res.sendStatus(422);
   } catch (error) {
-    console.error(error);
-    res.status(500).json();
     next(error);
   }
 };
@@ -38,11 +36,9 @@ const findById = async (req, res, next) => {
 const findByName = async (req, res, next) => {
   try {
     const { name } = req.query;
-    const artists = await artistModel.findByName(name);
-    res.json(artists);
+    const [[artist]] = await artistModel.findByName(name);
+    res.status(200).json(artist);
   } catch (error) {
-    console.error(error);
-    res.status(500).json();
     next(error);
   }
 };

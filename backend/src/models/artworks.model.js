@@ -46,9 +46,6 @@ const findBytech = () => {
     "SELECT a.artworks_id, a.title, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, t.name as technique_name FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id"
   );
 };
-const AllArtist = () => {
-  return db.query("SELECT * FROM artists ");
-};
 
 module.exports = {
   insert,
@@ -56,6 +53,5 @@ module.exports = {
   findById,
   TechAll,
   findBytech,
-  AllArtist,
   findByArtworkTechniqueList,
 };
