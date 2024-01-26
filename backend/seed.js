@@ -18,7 +18,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       " https://cdn.pixabay.com/photo/2016/03/27/17/40/man-1283231_1280.jpg",
-    biography: "aime les frites",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Princess",
@@ -27,7 +28,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       "https://cdn.pixabay.com/photo/2014/08/28/08/31/model-429733_1280.jpg",
-    biography: "Tu peux pas test",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Big J",
@@ -36,7 +38,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       "https://cdn.pixabay.com/photo/2022/10/17/15/02/photography-7527978_1280.jpg",
-    biography: "Adore Booba et Joe Dassin",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Queen",
@@ -45,7 +48,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       "https://cdn.pixabay.com/photo/2020/01/24/08/43/redhead-4789668_1280.jpg",
-    biography: "INCORAYABLE",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "LE JO",
@@ -54,7 +58,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       "https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg",
-    biography: "aime les anime et le foot",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Jean Claude Vandal",
@@ -63,7 +68,8 @@ const artists = [
     date_registration: new Date(),
     thumbnail:
       "https://cdn.pixabay.com/photo/2015/03/14/19/45/suit-673697_1280.jpg",
-    biography: "grapheur anonyme",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
 ];
 

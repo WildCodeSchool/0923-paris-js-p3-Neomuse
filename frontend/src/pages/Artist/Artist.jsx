@@ -23,7 +23,7 @@ function Artist() {
         );
         if (artistResponse.status === 200) {
           const artistData = await artistResponse.json();
-          setArtists([artistData]);
+          setArtists(artistData);
           /* console.log(artistData); */
 
           // Fetch artworks for the artist
@@ -37,6 +37,7 @@ function Artist() {
           if (artworksResponse.status === 200) {
             const artworksData = await artworksResponse.json();
             setArtworks(artworksData);
+            /* console.log(artistData); */
           } else {
             console.error("Pas d'oeuvres d'art trouvées");
           }
