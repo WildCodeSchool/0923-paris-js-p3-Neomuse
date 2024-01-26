@@ -9,10 +9,12 @@ const itemRouter = require("./routes/items.route");
 const userRouter = require("./routes/user.route");
 const artistRouter = require("./routes/artists.route");
 const artworkRouter = require("./routes/artworks.route");
+const eventRouter = require("./routes/events.route");
 // Apply routes
 router.use(itemRouter);
 router.use(userRouter);
 router.use(artworkRouter);
+router.use(eventRouter);
 router.use(artistRouter);
 /* ************************************************************************* */
 
