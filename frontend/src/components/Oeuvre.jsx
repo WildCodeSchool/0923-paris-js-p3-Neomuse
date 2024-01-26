@@ -20,7 +20,6 @@ function Oeuvre({ artwork, setDeleted }) {
             credentials: "include",
           }
         );
-        console.info(response.status);
         if (response.status === 200) {
           const favs = await response.json();
           favs.map((fav) => {

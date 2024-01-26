@@ -6,14 +6,85 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Oeuvre from "../Oeuvre";
 import "./OeuvreDetail.css";
 
-function Artwork() {
+function Artwork({ setDeleted }) {
   const { id } = useParams();
   const [artwork, setArtwork] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  function toggleFavorite() {
-    setIsFavorite(!isFavorite);
-  }
+  useEffect(() => {
+    const loadFavorites = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 200) {
+          const favs = await response.json();
+          favs.map((fav) => {
+            if (fav.artworks_id === artwork?.artworkUnique.artworks_id)
+              setIsFavorite(true);
+            return true;
+          });
+        } else {
+          console.error("erreur ajout du favori.");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    loadFavorites();
+  }, []);
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              artworks_id: artwork?.artworkUnique.artworks_id,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 200) {
+          setIsFavorite(false);
+          setDeleted(artwork?.artworkUnique.artworks_id);
+        } else {
+          console.error("suppression du favori.");
+        }
+      } else {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              artworks_id: artwork?.artworkUnique.artworks_id,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 201) {
+          setIsFavorite(true);
+        } else {
+          console.error("erreur ajout du favori.");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const Id = async () => {
       try {
