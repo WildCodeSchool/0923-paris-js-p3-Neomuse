@@ -33,7 +33,7 @@ const findByArtworkTechniqueList = (id) => {
 };
 const findById = (id) => {
   return db.query(
-    "SELECT a.artworks_id, a.title, a.description, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, a.artwork_technique_id, t.name as technique_name FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id  WHERE artworks_id  = ?",
+    "SELECT a.artworks_id, a.title, a.description, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, a.artists_id, a.artwork_technique_id, t.name as technique_name, art.firstname, art.lastname FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id JOIN artists as art ON art.artist_id=a.artists_id WHERE artworks_id  = ?",
     [id]
   );
 };
