@@ -29,8 +29,8 @@ function Slider() {
     evenement();
   }, []);
   return (
-    <div className="content">
-      <div className="container">
+    <div className="contentCarrousel">
+      <div className="containerCarrousel">
         <Carousel
           autoPlay
           interval={5000}

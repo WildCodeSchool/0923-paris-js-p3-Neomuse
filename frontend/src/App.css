@@ -59,7 +59,14 @@ body {
 }
 
 .app-outlet {
-  padding-top: 4rem;
+  padding-top: 2.6rem;
   padding-bottom: 2rem;
   flex-grow: 1;
+}
+@media screen and (min-width: 1024px) {
+  .app-outlet {
+    padding-top: 3.9rem;
+    padding-bottom: 2rem;
+    flex-grow: 1;
+  }
 }

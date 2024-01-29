@@ -182,7 +182,6 @@ function Oeuvre({ artwork, setDeleted }) {
           </button>
         </Stack>
       </Card>
-      ;
     </section>
   );
 }
