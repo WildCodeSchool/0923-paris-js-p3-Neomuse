@@ -16,48 +16,60 @@ const artists = [
     firstname: "Baptiste",
     lastname: "De la rosa",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/F85c9pv/artist1.png",
-    biography: "aime les frites",
+    thumbnail:
+      " https://cdn.pixabay.com/photo/2016/03/27/17/40/man-1283231_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Princess",
     firstname: "Leo",
     lastname: "HUMBERT",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/hctYYYr/artist6.png",
-    biography: "Tu peux pas test",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2014/08/28/08/31/model-429733_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Big J",
     firstname: "Ju",
     lastname: "LIUS",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/dpSRtsY/artist4.png",
-    biography: "Adore Booba et Joe Dassin",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2022/10/17/15/02/photography-7527978_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Queen",
     firstname: "Ines",
     lastname: "SEKA",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/WfdqmNR/artist3.png",
-    biography: "INCORAYABLE",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2020/01/24/08/43/redhead-4789668_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "LE JO",
     firstname: "Jonathan",
     lastname: "DUFAG",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/smnLDT0/artist5.png",
-    biography: "aime les anime et le foot",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
   {
     artist_name: "Jean Claude Vandal",
     firstname: "John",
     lastname: "Doe",
     date_registration: new Date(),
-    thumbnail: "https://i.ibb.co/DM5YNrC/artist2.png",
-    biography: "grapheur anonyme",
+    thumbnail:
+      "https://cdn.pixabay.com/photo/2015/03/14/19/45/suit-673697_1280.jpg",
+    biography:
+      "Artiste passionné, mes toiles fusionnent rêves et réalité. Chaque coup de pinceau est une danse entre couleurs et émotions, invitant le spectateur à un voyage intime. Mon art, expression visuelle de l'âme.",
   },
 ];
 

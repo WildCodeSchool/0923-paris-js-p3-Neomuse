@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import useAllDataContext from "../../contexts/AllDataContext";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
 import SliderArtist from "../../components/Slider/SliderArtist";
@@ -6,6 +7,7 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Home() {
   const navigate = useNavigate();
+  const { artworks } = useAllDataContext();
 
   return (
     <div>
@@ -31,7 +33,7 @@ function Home() {
           Voir toutes les oeuvres
         </button>
 
-        <SliderOeuvre />
+        <SliderOeuvre artworks={artworks} />
       </div>
     </div>
   );
