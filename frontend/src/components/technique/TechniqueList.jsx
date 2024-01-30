@@ -1,7 +1,6 @@
 // import { Link } from "react-router-dom";
 import { useState } from "react";
 import Grid from "@mui/joy/Grid";
-import { Link } from "react-router-dom";
 import useAllDataContext from "../../contexts/AllDataContext";
 import "./technique.css";
 import Oeuvre from "../Oeuvre";
@@ -56,12 +55,7 @@ function TechniqueList() {
         >
           {filteredArtworks.map((oeuvre) => (
             <Grid xs={2} sm={4} md={4.6} key={oeuvre.artworks_id}>
-              <Link
-                className="LinkOeuvreId"
-                to={`/artworks/${oeuvre.artworks_id}`}
-              >
-                <Oeuvre artwork={oeuvre} />
-              </Link>
+              <Oeuvre artwork={oeuvre} />
             </Grid>
           ))}
         </Grid>

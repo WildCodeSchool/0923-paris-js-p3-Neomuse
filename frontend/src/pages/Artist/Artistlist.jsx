@@ -1,22 +1,44 @@
 import { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 import "./artistlist.css";
 
 function Artistlist() {
-  const portraits = useLoaderData();
+  const [artists, setArtists] = useState([]);
+  useEffect(() => {
+    const fetchArtist = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/artists/`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtists(data);
+        } else {
+          console.error("Pas d'artiste trouvé");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchArtist();
+  }, []);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  const filteredArtists = artists.filter((artist) =>
+    artist.artist_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleSearch = () => {};
   useEffect(() => {
     document.title = "Découvrir nos artistes";
   }, []);
-  const searchbar = portraits.filter((portrait) =>
-    portrait.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="body_artistlist">
@@ -47,13 +69,15 @@ function Artistlist() {
       </section>
       <div className="portraits">
         <div className="portrait_artist">
-          {searchbar?.map((portrait) => (
-            <div key={portrait.id}>
-              {portrait.images?.sm && (
-                <img className="image_artist" src={portrait.images.sm} alt="" />
-              )}
+          {filteredArtists?.map((artist) => (
+            <div key={artist?.id}>
+              <Link to={`/artists/${artist.artist_id}`}>
+                {artist?.thumbnail && (
+                  <img className="image_artist" src={artist.thumbnail} alt="" />
+                )}
+              </Link>
               <div className="name_artist">
-                <p>{portrait.name}</p>
+                <p>{artist?.artist_name}</p>
               </div>
             </div>
           ))}

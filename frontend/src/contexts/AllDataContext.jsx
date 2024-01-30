@@ -1,9 +1,9 @@
 import { useMemo, useState, createContext, useContext, useEffect } from "react";
 
 const AllDataContext = createContext();
+
 export function AllDataProvider({ children }) {
   const [artworks, setArtworks] = useState([]);
-
   useEffect(() => {
     const oeuvre = async () => {
       try {
@@ -27,7 +27,6 @@ export function AllDataProvider({ children }) {
   }, []);
 
   const [artworkTechnic, setArtworkTechnic] = useState([]);
-
   useEffect(() => {
     const technique = async () => {
       try {
@@ -51,7 +50,6 @@ export function AllDataProvider({ children }) {
   }, []);
 
   const [artworkBytech, setArtworkBytech] = useState([]);
-
   useEffect(() => {
     const bytech = async () => {
       try {
@@ -74,8 +72,33 @@ export function AllDataProvider({ children }) {
     bytech();
   }, []);
 
+  const [artists, setArtists] = useState([]);
+  useEffect(() => {
+    const artiste = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/artists`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.status === 200) {
+          const data = await response.json();
+          setArtists(data);
+        } else {
+          console.error("Pas d'artistes trouvés");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    artiste();
+  }, []);
+
   const value = useMemo(
     () => ({
+      artists,
+      setArtists,
       artworks,
       setArtworks,
       artworkTechnic,
@@ -83,11 +106,10 @@ export function AllDataProvider({ children }) {
       artworkBytech,
       setArtworkBytech,
     }),
-    [artworks, artworkTechnic, artworkBytech]
+    [artists, artworks, artworkTechnic, artworkBytech]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>
   );
 }
-
 export default () => useContext(AllDataContext);
