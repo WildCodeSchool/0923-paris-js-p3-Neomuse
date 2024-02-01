@@ -10,7 +10,7 @@ function GestionOeuvre() {
     const technique = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/artists`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/artist`,
           {
             method: "GET",
           }

@@ -31,7 +31,20 @@ const isAuth = async (req, res, next) => {
     res.status(401).json(error.message);
   }
 };
+const isAdmin = async (req, res, next) => {
+  try {
+    if (req.body.role !== "admin") {
+      throw new Error("Accès interdit, administrateur requis");
+    }
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(403).json("Accès interdit, administrateur requis");
+  }
+};
+
 module.exports = {
   hashPassword,
   isAuth,
+  isAdmin,
 };

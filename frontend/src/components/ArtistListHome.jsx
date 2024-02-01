@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
+import { Link /* useParams */ } from "react-router-dom";
+/* import { useState, useEffect } from "react"; */
 
 function ArtistlistHome({ artist }) {
-  const artistLink = `/artists/${artist.id}`;
   return (
     <div className="body_artistlist">
-      <Link to={artistLink}>
+      <Link to={`/artists/${artist.artist_id}`}>
         <Box
           className="box"
           sx={{
