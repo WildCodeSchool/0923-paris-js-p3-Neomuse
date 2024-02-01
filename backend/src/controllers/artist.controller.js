@@ -9,8 +9,6 @@ const insert = async (req, res, next) => {
     await artistModel.insert(artist);
     res.status(201).json(artist);
   } catch (error) {
-    console.error(error);
-    res.status(500).json();
     next(error);
   }
 };
