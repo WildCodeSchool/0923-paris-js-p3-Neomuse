@@ -36,7 +36,8 @@ function Connexion() {
       if (response.status === 200) {
         const user = await response.json();
         setUser(user);
-        navigate("/");
+        if (user.role === "admin") navigate("/users");
+        else navigate("/");
       } else {
         console.error("veuillez verifier votre saisie.");
       }

@@ -71,7 +71,7 @@ function GestionOeuvre() {
   };
   return (
     <div>
-      <h2 className="titreGestion"> 3- AJOUTER UNE OEUVRE</h2>
+      <h2 className="titreGestion"> AJOUTER UNE OEUVRE</h2>
 
       <form className="containerform">
         <div className="champ">

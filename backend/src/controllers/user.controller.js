@@ -38,9 +38,17 @@ const login = async (req, res, next) => {
     next(error);
   }
 };
+const getAll = async (req, res, next) => {
+  try {
+    const [user] = await userModel.findAll();
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
 const getCurrentUser = async (req, res, next) => {
   try {
-    const [[user]] = await userModel.findById(req.body.userID);
+    const [[user]] = await userModel.findById(req.userID);
     res.status(200).json(user);
   } catch (error) {
     next(error);
@@ -53,9 +61,34 @@ const logout = async (req, res, next) => {
     next(error);
   }
 };
+const deleteuser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [result] = await userModel.deleteById(id);
+    if (result.affectedRows > 0) {
+      res.sendStatus(204);
+    } else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
+const updateuser = async (req, res, next) => {
+  try {
+    const id = req.userID;
+    const data = req.body;
+    const [result] = await userModel.Update(id, data);
+    if (result.affectedRows > 0) res.sendStatus(204);
+    else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   add,
   login,
+  getAll,
   getCurrentUser,
   logout,
+  updateuser,
+  deleteuser,
 };

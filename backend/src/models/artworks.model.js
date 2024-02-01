@@ -25,7 +25,6 @@ const insert = (artwork) => {
 const findAll = () => {
   return db.query("SELECT * FROM artworks ");
 };
-
 const findAllByArtist = (id) => {
   return db.query(
     "SELECT artworks.* FROM artworks JOIN artists ON artworks.artists_id = artists.artist_id WHERE artworks.artists_id = ?",
@@ -53,13 +52,24 @@ const findBytech = () => {
     "SELECT a.artworks_id, a.title, a.price, a.art_theme, a.dimension_height, a.dimension_height, a.dimension_width, a.price_on_demand, a.thumbnail, t.name as technique_name FROM artworks as a JOIN artwork_technique as t ON t.artwork_technique_id=a.artwork_technique_id"
   );
 };
+const deleteById = (id) => {
+  return db.query("DELETE FROM artworks WHERE artworks_id = ? ", [id]);
+};
+const Update = (artworks, id) => {
+  return db.query("UPDATE artworks SET ? WHERE artworks_id = ?", [
+    artworks,
+    id,
+  ]);
+};
 
 module.exports = {
   insert,
   findAll,
+  deleteById,
   findById,
   TechAll,
   findBytech,
   findByArtworkTechniqueList,
   findAllByArtist,
+  Update,
 };

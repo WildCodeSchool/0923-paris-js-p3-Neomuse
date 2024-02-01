@@ -1,3 +1,6 @@
+.admin-page {
+  padding: 0 1rem 0 1rem;
+}
 .titreAdmin {
   text-align: center;
   font-family: Lato;
@@ -5,4 +8,17 @@
   font-style: normal;
   font-weight: 800;
   letter-spacing: 0.06563rem;
+}
+.boutonModifArtist {
+  background-color: black;
+  color: white;
+  padding: 0.4rem 0.4rem;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 2rem;
+}
+.box_lien {
+  display: flex;
+  justify-content: space-between;
 }

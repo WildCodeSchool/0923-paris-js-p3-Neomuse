@@ -26,9 +26,17 @@ const findByName = (name) => {
     `%${name}%`,
   ]);
 };
+const deleteById = (id) => {
+  return db.query("DELETE FROM artists WHERE artist_id= ? ", [id]);
+};
+const Update = (artists, id) => {
+  return db.query("UPDATE artists SET ? WHERE artist_id = ?", [artists, id]);
+};
 module.exports = {
   insert,
   findAll,
   findById,
   findByName,
+  deleteById,
+  Update,
 };
