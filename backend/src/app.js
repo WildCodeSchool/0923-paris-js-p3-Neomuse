@@ -83,6 +83,7 @@ app.use(cookieParser());
 // const username = req.cookies.username;
 
 /* ************************************************************************* */
+const path = require("path");
 
 // Import the API routes from the router module
 const router = require("./router");
@@ -120,8 +121,8 @@ app.get("*", (req, res) => {
   res.sendFile(`${reactBuildPath}/index.html`);
 });
 */
-// const path= require("path");
-// const publicFolderPath = path.join(__dirname,"../public")
+const publicFolderPath = path.join(__dirname, "../public");
+app.use(express.static(publicFolderPath));
 /* ************************************************************************* */
 
 // Middleware for Error Logging (Uncomment to enable)

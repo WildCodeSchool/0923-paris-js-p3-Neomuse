@@ -4,12 +4,11 @@ const insert = (artwork) => {
   const { title, description, price, thumbnail } = artwork;
 
   return db.query(
-    "INSERT INTO artworks (title, description, art_theme, date_creation, price, dimension_height, dimension_width, dimension_depth, price_on_demand, thumbnail, artists_id, artwork_technique_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO artworks (title, description, art_theme, price, dimension_height, dimension_width, dimension_depth, price_on_demand, thumbnail, artists_id, artwork_technique_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     [
       title,
       description,
       artwork.art_theme,
-      artwork.date_creation,
       price,
       artwork.dimension_height,
       artwork.dimension_width,
