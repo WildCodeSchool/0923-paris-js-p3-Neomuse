@@ -30,7 +30,7 @@ CREATE TABLE
         `artist_name` VARCHAR(255) NOT NULL,
         `firstname` VARCHAR(255) NOT NULL,
         `lastname` VARCHAR(255) NOT NULL,
-        `date_registration` DATETIME NOT NULL,
+        `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `thumbnail` TEXT NOT NULL,
         `biography` VARCHAR(255) NOT NULL,
         PRIMARY KEY (`artist_id`)
@@ -106,7 +106,7 @@ CREATE TABLE
         `dimension_height` INT NOT NULL,
         `dimension_width` INT NOT NULL,
         `dimension_depth` INT NOT NULL,
-        `price_on_demand` TINYINT NOT NULL,
+        `price_on_demand` TINYINT NOT NULL DEFAULT 0,
         `thumbnail` TEXT NOT NULL,
         `artists_id` INT NOT NULL,
         `artwork_technique_id` INT NOT NULL,

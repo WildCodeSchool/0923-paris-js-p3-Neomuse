@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import "./addArtiste.css";
 
 function GestionArtiste() {
+  const artistName = useRef();
   const name = useRef();
   const firstname = useRef();
-  const registerDate = useRef();
   const biography = useRef();
   const thumbnail = useRef();
   const [confirmation, setConfirmation] = useState("");
@@ -12,15 +12,16 @@ function GestionArtiste() {
   const handleSubmit = async () => {
     try {
       const form = new FormData();
-      form.append(" name", name.current.value);
-      form.append(" firstname", firstname.current.value);
-      form.append(" registerdate", registerDate.current.value);
-      form.append(" biography", biography.current.value);
-      form.append("thumbnail", thumbnail.current.value);
+      form.append("artist_name", artistName.current.value);
+      form.append("lastname", name.current.value);
+      form.append("firstname", firstname.current.value);
+      form.append("biography", biography.current.value);
+      form.append("thumbnail", thumbnail.current.files[0]);
       const response = await fetch(
-        -+`${import.meta.env.VITE_BACKEND_URL}/api/artists`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/artists`,
         {
           method: "POST",
+          body: form,
         }
       );
       console.info(response.status);
@@ -37,6 +38,17 @@ function GestionArtiste() {
     <div>
       <h2 className="titreGestion"> 3- AJOUTER UN ARTISTE</h2>
       <form className="containerform">
+        <div className="champ">
+          <label htmlFor="firstname" className="titre_champ">
+            Pseudo artiste
+          </label>
+          <input
+            type="text"
+            name="firstname"
+            ref={artistName}
+            className="input_login"
+          />
+        </div>
         <div className="champ">
           <label htmlFor="firstname" className="titre_champ">
             Nom artiste
@@ -61,17 +73,6 @@ function GestionArtiste() {
         </div>
         <div className="champ">
           <label htmlFor="firstname" className="titre_champ">
-            Date d'enregistrement
-          </label>
-          <input
-            type="text"
-            name="firstname"
-            ref={registerDate}
-            className="input_login"
-          />
-        </div>
-        <div className="champ">
-          <label htmlFor="firstname" className="titre_champ">
             Biography
           </label>
           <input
@@ -90,7 +91,7 @@ function GestionArtiste() {
         <div className="box_connexion">
           <button
             type="button"
-            className="boutonEnregister"
+            className="boutonEnregistrer"
             onClick={handleSubmit}
           >
             Ajouter

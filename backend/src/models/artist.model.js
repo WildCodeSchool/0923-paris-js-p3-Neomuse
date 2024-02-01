@@ -3,15 +3,8 @@ const db = require("../../database/client");
 const insert = (artist) => {
   const { firstname, lastname, thumbnail, biography } = artist;
   return db.query(
-    "insert into artists(artist_name, firstname, lastname, date_registration, thumbnail, biography) VALUES (?,?,?,?,?,?)",
-    [
-      artist.artist_name,
-      firstname,
-      lastname,
-      artist.date_registration,
-      thumbnail,
-      biography,
-    ]
+    "insert into artists(artist_name, firstname, lastname, thumbnail, biography) VALUES (?,?,?,?,?)",
+    [artist.artist_name, firstname, lastname, thumbnail, biography]
   );
 };
 const findAll = () => {
