@@ -73,8 +73,8 @@ function Slider() {
                     className="date"
                   />
                   <p>
-                    Du {formatDate(event.start_date)} au
-                    {formatDate(event.end_date)}.
+                    Du {formatDate(event.start_date)} au {}
+                    {formatDate(event.end_date)}
                   </p>
                 </div>
               </div>
