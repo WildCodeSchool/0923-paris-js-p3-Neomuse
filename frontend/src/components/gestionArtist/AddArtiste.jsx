@@ -35,8 +35,8 @@ function GestionArtiste() {
     }
   };
   return (
-    <div>
-      <h2 className="titreGestion"> 3- AJOUTER UN ARTISTE</h2>
+    <div className="delete_oeuvre">
+      <h2 className="titreGestion"> Ajouter un artiste</h2>
       <form className="containerform">
         <div className="champ">
           <label htmlFor="firstname" className="titre_champ">

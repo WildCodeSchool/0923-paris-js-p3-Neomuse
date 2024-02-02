@@ -3,6 +3,7 @@ import { useMemo, useState, createContext, useContext, useEffect } from "react";
 const UserContext = createContext();
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getCurrentUser = async () => {
       try {
@@ -16,6 +17,9 @@ export function UserProvider({ children }) {
         if (response.status === 200) {
           const data = await response.json();
           setUser(data);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
         }
       } catch (error) {
         console.error(error);
@@ -28,8 +32,10 @@ export function UserProvider({ children }) {
     () => ({
       user,
       setUser,
+      isLoading,
+      setIsLoading,
     }),
-    [user]
+    [user, isLoading]
   );
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

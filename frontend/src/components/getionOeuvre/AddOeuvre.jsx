@@ -1,32 +1,10 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import useAllDataContext from "../../contexts/AllDataContext";
 import "./addOeuvre.css";
 
 function GestionOeuvre() {
-  const { artworkTechnic } = useAllDataContext();
-  const [artists, setArtists] = useState([]);
+  const { artworkTechnic, artists } = useAllDataContext();
 
-  useEffect(() => {
-    const technique = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/artist`,
-          {
-            method: "GET",
-          }
-        );
-        if (response.status === 200) {
-          const data = await response.json();
-          setArtists(data);
-        } else {
-          console.error("Pas de technique trouvé");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    technique();
-  }, []);
   const title = useRef();
   const description = useRef();
   const artTheme = useRef();
@@ -72,8 +50,8 @@ function GestionOeuvre() {
     }
   };
   return (
-    <div>
-      <h2 className="titreGestion"> 3- AJOUTER UNE OEUVRE</h2>
+    <div className="delete_oeuvre">
+      <h2 className="titreGestion"> Ajouter une oeuvre</h2>
 
       <form className="containerform">
         <div className="champ">

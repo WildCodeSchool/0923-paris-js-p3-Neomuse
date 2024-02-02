@@ -43,10 +43,32 @@ const findByName = async (req, res, next) => {
     next(error);
   }
 };
-
+const deleteart = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [result] = await artistModel.deleteById(id);
+    if (result.affectedRows > 0) {
+      res.sendStatus(204);
+    } else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
+const updateArtist = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const [result] = await artistModel.Update(req.body, id);
+    if (result.affectedRows > 0) res.sendStatus(204);
+    else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
 module.exports = {
   insert,
   findAll,
   findById,
   findByName,
+  deleteart,
+  updateArtist,
 };

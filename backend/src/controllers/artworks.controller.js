@@ -83,6 +83,27 @@ const findAllByArtist = async (req, res, next) => {
     next(error);
   }
 };
+const deleteart = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [result] = await artworkModel.deleteById(id);
+    if (result.affectedRows > 0) {
+      res.sendStatus(204);
+    } else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
+const updateArtwork = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const [result] = await artworkModel.Update(req.body, id);
+    if (result.affectedRows > 0) res.sendStatus(204);
+    else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   insert,
@@ -92,4 +113,6 @@ module.exports = {
   getTechAll,
   getBytech,
   findAllByArtist,
+  deleteart,
+  updateArtwork,
 };
