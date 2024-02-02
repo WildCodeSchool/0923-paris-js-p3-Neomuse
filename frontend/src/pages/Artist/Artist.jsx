@@ -1,6 +1,5 @@
 import { useParams, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
-/* import useAllDataContext from "../../contexts/AllDataContext"; */
 import "./artist.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,9 +8,8 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 function Artist() {
   const { id } = useParams();
   const artworks = useLoaderData();
-  console.info(artworks);
   const [artists, setArtists] = useState([]);
-  /* const [artworks, setArtworks] = useState([]); */
+  const [randomArtworkIndex, setRandomArtworkIndex] = useState(null);
 
   useEffect(() => {
     const fetchArtists = async () => {
@@ -25,6 +23,9 @@ function Artist() {
         if (response.status === 200) {
           const data = await response.json();
           setArtists(data);
+          // Générer un index aléatoire entre 0 et la longueur du tableau d'œuvres - 1
+          const randomIndex = Math.floor(Math.random() * artworks.length);
+          setRandomArtworkIndex(randomIndex);
         } else {
           console.error("Pas d'artiste trouvé");
         }
@@ -34,7 +35,7 @@ function Artist() {
     };
 
     fetchArtists();
-  }, [id]);
+  }, [id, artworks]);
 
   return (
     <>
@@ -43,11 +44,14 @@ function Artist() {
         alt="mr-jones-artwork3"
         className="art-imgtop-desk"
       />
-      <img
-        src={artworks?.thumbnail}
-        alt="mr-jonesthumb"
-        className="art-imgtop"
-      />
+      {randomArtworkIndex !== null && (
+        <img
+          src={artworks[randomArtworkIndex].thumbnail}
+          alt={`random-artwork-${randomArtworkIndex}`}
+          className="art-imgtop"
+        />
+      )}
+
       <h3 className="art-name">Artiste : {artists?.artist_name}</h3>
       <div className="art-bio-container">
         <img

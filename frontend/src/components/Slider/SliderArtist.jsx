@@ -42,7 +42,7 @@ function SliderArtist() {
           autoplaySpeed={3000}
           responsive={[
             {
-              breakpoint: 1024,
+              breakpoint: 428,
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
