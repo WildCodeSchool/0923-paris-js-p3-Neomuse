@@ -527,7 +527,7 @@ const seed = async () => {
             art.date_creation,
             art.price,
             art.dimension_height,
-            art.dimension_height,
+            art.dimension_width,
             art.dimension_depth,
             art.price_on_demand,
             art.thumbnail,
