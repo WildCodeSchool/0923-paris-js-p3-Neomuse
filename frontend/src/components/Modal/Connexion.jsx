@@ -2,17 +2,19 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
+import { ToastContainer, toast } from "react-toastify";
 import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
+import "react-toastify/dist/ReactToastify.css";
 
 function Connexion() {
   const navigate = useNavigate();
   const { setUser, setIsLoading } = useUser();
   const email = useRef();
   const password = useRef();
-
+  const notify = () => toast("Wow s easy!");
   const [openSignup, setOpenSignup] = useState(false);
   const createSignup = () => setOpenSignup(true);
 
@@ -40,7 +42,7 @@ function Connexion() {
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {
-        console.error("veuillez verifier votre saisie.");
+        toast.error("veuillez verifier votre saisie.");
       }
     } catch (error) {
       console.error(error);
@@ -101,7 +103,14 @@ function Connexion() {
             Créer un compte
           </button>
         </div>
+        <div>
+          <button type="button" onClick={notify}>
+            Notify!
+          </button>
+          <ToastContainer />
+        </div>
       </form>
+      <ToastContainer theme="colored" />
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
         <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>
