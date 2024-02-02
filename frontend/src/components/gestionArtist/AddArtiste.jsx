@@ -21,8 +21,8 @@ function GestionArtiste() {
         `${import.meta.env.VITE_BACKEND_URL}/api/artists`,
         {
           method: "POST",
-          body: form,
           credentials: "include",
+          body: form,
         }
       );
       console.info(response.status);
