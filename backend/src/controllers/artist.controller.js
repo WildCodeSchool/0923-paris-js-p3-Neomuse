@@ -3,11 +3,11 @@ const artistModel = require("../models/artist.model");
 const insert = async (req, res, next) => {
   try {
     const artist = req.body;
-    const [result] = await artistModel.insert(artist);
-    if (result.insertId) {
-      const [[newartist]] = await artistModel.findById(result.insertId);
-      res.status(201).json(newartist);
-    } else res.sendStatus(422);
+    artist.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+      req.files[0].filename
+    }`;
+    await artistModel.insert(artist);
+    res.status(201).json(artist);
   } catch (error) {
     next(error);
   }

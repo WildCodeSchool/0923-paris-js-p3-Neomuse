@@ -1,9 +1,15 @@
 const router = require("express").Router();
+const fileUpload = require("../middlewares/fileUpload");
 
 const artworkController = require("../controllers/artworks.controller");
 const isAdminCheck = require("../middlewares/auth");
 
-router.post("/artworks", isAdminCheck.isAdmin, artworkController.create);
+router.post(
+  "/artworks",
+  fileUpload.any(),
+  isAdminCheck.isAdmin,
+  artworkController.insert
+);
 router.get("/artworks", artworkController.getALL);
 router.get("/artworks/artists/:id", artworkController.findAllByArtist);
 router.get("/artworks/:id", artworkController.getById);

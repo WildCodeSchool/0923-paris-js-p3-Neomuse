@@ -17,16 +17,17 @@ USE `neo_muse` ;
 -- -----------------------------------------------------
 -- Table `neo_muse`.`artists`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `neo_muse`.`artists` (
-  `artist_id` INT NOT NULL AUTO_INCREMENT,
-  `artist_name` VARCHAR(255) NOT NULL,
-  `firstname` VARCHAR(255) NOT NULL,
-  `lastname` VARCHAR(255) NOT NULL,
-  `date_registration` DATETIME NOT NULL,
-  `thumbnail` TEXT NOT NULL,
-  `biography` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`artist_id`));
-
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artists` (
+        `artist_id` INT NOT NULL AUTO_INCREMENT,
+        `artist_name` VARCHAR(255) NOT NULL,
+        `firstname` VARCHAR(255) NOT NULL,
+        `lastname` VARCHAR(255) NOT NULL,
+        `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `thumbnail` TEXT NOT NULL,
+        `biography` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`artist_id`)
+    );
 
 -- -----------------------------------------------------
 -- Table `neo_muse`.`events`

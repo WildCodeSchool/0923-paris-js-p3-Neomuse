@@ -1,5 +1,20 @@
 const artworkModel = require("../models/artworks.model");
 
+const insert = async (req, res, next) => {
+  try {
+    const artwork = req.body;
+    artwork.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+      req.files[0].filename
+    }`;
+    await artworkModel.insert(artwork);
+    res.status(201).json(artwork);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json();
+    next(error);
+  }
+};
+
 const create = async (req, res, next) => {
   try {
     const artwork = req.body;
@@ -91,6 +106,7 @@ const updateArtwork = async (req, res, next) => {
 };
 
 module.exports = {
+  insert,
   create,
   getALL,
   getById,

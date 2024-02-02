@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import AddArtiste from "../../components/gestionArtist/AddArtiste";
 import DeleteArtist from "../../components/gestionArtist/DeleteArtist";
 import "./pageAdmin.css";
 
@@ -23,6 +24,7 @@ function ManageArtist() {
           GESTION DES OEUVRES
         </button>
       </div>
+      <AddArtiste />
       <DeleteArtist />
     </div>
   );
