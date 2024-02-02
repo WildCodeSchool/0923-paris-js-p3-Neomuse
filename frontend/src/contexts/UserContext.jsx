@@ -18,6 +18,8 @@ export function UserProvider({ children }) {
           const data = await response.json();
           setUser(data);
           setIsLoading(false);
+        } else {
+          setIsLoading(false);
         }
       } catch (error) {
         console.error(error);

@@ -35,6 +35,11 @@ td {
   color: white;
   border: none;
   cursor: pointer;
+  width: 5rem;
+  cursor: pointer;
+  &:hover {
+    border: solid 1px black;
+  }
 }
 .button_confirm {
   padding: 8px;
@@ -45,6 +50,9 @@ td {
   color: rgb(15, 13, 13);
   border: none;
   cursor: pointer;
+  &:hover {
+    border: solid 1px black;
+  }
 }
 
 .button_delete :hover {

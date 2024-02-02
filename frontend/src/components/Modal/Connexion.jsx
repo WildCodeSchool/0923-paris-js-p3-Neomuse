@@ -9,7 +9,7 @@ import ModalSignup from "./Signup";
 
 function Connexion() {
   const navigate = useNavigate();
-  const { setUser } = useUser();
+  const { setUser, setIsLoading } = useUser();
   const email = useRef();
   const password = useRef();
 
@@ -36,6 +36,7 @@ function Connexion() {
       if (response.status === 200) {
         const user = await response.json();
         setUser(user);
+        setIsLoading(false);
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {

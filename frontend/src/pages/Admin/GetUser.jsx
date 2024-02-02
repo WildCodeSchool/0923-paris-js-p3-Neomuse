@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function GetUser() {
-  const [users, setusers] = useState(false);
+  const [users, setusers] = useState([]);
 
   useEffect(() => {
     const user = async () => {

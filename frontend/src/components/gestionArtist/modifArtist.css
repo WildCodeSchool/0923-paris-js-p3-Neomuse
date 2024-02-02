@@ -5,4 +5,10 @@
   border-radius: 10px;
   font-size: 15px;
   font-weight: 800;
+  cursor: pointer;
+  width: 20rem;
+  &:hover {
+    color: black;
+    background-color: #e0d5e0;
+  }
 }

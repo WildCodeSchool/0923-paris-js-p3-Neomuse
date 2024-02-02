@@ -137,16 +137,16 @@ function ModifOeuvre({ oeuvre, onClose }) {
             className="input_login"
           />
         </div>
-        <div className="box_connexion">
-          <button
-            type="button"
-            className="boutModif"
-            onClick={() => handleModify(oeuvre?.artworks_id)}
-          >
-            Enregistrer les modifications
-          </button>
-        </div>
       </form>
+      <div className="">
+        <button
+          type="button"
+          className="boutModif"
+          onClick={() => handleModify(oeuvre?.artworks_id)}
+        >
+          Enregistrer les modifications
+        </button>
+      </div>
     </div>
   );
 }
