@@ -36,6 +36,7 @@ function GestionOeuvre() {
         `${import.meta.env.VITE_BACKEND_URL}/api/artworks`,
         {
           method: "POST",
+          credentials: "include",
           body: form,
         }
       );

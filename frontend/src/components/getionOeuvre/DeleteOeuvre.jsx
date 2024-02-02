@@ -24,6 +24,7 @@ function DeleteOeuvre() {
         `${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`,
         {
           method: "DELETE",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             artworks_id: artworks.artworks_id,

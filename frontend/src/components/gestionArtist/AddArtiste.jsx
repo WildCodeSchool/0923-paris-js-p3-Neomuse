@@ -22,6 +22,7 @@ function GestionArtiste() {
         {
           method: "POST",
           body: form,
+          credentials: "include",
         }
       );
       console.info(response.status);

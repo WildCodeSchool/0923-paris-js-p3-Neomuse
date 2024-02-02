@@ -27,6 +27,7 @@ function DeleteArtist() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             artist_id: artists.artist_id,
+            credentials: "include",
           }),
         }
       );

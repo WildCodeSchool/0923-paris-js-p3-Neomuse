@@ -18,6 +18,7 @@ function ModifOeuvre({ oeuvre, onClose }) {
         `${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             title: title.current.value,
