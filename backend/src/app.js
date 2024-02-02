@@ -4,6 +4,8 @@ const express = require("express");
 
 const app = express();
 
+const path = require("path");
+
 // Configure it
 
 /* ************************************************************************* */
@@ -84,7 +86,6 @@ app.use(cookieParser());
 // const username = req.cookies.username;
 
 /* ************************************************************************* */
-const path = require("path");
 
 // Import the API routes from the router module
 const router = require("./router");
