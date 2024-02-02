@@ -10,8 +10,8 @@ function ArtistlistHome({ artist }) {
           className="box"
           sx={{
             border: "0.6rem solid white",
-            width: "93%",
-            height: "93%",
+            width: "100%",
+            height: "100%",
             margin: "0 auto",
             overflow: "hidden",
             "&:hover": { opacity: "0.8", cursor: "pointer" },
