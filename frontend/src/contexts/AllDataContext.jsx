@@ -97,16 +97,16 @@ export function AllDataProvider({ children }) {
 
   const value = useMemo(
     () => ({
+      artists,
+      setArtists,
       artworks,
       setArtworks,
       artworkTechnic,
       setArtworkTechnic,
       artworkBytech,
       setArtworkBytech,
-      artists,
-      setArtists,
     }),
-    [artworks, artworkTechnic, artworkBytech, artists]
+    [artists, artworks, artworkTechnic, artworkBytech]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>

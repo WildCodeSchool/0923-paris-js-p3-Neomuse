@@ -17,16 +17,17 @@ USE `neo_muse` ;
 -- -----------------------------------------------------
 -- Table `neo_muse`.`artists`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `neo_muse`.`artists` (
-  `artist_id` INT NOT NULL AUTO_INCREMENT,
-  `artist_name` VARCHAR(255) NOT NULL,
-  `firstname` VARCHAR(255) NOT NULL,
-  `lastname` VARCHAR(255) NOT NULL,
-  `date_registration` DATETIME NOT NULL,
-  `thumbnail` TEXT NOT NULL,
-  `biography` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`artist_id`));
-
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artists` (
+        `artist_id` INT NOT NULL AUTO_INCREMENT,
+        `artist_name` VARCHAR(255) NOT NULL,
+        `firstname` VARCHAR(255) NOT NULL,
+        `lastname` VARCHAR(255) NOT NULL,
+        `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `thumbnail` TEXT NOT NULL,
+        `biography` VARCHAR(255) NOT NULL,
+        PRIMARY KEY (`artist_id`)
+    );
 
 -- -----------------------------------------------------
 -- Table `neo_muse`.`events`
@@ -107,8 +108,8 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`artworks` (
   CONSTRAINT `fk_artworks_artists1`
     FOREIGN KEY (`artists_id`)
     REFERENCES `neo_muse`.`artists` (`artist_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE  CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_artworks_artwork_technique1`
     FOREIGN KEY (`artwork_technique_id`)
     REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`)

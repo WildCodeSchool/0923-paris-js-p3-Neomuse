@@ -2,41 +2,41 @@ import { useState } from "react";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import useAllDataContext from "../../contexts/AllDataContext";
-import "./deleteOeuvre.css";
-import ModifOeuvre from "./ModifOeuvre";
+import "./deleteArtist.css";
+import ModifArtist from "./ModifArtist";
 
-function DeleteOeuvre() {
+function DeleteArtist() {
   const [openconfirmdelete, setOpenconfirmdelete] = useState(false);
-  const [selectedOeuvre, setSelectedOeuvre] = useState(null);
-  const createconfirmdelete = (oeuvre) => {
-    setSelectedOeuvre(oeuvre);
+  const [selectedArtist, setSelectedArtist] = useState(null);
+  const createconfirmdelete = (Artist) => {
+    setSelectedArtist(Artist);
     setOpenconfirmdelete(true);
   };
   const [openModify, setOpenModify] = useState(false);
-  const createmodify = (oeuvre) => {
-    setSelectedOeuvre(oeuvre);
+  const createmodify = (artist) => {
+    setSelectedArtist(artist);
     setOpenModify(true);
   };
-  const { artworks, setArtworks } = useAllDataContext();
+  const { artists, setArtists } = useAllDataContext();
   const handledelete = async (id) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/artworks/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/artists/${id}`,
         {
           method: "DELETE",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            artworks_id: artworks.artworks_id,
+            artist_id: artists.artist_id,
           }),
         }
       );
       console.info(response.status);
-      if (response.status === 204) {
-        setArtworks(artworks.filter((artwork) => artwork.artworks_id !== id));
+      if (response.status === 20) {
+        setArtists(artists.filter((artist) => artist.artist_id !== id));
         setOpenconfirmdelete(false);
       } else {
-        console.error("Échec de la suppression de l'œuvre");
+        console.error("Échec de la suppression de l'artiste");
       }
     } catch (error) {
       console.error(error);
@@ -45,51 +45,39 @@ function DeleteOeuvre() {
 
   return (
     <div className="delete_oeuvre">
-      <p className="titreGestion">Supprimer ou modifier une oeuvre</p>
+      <p className="titreGestion">Supprimer ou modifier un artiste</p>
       <table>
         <thead>
           <tr>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>Thème</th>
-            <th>Date de creation</th>
-            <th>prix</th>
-            <th>Dimension_height</th>
-            <th>Dimension_width</th>
-            <th>Dimension_depth</th>
-            <th>Images</th>
-            <th>Artist</th>
-            <th>Technique de l'oeuvre</th>
-            <th>Prix à la demande</th>
+            <th>Pseudo</th>
+            <th>Nom</th>
+            <th>Prénoms</th>
+            <th>Date d'enregistrement</th>
+            <th>Image</th>
+            <th>Biographie</th>
           </tr>
         </thead>
         <tbody>
-          {artworks.map((oeuvre) => (
-            <tr key={oeuvre.artworks_id}>
-              <td>{oeuvre.title}</td>
-              <td>{oeuvre.description}</td>
-              <td>{oeuvre.art_theme}</td>
-              <td>{oeuvre.date_creation}</td>
-              <td>{oeuvre.price}</td>
-              <td>{oeuvre.dimension_height}</td>
-              <td>{oeuvre.dimension_width}</td>
-              <td>{oeuvre.dimension_depth}</td>
-              <td>{oeuvre.thumbnail}</td>
-              <td>{oeuvre.artists_id}</td>
-              <td>{oeuvre.artwork_technique_id}</td>
-              <td>{oeuvre.price_on_demand}</td>
+          {artists.map((artist) => (
+            <tr key={artist.artworks_id}>
+              <td>{artist.artist_name}</td>
+              <td>{artist.firstname}</td>
+              <td>{artist.lastname}</td>
+              <td>{artist.date_registration}</td>
+              <td>{artist.thumbnail}</td>
+              <td>{artist.biography}</td>
               <td>
                 <button
                   type="button"
                   className="button_delete"
-                  onClick={() => createmodify(oeuvre)}
+                  onClick={() => createmodify(artist)}
                 >
                   Modifier
                 </button>
                 <button
                   type="button"
                   className="button_delete"
-                  onClick={() => createconfirmdelete(oeuvre)}
+                  onClick={() => createconfirmdelete(artist)}
                 >
                   Supprimer
                 </button>
@@ -104,18 +92,19 @@ function DeleteOeuvre() {
         center
       >
         <p>
-          Êtes-vous sûr de vouloir supprimer l'oeuvre :
+          Êtes-vous sûr de vouloir supprimer l'artiste :
           <br />
           <p>
+            {" "}
             <span className="text-user-information">
-              {selectedOeuvre?.title} ?{" "}
+              {selectedArtist?.artist_name} ?
             </span>
           </p>
         </p>
         <button
           type="button"
           className="button_confirm"
-          onClick={() => handledelete(selectedOeuvre?.artworks_id)}
+          onClick={() => handledelete(selectedArtist?.artist_id)}
         >
           supprimer
         </button>
@@ -128,8 +117,8 @@ function DeleteOeuvre() {
         </button>
       </Modal>
       <Modal open={openModify} onClose={() => setOpenModify(false)} center>
-        <ModifOeuvre
-          oeuvre={selectedOeuvre}
+        <ModifArtist
+          artist={selectedArtist}
           onClose={() => setOpenModify(false)}
         />
       </Modal>
@@ -137,4 +126,4 @@ function DeleteOeuvre() {
   );
 }
 
-export default DeleteOeuvre;
+export default DeleteArtist;

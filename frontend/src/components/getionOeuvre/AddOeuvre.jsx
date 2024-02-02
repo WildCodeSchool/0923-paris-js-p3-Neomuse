@@ -1,37 +1,15 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import useAllDataContext from "../../contexts/AllDataContext";
 import "./addOeuvre.css";
 
 function GestionOeuvre() {
-  const { artworkTechnic } = useAllDataContext();
-  const [artists, setArtists] = useState([]);
+  const { artworkTechnic, artists } = useAllDataContext();
 
-  useEffect(() => {
-    const technique = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/artist`,
-          {
-            method: "GET",
-          }
-        );
-        if (response.status === 200) {
-          const data = await response.json();
-          setArtists(data);
-        } else {
-          console.error("Pas de technique trouvé");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    technique();
-  }, []);
   const title = useRef();
   const description = useRef();
   const artTheme = useRef();
-  const dateCreation = useRef();
   const price = useRef();
+  const priceondemand = useRef();
   const dimensionHeight = useRef();
   const dimensionWidth = useRef();
   const dimensionDepth = useRef();
@@ -42,21 +20,24 @@ function GestionOeuvre() {
 
   const handleSubmit = async () => {
     try {
-      // const form= new FormData();
-      // form.append(" title", title.current.value);
-      // form.append(" description", description.current.value);
-      // form.append(" date_creation", dateCreation.current.value);
-      // form.append(" dimension_height", dimensionHeight.current.value);
-      // form.append("dimension__width", dimensionWidth.current.value);
-      // form.append("dimension_depth", dimensionDepth.current.value);
-      // form.append("thumbnail", thumbnail.current.value);
-      // form.append("artists_id", artistsid.current.value);
-      // form.append("artwork_technique_id", artworkTechniqueid.current.value);
+      const form = new FormData();
+      form.append("title", title.current.value);
+      form.append("description", description.current.value);
+      form.append("price", price.current.value);
+      form.append("price_on_demand", priceondemand.current.value);
+      form.append("art_theme", artTheme.current.value);
+      form.append("dimension_height", dimensionHeight.current.value);
+      form.append("dimension_width", dimensionWidth.current.value);
+      form.append("dimension_depth", dimensionDepth.current.value);
+      form.append("thumbnail", thumbnail.current.files[0]);
+      form.append("artists_id", artistsid.current.value);
+      form.append("artwork_technique_id", artworkTechniqueid.current.value);
       const response = await fetch(
-        -+`${import.meta.env.VITE_BACKEND_URL}/api/artworks`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/artworks`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: form,
         }
       );
       console.info(response.status);
@@ -70,8 +51,8 @@ function GestionOeuvre() {
     }
   };
   return (
-    <div>
-      <h2 className="titreGestion"> 3- AJOUTER UNE OEUVRE</h2>
+    <div className="delete_oeuvre">
+      <h2 className="titreGestion"> Ajouter une oeuvre</h2>
 
       <form className="containerform">
         <div className="champ">
@@ -93,17 +74,6 @@ function GestionOeuvre() {
             type="text"
             name="firstname"
             ref={artTheme}
-            className="input_login"
-          />
-        </div>
-        <div className="champ">
-          <label htmlFor="firstname" className="titre_champ">
-            Date d'enregistrement
-          </label>
-          <input
-            type="text"
-            name="firstname"
-            ref={dateCreation}
             className="input_login"
           />
         </div>
@@ -163,6 +133,17 @@ function GestionOeuvre() {
           />
         </div>
         <div className="champ">
+          <label htmlFor="firstname" className="titre_champ">
+            price on demand
+          </label>
+          <textarea
+            type="text"
+            name="firstname"
+            ref={priceondemand}
+            className="input_login"
+          />
+        </div>
+        <div className="champ">
           <label htmlFor="image" className="titreSelecteur">
             Télécharger une image :
           </label>
@@ -198,7 +179,7 @@ function GestionOeuvre() {
         <div className="box_connexion">
           <button
             type="button"
-            className="boutonEnregister"
+            className="boutonEnregistrer"
             onClick={handleSubmit}
           >
             Ajouter
