@@ -15,6 +15,7 @@ function ModifArtist({ artist, onClose }) {
         `${import.meta.env.VITE_BACKEND_URL}/api/artists/${id}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             artist_name: name.current.value,

@@ -23,8 +23,7 @@ const isAuth = async (req, res, next) => {
   try {
     const token = req.cookies["auth-token"];
     const decoded = jwt.verify(token, process.env.APP_SECRET);
-    // req.body.userID = decoded.id;
-    req.body.role = decoded.role;
+    req.role = decoded.role;
     req.userID = decoded.id;
     next();
   } catch (error) {
@@ -34,7 +33,7 @@ const isAuth = async (req, res, next) => {
 };
 const isAdmin = async (req, res, next) => {
   try {
-    if (req.body.role !== "admin") {
+    if (req.role !== "admin") {
       throw new Error("Accès interdit, administrateur requis");
     }
     next();
