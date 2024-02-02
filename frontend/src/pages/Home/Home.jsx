@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import useAllDataContext from "../../contexts/AllDataContext";
+import "react-toastify/dist/ReactToastify.css";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
 import SliderArtist from "../../components/Slider/SliderArtist";
@@ -8,6 +10,7 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 function Home() {
   const navigate = useNavigate();
   const { artworks } = useAllDataContext();
+  const notify = () => toast("Wow so easy!");
 
   return (
     <div>
@@ -25,6 +28,12 @@ function Home() {
       </div>
       <div className="slide_oeuvre">
         <h2>Des oeuvres uniques</h2>
+        <div>
+          <button type="button" onClick={notify}>
+            Notify!
+          </button>
+          <ToastContainer />
+        </div>
         <button
           type="button"
           className="bouton_voir"

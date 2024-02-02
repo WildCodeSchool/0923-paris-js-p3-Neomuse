@@ -1,14 +1,16 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+// import useUser from "../contexts/UserContext";
 
 function Oeuvre({ artwork, setDeleted }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  // const { user } = useUser();
   useEffect(() => {
     const loadFavorites = async () => {
       try {
