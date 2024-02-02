@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`artists` (
   `lastname` VARCHAR(255) NOT NULL,
   `date_registration` DATETIME NOT NULL,
   `thumbnail` TEXT NOT NULL,
-  `biography` VARCHAR(255) NOT NULL,
+  `biography` TEXT NOT NULL,
   PRIMARY KEY (`artist_id`));
 
 

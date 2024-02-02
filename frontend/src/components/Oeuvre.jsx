@@ -99,29 +99,26 @@ function Oeuvre({ artwork, setDeleted }) {
       >
         <Link className="LinkOeuvreId" to={`/artworks/${artwork.artworks_id}`}>
           <AspectRatio ratio="3/3">
-            <Box backgroundColor="#b28244cb">
-              <Box
-                className="box"
-                sx={{
-                  border: "0.6rem solid white",
-                  width: "93%",
-                  height: "93%",
-                  margin: "0 auto",
-                  overflow: "hidden",
-                  "&:hover": { opacity: "0.8", cursor: "pointer" },
+            <Box
+              className="box"
+              sx={{
+                width: "93%",
+                height: "93%",
+                margin: "0 auto",
+                overflow: "hidden",
+                "&:hover": { opacity: "0.8", cursor: "pointer" },
+              }}
+            >
+              <img
+                src={artwork.thumbnail}
+                srcSet={artwork.thumbnail}
+                loading="lazy"
+                alt=""
+                style={{
+                  width: "100%",
+                  height: "100%",
                 }}
-              >
-                <img
-                  src={artwork.thumbnail}
-                  srcSet={artwork.thumbnail}
-                  loading="lazy"
-                  alt=""
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              </Box>
+              />
             </Box>
           </AspectRatio>
         </Link>
@@ -173,6 +170,7 @@ function Oeuvre({ artwork, setDeleted }) {
           <button type="button" onClick={toggleFavorite}>
             <Favorite
               sx={{
+                backgroundColor: "white",
                 fontWeight: "md",
                 fontSize: "1.9rem",
                 color: isFavorite ? "#CB1F27" : "text.secondary",
@@ -182,7 +180,6 @@ function Oeuvre({ artwork, setDeleted }) {
           </button>
         </Stack>
       </Card>
-      ;
     </section>
   );
 }
