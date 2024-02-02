@@ -122,7 +122,6 @@ app.get("*", (req, res) => {
   res.sendFile(`${reactBuildPath}/index.html`);
 });
 */
-
 const publicFolderPath = path.join(__dirname, "../public");
 app.use(express.static(publicFolderPath));
 /* ************************************************************************* */

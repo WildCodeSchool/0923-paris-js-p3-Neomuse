@@ -107,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`artworks` (
   CONSTRAINT `fk_artworks_artists1`
     FOREIGN KEY (`artists_id`)
     REFERENCES `neo_muse`.`artists` (`artist_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE  CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_artworks_artwork_technique1`
     FOREIGN KEY (`artwork_technique_id`)
     REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`)
@@ -128,13 +128,13 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`set_favorite` (
   CONSTRAINT `fk_users_has_artworks_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `neo_muse`.`users` (`users_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_users_has_artworks_artworks1`
     FOREIGN KEY (`artworks_id`)
     REFERENCES `neo_muse`.`artworks` (`artworks_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

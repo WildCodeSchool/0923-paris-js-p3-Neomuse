@@ -1,5 +1,20 @@
 const artworkModel = require("../models/artworks.model");
 
+const insert = async (req, res, next) => {
+  try {
+    const artwork = req.body;
+    artwork.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+      req.files[0].filename
+    }`;
+    await artworkModel.insert(artwork);
+    res.status(201).json(artwork);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json();
+    next(error);
+  }
+};
+
 const create = async (req, res, next) => {
   try {
     const artwork = req.body;
@@ -68,12 +83,36 @@ const findAllByArtist = async (req, res, next) => {
     next(error);
   }
 };
+const deleteart = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [result] = await artworkModel.deleteById(id);
+    if (result.affectedRows > 0) {
+      res.sendStatus(204);
+    } else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
+const updateArtwork = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const [result] = await artworkModel.Update(req.body, id);
+    if (result.affectedRows > 0) res.sendStatus(204);
+    else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
+  insert,
   create,
   getALL,
   getById,
   getTechAll,
   getBytech,
   findAllByArtist,
+  deleteart,
+  updateArtwork,
 };

@@ -31,6 +31,12 @@
   font-family: "Playfair Display";
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
   margin-top: 3rem;
+  cursor: pointer;
+  &:hover {
+    color: black;
+    background-color: #e0d5e0;
+    border: solid;
+  }
 }
 .titreSelecteur {
   font-weight: 700;
