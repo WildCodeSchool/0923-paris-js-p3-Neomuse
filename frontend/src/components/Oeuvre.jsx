@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
-// import useUser from "../contexts/UserContext";
+import useUser from "../contexts/UserContext";
 
 function Oeuvre({ artwork, setDeleted }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  // const { user } = useUser();
+  const navigate = useNavigate();
+  const { user } = useUser();
   useEffect(() => {
     const loadFavorites = async () => {
       try {
@@ -169,7 +170,10 @@ function Oeuvre({ artwork, setDeleted }) {
               {artwork?.price} €
             </Typography>
           </Box>
-          <button type="button" onClick={toggleFavorite}>
+          <button
+            type="button"
+            onClick={user ? () => toggleFavorite() : () => navigate("/login")}
+          >
             <Favorite
               sx={{
                 backgroundColor: "white",

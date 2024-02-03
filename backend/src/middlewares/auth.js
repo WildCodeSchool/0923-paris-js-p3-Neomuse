@@ -31,6 +31,18 @@ const isAuth = async (req, res, next) => {
     res.status(401).json(error.message);
   }
 };
+const Auth = async (req, res, next) => {
+  try {
+    const token = req.cookies["auth-token"];
+    const decoded = jwt.verify(token, process.env.APP_SECRET);
+    req.body.role = decoded.role;
+    req.body.userID = decoded.id;
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(401).json(error.message);
+  }
+};
 const isAdmin = async (req, res, next) => {
   try {
     if (req.role !== "admin") {
@@ -44,6 +56,7 @@ const isAdmin = async (req, res, next) => {
 };
 
 module.exports = {
+  Auth,
   hashPassword,
   isAuth,
   isAdmin,
