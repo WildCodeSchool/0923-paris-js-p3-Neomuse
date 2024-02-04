@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
 import { AllDataProvider } from "./contexts/AllDataContext";
 import useUser, { UserProvider } from "./contexts/UserContext";
@@ -19,23 +20,34 @@ import Users from "./pages/Users/Users";
 import Favoris from "./pages/Favoris/Favoris";
 import Information from "./pages/Information/Information";
 import LoginSignup from "./pages/LoginSignup";
-import PageAdmin from "./pages/Admin/PageAdmin";
+import ManageArtist from "./pages/Admin/ManageArtist";
+import ManageArtwork from "./pages/Admin/ManageArtwork";
+import GetUser from "./pages/Admin/GetUser";
 
 function PrivateRoute({ children }) {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  const [page, setPage] = useState(null);
   const redirect = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    if (!user) redirect("./login");
-  }, [user]);
-  return children;
+    if (isLoading) setPage(<p>...loading</p>);
+    else if (!user) redirect("./login");
+    else setPage(children);
+    return () => setPage(null);
+  }, [user, isLoading, location]);
+  return page;
 }
 function PublicRoute({ children }) {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  const [page, setPage] = useState(children);
   const redirect = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    if (user) redirect(-2);
-  }, [user]);
-  return children;
+    if (isLoading) setPage(<p>...loading</p>);
+    else if (user) redirect(-1);
+    else setPage(children);
+  }, [user, isLoading, location]);
+  return page;
 }
 const router = createBrowserRouter([
   {
@@ -77,6 +89,15 @@ const router = createBrowserRouter([
       {
         path: "/artists/:id",
         element: <Artist />,
+        loader: ({ params }) =>
+          fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/api/artworks/artists/${
+              params.id
+            }`,
+            {
+              method: "GET",
+            }
+          ),
       },
       {
         path: "/artworks",
@@ -103,8 +124,28 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Admin",
-        element: <PageAdmin />,
+        path: "/adminModifArtist",
+        element: (
+          <PrivateRoute>
+            <ManageArtist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/adminModifOeuvre",
+        element: (
+          <PrivateRoute>
+            <ManageArtwork />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/adminListUser",
+        element: (
+          // <PrivateRoute>
+          <GetUser />
+          // </PrivateRoute>
+        ),
       },
     ],
   },

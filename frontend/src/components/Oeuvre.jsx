@@ -4,8 +4,83 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function Oeuvre({ artwork }) {
+function Oeuvre({ artwork, setDeleted }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    const loadFavorites = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+          }
+        );
+        if (response.status === 200) {
+          const favs = await response.json();
+          favs.map((fav) => {
+            if (fav.artworks_id === artwork.artworks_id) setIsFavorite(true);
+            return true;
+          });
+        } else {
+          console.error("erreur ajout du favori.");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    loadFavorites();
+  }, []);
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              artworks_id: artwork.artworks_id,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 200) {
+          setIsFavorite(false);
+          setDeleted(artwork.artworks_id);
+        } else {
+          console.error("suppression du favori.");
+        }
+      } else {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/favoris`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              artworks_id: artwork.artworks_id,
+            }),
+            credentials: "include",
+          }
+        );
+        console.info(response.status);
+        if (response.status === 201) {
+          setIsFavorite(true);
+        } else {
+          console.error("erreur ajout du favori.");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section>
       <Card
@@ -22,12 +97,11 @@ function Oeuvre({ artwork }) {
           },
         }}
       >
-        <AspectRatio ratio="3/3">
-          <Box backgroundColor="#b28244cb">
+        <Link className="LinkOeuvreId" to={`/artworks/${artwork.artworks_id}`}>
+          <AspectRatio ratio="3/3">
             <Box
               className="box"
               sx={{
-                border: "0.6rem solid white",
                 width: "93%",
                 height: "93%",
                 margin: "0 auto",
@@ -36,8 +110,8 @@ function Oeuvre({ artwork }) {
               }}
             >
               <img
-                src={artwork?.thumbnail}
-                srcSet={artwork?.thumbnail}
+                src={artwork.thumbnail}
+                srcSet={artwork.thumbnail}
                 loading="lazy"
                 alt=""
                 style={{
@@ -46,8 +120,8 @@ function Oeuvre({ artwork }) {
                 }}
               />
             </Box>
-          </Box>
-        </AspectRatio>
+          </AspectRatio>
+        </Link>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -78,7 +152,7 @@ function Oeuvre({ artwork }) {
                 },
               }}
             >
-              {artwork.dimension_height} x {artwork.dimension_width} cm
+              {artwork?.dimension_height} x {artwork?.dimension_width} cm
             </Typography>
             <Typography
               fontSize="title-sm"
@@ -93,14 +167,17 @@ function Oeuvre({ artwork }) {
               {artwork?.price} €
             </Typography>
           </Box>
-          <Favorite
-            sx={{
-              fontWeight: "md",
-              fontSize: "1.9rem",
-              color: "text.secondary",
-              "&:hover": { color: "#CB1F27" },
-            }}
-          />
+          <button type="button" onClick={toggleFavorite}>
+            <Favorite
+              sx={{
+                backgroundColor: "white",
+                fontWeight: "md",
+                fontSize: "1.9rem",
+                color: isFavorite ? "#CB1F27" : "text.secondary",
+                "&:hover": { color: "#CB1F27" },
+              }}
+            />
+          </button>
         </Stack>
       </Card>
     </section>

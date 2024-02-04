@@ -1,13 +1,11 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Oeuvre from "../Oeuvre";
-import useAllDataContext from "../../contexts/AllDataContext";
 import "./sliderOeuvre.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function SliderOeuvre() {
-  const { artworks } = useAllDataContext();
+function SliderOeuvre({ artworks }) {
   return (
     <div className="containerSlider">
       <div className="containtSlider">
@@ -19,7 +17,7 @@ function SliderOeuvre() {
           autoplaySpeed={3000}
           responsive={[
             {
-              breakpoint: 1024,
+              breakpoint: 428,
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
@@ -29,8 +27,13 @@ function SliderOeuvre() {
           ]}
         >
           {artworks.map((artwork) => (
-            <div key={artwork?.id}>
-              <Oeuvre artwork={artwork} />
+            <div key={artwork.artworks_id}>
+              <Link
+                className="LinkOeuvreId"
+                to={`/artworks/${artwork.artworks_id}`}
+              >
+                <Oeuvre artwork={artwork} />
+              </Link>
             </div>
           ))}
         </Slider>

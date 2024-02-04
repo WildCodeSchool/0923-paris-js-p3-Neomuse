@@ -5,11 +5,13 @@
     font-family: "Playfair Display", Helvetica, sans-serif;
   }
   .art-imgtop-desk {
-    display: none;
-  }
-  .art-imgtop {
+    /*display: none; */
     width: 100%;
     height: auto;
+  }
+  .art-imgtop {
+    display: none;
+    width: 100%;
   }
 
   .bio-container {
@@ -36,6 +38,7 @@
   }
   .art-name {
     margin-left: 0.5rem;
+    font-weight: bold;
   }
   .art-display {
     width: 30%;
@@ -57,11 +60,11 @@
 }
 @media screen and (min-width: 1024px) {
   .art-imgtop {
-    display: none;
+    width: 100%;
+    height: 20rem;
   }
   .art-imgtop-desk {
-    width: 100%;
-    height: auto;
+    display: none;
   }
   .art-name {
     text-align: center;
@@ -86,6 +89,7 @@
   .art-thumb-desk {
     margin-right: 1rem;
     border-radius: 0.3rem;
+    width: 30%;
   }
   .art-bio-container {
     display: flex;

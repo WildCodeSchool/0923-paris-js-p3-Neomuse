@@ -1,6 +1,7 @@
 import { useMemo, useState, createContext, useContext, useEffect } from "react";
 
 const AllDataContext = createContext();
+
 export function AllDataProvider({ children }) {
   const [artworks, setArtworks] = useState([]);
   useEffect(() => {
@@ -24,6 +25,7 @@ export function AllDataProvider({ children }) {
     };
     oeuvre();
   }, []);
+
   const [artworkTechnic, setArtworkTechnic] = useState([]);
   useEffect(() => {
     const technique = async () => {
@@ -46,6 +48,7 @@ export function AllDataProvider({ children }) {
     };
     technique();
   }, []);
+
   const [artworkBytech, setArtworkBytech] = useState([]);
   useEffect(() => {
     const bytech = async () => {
@@ -68,6 +71,7 @@ export function AllDataProvider({ children }) {
     };
     bytech();
   }, []);
+
   const [artists, setArtists] = useState([]);
   useEffect(() => {
     const artiste = async () => {
@@ -93,16 +97,16 @@ export function AllDataProvider({ children }) {
 
   const value = useMemo(
     () => ({
+      artists,
+      setArtists,
       artworks,
       setArtworks,
       artworkTechnic,
       setArtworkTechnic,
       artworkBytech,
       setArtworkBytech,
-      artists,
-      setArtists,
     }),
-    [artworks, artworkTechnic, artworkBytech, artists]
+    [artists, artworks, artworkTechnic, artworkBytech]
   );
   return (
     <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>

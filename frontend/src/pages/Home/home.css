@@ -16,10 +16,23 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.home-title-2,
+.home-title-1 {
+  font-weight: bold;
+  padding-left: 3rem;
+}
+
 @media screen and (min-width: 1024px) {
   .bouton_voir {
     margin-left: 82%;
     font-size: 1rem;
     padding: 0.5rem;
+  }
+  .home-title-2,
+  .home-title-1 {
+    font-weight: bold;
+  }
+  .home-title-1 {
+    margin-top: 2rem;
   }
 }

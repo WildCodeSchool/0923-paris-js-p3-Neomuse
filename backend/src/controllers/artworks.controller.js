@@ -1,5 +1,20 @@
 const artworkModel = require("../models/artworks.model");
 
+const insert = async (req, res, next) => {
+  try {
+    const artwork = req.body;
+    artwork.thumbnail = `${req.protocol}://${req.get("host")}/upload/${
+      req.files[0].filename
+    }`;
+    await artworkModel.insert(artwork);
+    res.status(201).json(artwork);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json();
+    next(error);
+  }
+};
+
 const create = async (req, res, next) => {
   try {
     const artwork = req.body;
@@ -26,7 +41,7 @@ const getById = async (req, res, next) => {
     const { id } = req.params;
     const [[artwork]] = await artworkModel.findById(id);
     const [ArtworkTecniqueList] = await artworkModel.findByArtworkTechniqueList(
-      artwork.artwork_technique_id
+      artwork.artists_id
     );
     // console.log(artwork.artworks_id);
 
@@ -59,20 +74,45 @@ const getBytech = async (req, res, next) => {
     next(error);
   }
 };
-const getArtistAll = async (req, res, next) => {
+const findAllByArtist = async (req, res, next) => {
   try {
-    const [artist] = await artworkModel.AllArtist();
-    res.status(200).json(artist);
+    const { id } = req.params;
+    const [artwork] = await artworkModel.findAllByArtist(id);
+    res.status(200).json(artwork);
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteart = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [result] = await artworkModel.deleteById(id);
+    if (result.affectedRows > 0) {
+      res.sendStatus(204);
+    } else res.sendStatus(404);
+  } catch (error) {
+    next(error);
+  }
+};
+const updateArtwork = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const [result] = await artworkModel.Update(req.body, id);
+    if (result.affectedRows > 0) res.sendStatus(204);
+    else res.sendStatus(404);
   } catch (error) {
     next(error);
   }
 };
 
 module.exports = {
+  insert,
   create,
   getALL,
   getById,
   getTechAll,
   getBytech,
-  getArtistAll,
+  findAllByArtist,
+  deleteart,
+  updateArtwork,
 };

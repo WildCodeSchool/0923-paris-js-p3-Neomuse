@@ -4,6 +4,8 @@ const express = require("express");
 
 const app = express();
 
+const path = require("path");
+
 // Configure it
 
 /* ************************************************************************* */
@@ -120,8 +122,8 @@ app.get("*", (req, res) => {
   res.sendFile(`${reactBuildPath}/index.html`);
 });
 */
-// const path= require("path");
-// const publicFolderPath = path.join(__dirname,"../public")
+const publicFolderPath = path.join(__dirname, "../public");
+app.use(express.static(publicFolderPath));
 /* ************************************************************************* */
 
 // Middleware for Error Logging (Uncomment to enable)
