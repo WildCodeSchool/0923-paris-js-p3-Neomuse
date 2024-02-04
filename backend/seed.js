@@ -15,7 +15,7 @@ const env = process.env.APP_ENV;
 
 const imageBaseUrl =
   env === "production"
-    ? `https://neomuse.creativebrain.fr/api`
+    ? `https://neomuse.creativebrain.fr/upload`
     : `http://localhost:3310/upload`;
 
 const artists = [
