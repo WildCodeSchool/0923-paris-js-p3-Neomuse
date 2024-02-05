@@ -6,9 +6,14 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
+import useAllDataContext from "../contexts/AllDataContext";
 import useUser from "../contexts/UserContext";
 
 function Oeuvre({ artwork, setDeleted = () => {} }) {
+  const { showToastError } = useAllDataContext();
+  const toastFavoriError = () => {
+    showToastError("connexion obligatoire pour ajouter des favoris");
+  };
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
@@ -172,7 +177,14 @@ function Oeuvre({ artwork, setDeleted = () => {} }) {
           </Box>
           <button
             type="button"
-            onClick={user ? () => toggleFavorite() : () => navigate("/login")}
+            onClick={
+              user
+                ? () => toggleFavorite()
+                : () => {
+                    navigate("/login");
+                    toastFavoriError();
+                  }
+            }
           >
             <Favorite
               sx={{

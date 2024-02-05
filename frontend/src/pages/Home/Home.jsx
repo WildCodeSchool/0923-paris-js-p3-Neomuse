@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import useAllDataContext from "../../contexts/AllDataContext";
-import "react-toastify/dist/ReactToastify.css";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
 import SliderArtist from "../../components/Slider/SliderArtist";
@@ -10,13 +8,12 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 function Home() {
   const navigate = useNavigate();
   const { artworks } = useAllDataContext();
-  const notify = () => toast("Wow so easy!");
 
   return (
     <div>
       <Carousel />
-      <div className="slide_artist">
-        <h2>Des artistes uniques</h2>
+      <div className="box_titleHome">
+        <h2 className="titre_Home">Des artistes uniques</h2>
         <button
           type="button"
           className="bouton_voir"
@@ -24,16 +21,10 @@ function Home() {
         >
           Voir tous les artistes
         </button>
-        <SliderArtist />
       </div>
-      <div className="slide_oeuvre">
-        <h2>Des oeuvres uniques</h2>
-        <div>
-          <button type="button" onClick={notify}>
-            Notify!
-          </button>
-          <ToastContainer />
-        </div>
+      <SliderArtist />
+      <div className="box_titleHome">
+        <h2 className="titre_Home">Des oeuvres uniques</h2>
         <button
           type="button"
           className="bouton_voir"
@@ -41,9 +32,8 @@ function Home() {
         >
           Voir toutes les oeuvres
         </button>
-
-        <SliderOeuvre artworks={artworks} />
       </div>
+      <SliderOeuvre artworks={artworks} />
     </div>
   );
 }

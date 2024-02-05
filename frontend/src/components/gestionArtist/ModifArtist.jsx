@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./modifArtist.css";
 /* eslint-disable camelcase */
 function ModifArtist({ artist, onClose }) {
@@ -7,8 +8,7 @@ function ModifArtist({ artist, onClose }) {
   const [lastname, setLastname] = useState(artist?.lastname);
   const [biography, setBiography] = useState(artist?.biography);
 
-  const [erreur, setErreur] = useState(null);
-
+  const { showToastError, showToastSucces } = useAllDataContext();
   const handleModify = async (id) => {
     try {
       const response = await fetch(
@@ -28,15 +28,13 @@ function ModifArtist({ artist, onClose }) {
       console.info(response.status);
       if (response.status === 204) {
         onClose();
+        showToastSucces("Modification reussie");
       } else {
         console.error("Échec de la modification de l'artiste");
-        setErreur("Échec de la modification de l'artiste");
+        showToastError("Échec de la modification de l'artiste");
       }
     } catch (error) {
       console.error(error);
-      setErreur(
-        "Une erreur inattendue s'est produite lors de la modification de l'artiste."
-      );
     }
   };
   return (
@@ -46,7 +44,6 @@ function ModifArtist({ artist, onClose }) {
         Voulez- vous modifier l'artiste{" "}
         <span className="text-user-information"> {artist?.artist_name} ? </span>
       </p>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
       <form className="containerform">
         <div className="champ">
           <label htmlFor="artist_name" className="titre_champ">

@@ -35,8 +35,10 @@ function DeleteOeuvre() {
       if (response.status === 204) {
         setArtworks(artworks.filter((artwork) => artwork.artworks_id !== id));
         setOpenconfirmdelete(false);
+        // showToastSucess("supression reusie");
       } else {
         console.error("Échec de la suppression de l'œuvre");
+        // showToastError("Échec de la suppression de l'œuvre");
       }
     } catch (error) {
       console.error(error);

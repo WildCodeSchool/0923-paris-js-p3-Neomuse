@@ -1,3 +1,7 @@
+.box_titleHome {
+  display: flex;
+  justify-content: center;
+}
 .bouton_voir {
   justify-content: center;
   font-family: "Lobster";
@@ -16,10 +20,20 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.titre_Home {
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
 @media screen and (min-width: 1024px) {
   .bouton_voir {
     margin-left: 82%;
     font-size: 1rem;
     padding: 0.5rem;
+  }
+  .titre_Home {
+    font-size: 2rem;
   }
 }

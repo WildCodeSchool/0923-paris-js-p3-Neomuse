@@ -17,7 +17,8 @@ function DeleteArtist() {
     setSelectedArtist(artist);
     setOpenModify(true);
   };
-  const { artists, setArtists } = useAllDataContext();
+  const { artists, setArtists, showToastError, showToastSuccess } =
+    useAllDataContext();
   const handledelete = async (id) => {
     try {
       const response = await fetch(
@@ -32,11 +33,13 @@ function DeleteArtist() {
         }
       );
       console.info(response.status);
-      if (response.status === 20) {
+      if (response.status === 204) {
         setArtists(artists.filter((artist) => artist.artist_id !== id));
         setOpenconfirmdelete(false);
+        showToastSuccess("suppression reussie");
       } else {
         console.error("Échec de la suppression de l'artiste");
+        showToastError("Échec de la suppression de l'artiste");
       }
     } catch (error) {
       console.error(error);

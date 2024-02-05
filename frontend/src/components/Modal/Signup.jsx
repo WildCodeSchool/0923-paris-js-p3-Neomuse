@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./connexion.css";
 
 function ModalSignup({ onClose }) {
+  const { showToastError, showToastSuccess } = useAllDataContext();
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -37,9 +39,10 @@ function ModalSignup({ onClose }) {
       );
       console.info(response.status);
       if (response.status === 201) {
+        showToastSuccess("Connexion réussie !");
         onClose();
       } else {
-        console.error("veuillez verifier votre saisie.");
+        showToastError("veuillez vérifier votre saisie.");
       }
     } catch (error) {
       console.error(error);

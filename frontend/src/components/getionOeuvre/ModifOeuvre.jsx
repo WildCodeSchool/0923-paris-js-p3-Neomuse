@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./modifOeuvre.css";
 /* eslint-disable camelcase */
 function ModifOeuvre({ oeuvre, onClose }) {
@@ -16,7 +17,7 @@ function ModifOeuvre({ oeuvre, onClose }) {
     oeuvre?.dimension_depth
   );
 
-  const [erreur, setErreur] = useState(null);
+  const { showToastError, showToastSucces } = useAllDataContext();
 
   const handleModify = async (id) => {
     try {
@@ -40,13 +41,14 @@ function ModifOeuvre({ oeuvre, onClose }) {
       console.info(response.status);
       if (response.status === 204) {
         onClose();
+        showToastSucces("Modification reussie");
       } else {
         console.error("Échec de la modification de l'œuvre");
-        setErreur("Échec de la modification de l'œuvre");
+        showToastError("Échec de la modification de l'œuvre");
       }
     } catch (error) {
       console.error(error);
-      setErreur(
+      showToastError(
         "Une erreur inattendue s'est produite lors de la modification de l'œuvre."
       );
     }
@@ -58,7 +60,6 @@ function ModifOeuvre({ oeuvre, onClose }) {
         Voulez- vous modifier l'oeuvre{" "}
         <span className="text-user-information">{oeuvre?.title} ?</span>
       </p>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
       <form className="containerform">
         <div className="champ">
           <label htmlFor="title" className="titre_champ">
