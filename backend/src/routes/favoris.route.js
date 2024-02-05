@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const favorisController = require("../controllers/favoris.controller");
-const { Auth } = require("../middlewares/auth");
+const { isAuth } = require("../middlewares/auth");
 
-router.get("/favoris", Auth, favorisController.getFavorites);
-router.post("/favoris", Auth, favorisController.createFavorite);
-router.delete("/favoris", Auth, favorisController.deleteFavorite);
+router.get("/favoris", isAuth, favorisController.getFavorites);
+router.post("/favoris", isAuth, favorisController.createFavorite);
+router.delete("/favoris", isAuth, favorisController.deleteFavorite);
 
 module.exports = router;

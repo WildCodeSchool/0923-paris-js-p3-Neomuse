@@ -8,7 +8,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
 import useUser from "../contexts/UserContext";
 
-function Oeuvre({ artwork, setDeleted }) {
+function Oeuvre({ artwork, setDeleted = () => {} }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
