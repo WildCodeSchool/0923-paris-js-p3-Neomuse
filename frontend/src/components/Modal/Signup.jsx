@@ -33,7 +33,7 @@ function ModalSignup({ onClose }) {
           body: JSON.stringify({
             firstname: firstname.current.value,
             lastname: lastname.current.value,
-            email: email.current.value,
+            email,
             phone: phone.current.value,
             adress: adress.current.value,
             password,
