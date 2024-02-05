@@ -4,8 +4,10 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
+import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 function Oeuvre({ artwork, setDeleted }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -73,7 +75,7 @@ function Oeuvre({ artwork, setDeleted }) {
         if (response.status === 201) {
           setIsFavorite(true);
         } else {
-          console.error("erreur ajout du favori.");
+          toast.error("erreur ajout du favori.");
         }
       }
     } catch (error) {
@@ -180,6 +182,7 @@ function Oeuvre({ artwork, setDeleted }) {
           </button>
         </Stack>
       </Card>
+      <ToastContainer />
     </section>
   );
 }

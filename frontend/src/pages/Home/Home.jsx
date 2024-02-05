@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import useAllDataContext from "../../contexts/AllDataContext";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
+import "react-toastify/dist/ReactToastify.css";
 import SliderArtist from "../../components/Slider/SliderArtist";
 import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Home() {
   const navigate = useNavigate();
   const { artworks } = useAllDataContext();
-
+  const showToastMessage = () => {
+    toast("Success Notification !");
+  };
   return (
     <div>
       <Carousel />
@@ -34,6 +38,12 @@ function Home() {
         </button>
 
         <SliderOeuvre artworks={artworks} />
+      </div>
+      <div className="button_toastify">
+        <button type="button" onClick={showToastMessage}>
+          Notify
+        </button>
+        <ToastContainer />
       </div>
     </div>
   );

@@ -2,9 +2,11 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
+import { ToastContainer, toast } from "react-toastify";
 import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
+import "react-toastify/dist/ReactToastify.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
@@ -40,10 +42,16 @@ function Connexion() {
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {
-        console.error("veuillez verifier votre saisie.");
+        toast.error("Renseignez correctement vos identifiants !", {
+          autoClose: 3000,
+          pauseOnFocusLoss: false,
+        });
       }
     } catch (error) {
-      console.error(error);
+      toast.error("Saisie incorrecte", {
+        autoClose: 3000,
+        pauseOnFocusLoss: false,
+      });
     }
   };
 
@@ -102,6 +110,7 @@ function Connexion() {
           </button>
         </div>
       </form>
+      <ToastContainer />
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
         <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>
