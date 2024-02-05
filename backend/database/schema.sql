@@ -25,7 +25,7 @@ CREATE TABLE
         `lastname` VARCHAR(255) NOT NULL,
         `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `thumbnail` TEXT NOT NULL,
-        `biography` VARCHAR(255) NOT NULL,
+        `biography` TEXT NOT NULL,
         PRIMARY KEY (`artist_id`)
     );
 
