@@ -6,6 +6,13 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+.background2 {
+  background-image: url(../../assets/rgpd.jpg);
+  position: relative;
+  min-height: 40rem;
+  background-position: top;
+  background-repeat: no-repeat;
+}
 .h1_about {
   color: #87255b;
   margin: 2rem;
@@ -50,9 +57,16 @@
   .background {
     min-height: 400px;
     background-size: cover;
-    position: relative;
+    position: top;
     min-height: 400px;
     background-position: 50% 40%;
+    background-repeat: no-repeat;
+  }
+  .background2 {
+    min-height: 25rem;
+    background-size: cover;
+    position: relative;
+    background-position: 50% 5%;
     background-repeat: no-repeat;
   }
   .p_about {
@@ -71,5 +85,12 @@
     width: 80%;
     margin: 0 auto;
     border-top: 10px solid #b370b0;
+  }
+}
+@media screen and (max-width: 428px) {
+  .background2 {
+    min-height: 15rem;
+    background-size: cover;
+    background-position: 50%;
   }
 }
