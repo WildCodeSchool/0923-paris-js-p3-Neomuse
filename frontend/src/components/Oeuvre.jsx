@@ -152,7 +152,7 @@ function Oeuvre({ artwork, setDeleted }) {
                 },
               }}
             >
-              {artwork.dimension_height} x {artwork.dimension_width} cm
+              {artwork?.dimension_height} x {artwork?.dimension_width} cm
             </Typography>
             <Typography
               fontSize="title-sm"

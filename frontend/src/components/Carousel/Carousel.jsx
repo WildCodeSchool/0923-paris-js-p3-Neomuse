@@ -1,8 +1,13 @@
 import { Icon } from "@iconify/react";
 import { useState, useEffect } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./carousel.css";
+
+function formatDate(date) {
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  return new Date(date).toLocaleDateString("fr-FR", options);
+}
 
 function Slider() {
   const [events, setEvents] = useState([]);
@@ -28,6 +33,7 @@ function Slider() {
     };
     evenement();
   }, []);
+
   return (
     <div className="contentCarrousel">
       <div className="containerCarrousel">
@@ -67,7 +73,8 @@ function Slider() {
                     className="date"
                   />
                   <p>
-                    Du {event.start_date} au {event.end_date}
+                    Du {formatDate(event.start_date)} au {}
+                    {formatDate(event.end_date)}
                   </p>
                 </div>
               </div>
