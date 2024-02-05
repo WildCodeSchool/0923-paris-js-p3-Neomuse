@@ -6,9 +6,11 @@ function ModalSignup({ onClose }) {
   const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [isValid, setIsValid] = useState(true);
   const firstname = useRef();
   const lastname = useRef();
-  const email = useRef();
+  // const email = useRef();
   const phone = useRef();
   const adress = useRef();
   const handlePasswordChange = (event) => {
@@ -17,7 +19,10 @@ function ModalSignup({ onClose }) {
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
   };
-
+  const validateEmail = () => {
+    const regexPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    setIsValid(regexPattern.test(email));
+  };
   const handleSubmit = async () => {
     try {
       const response = await fetch(
@@ -45,7 +50,6 @@ function ModalSignup({ onClose }) {
       console.error(error);
     }
   };
-
   return (
     <div className="container_signup">
       <h2 className="titre_login">Créer votre compte</h2>
@@ -75,7 +79,6 @@ function ModalSignup({ onClose }) {
               required
             />
           </div>
-
           <div>
             <label htmlFor="phone" className="titre_champ">
               Phone
@@ -100,7 +103,6 @@ function ModalSignup({ onClose }) {
               required
             />
           </div>
-
           <div>
             <label htmlFor="email" className="titre_champ">
               Email
@@ -108,11 +110,14 @@ function ModalSignup({ onClose }) {
             <input
               type="email"
               name="creationMail"
-              ref={email}
+              value={email}
               placeholder="email@gmail.com"
               className="input_login"
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={validateEmail}
               required
             />
+            {!isValid && <p style={{ color: "red" }}>Invalid email address</p>}
           </div>
           <div>
             <label htmlFor="password" className="titre_champ">
@@ -172,9 +177,9 @@ function ModalSignup({ onClose }) {
               </div>
             </div>
             {password === confirmPassword ? (
-              <Icon icon="charm:square-tick" color="#87255b" width="20" />
+              <Icon icon="charm:square-tick" color="#87255B" width="20" />
             ) : (
-              "Mot de passe non identique"
+              <p style={{ color: "red" }}>Passwords dont match</p>
             )}
           </div>
         </div>
@@ -187,5 +192,4 @@ function ModalSignup({ onClose }) {
     </div>
   );
 }
-
 export default ModalSignup;
