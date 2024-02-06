@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
 import useAllDataContext from "../../contexts/AllDataContext";
 import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
+import "react-toastify/dist/ReactToastify.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
@@ -48,7 +50,10 @@ function Connexion() {
         });
       }
     } catch (error) {
-      console.error(error);
+      toast.error("Saisie incorrecte", {
+        autoClose: 3000,
+        pauseOnFocusLoss: false,
+      });
     }
   };
 
@@ -107,6 +112,7 @@ function Connexion() {
           </button>
         </div>
       </form>
+      <ToastContainer />
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
         <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>

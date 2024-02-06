@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
+import { ToastContainer } from "react-toastify";
 import { Icon } from "@iconify/react";
 import useAllDataContext from "../../contexts/AllDataContext";
 import "./connexion.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function ModalSignup({ onClose }) {
   const { showToastError, showToastSuccess } = useAllDataContext();
@@ -192,6 +194,7 @@ function ModalSignup({ onClose }) {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }
