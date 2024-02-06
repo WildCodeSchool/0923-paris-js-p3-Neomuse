@@ -29,6 +29,7 @@
     0px 1px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  background-color: #d1c8e1;
 }
 /* RESPONSIVE */
 @media screen and (min-width: 1024px) {

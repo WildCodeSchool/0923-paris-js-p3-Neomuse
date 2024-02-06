@@ -80,7 +80,7 @@
     flex-direction: column;
   }
   .container_search {
-    margin-top: 0rem;
+    margin-top: 2rem;
   }
   .h1_artistes {
     font-size: 1.6rem;
@@ -94,5 +94,8 @@
   }
   .name_artist {
     font-size: 25px;
+  }
+  .title_artislist {
+    text-align: center;
   }
 }

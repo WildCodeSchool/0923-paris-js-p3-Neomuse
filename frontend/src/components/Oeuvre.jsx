@@ -9,6 +9,7 @@ import Stack from "@mui/joy/Stack";
 import useAllDataContext from "../contexts/AllDataContext";
 import useUser from "../contexts/UserContext";
 
+
 function Oeuvre({ artwork, setDeleted = () => {} }) {
   const { showToastError } = useAllDataContext();
   const toastFavoriError = () => {
@@ -81,7 +82,7 @@ function Oeuvre({ artwork, setDeleted = () => {} }) {
         if (response.status === 201) {
           setIsFavorite(true);
         } else {
-          console.error("erreur ajout du favori.");
+          toast.error("erreur ajout du favori.");
         }
       }
     } catch (error) {
@@ -198,6 +199,7 @@ function Oeuvre({ artwork, setDeleted = () => {} }) {
           </button>
         </Stack>
       </Card>
+      <ToastContainer />
     </section>
   );
 }

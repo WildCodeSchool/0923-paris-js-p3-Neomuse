@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Carousel from "../../components/Carousel/Carousel";
 import "./home.css";
+import "react-toastify/dist/ReactToastify.css";
 import SliderArtist from "../../components/Slider/SliderArtist";
 import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Home() {
   const navigate = useNavigate();
+
 
   return (
     <div>
