@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -8,7 +9,6 @@ import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
 import useAllDataContext from "../contexts/AllDataContext";
 import useUser from "../contexts/UserContext";
-
 
 function Oeuvre({ artwork, setDeleted = () => {} }) {
   const { showToastError } = useAllDataContext();
