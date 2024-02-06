@@ -1,14 +1,14 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./modifArtist.css";
-
+/* eslint-disable camelcase */
 function ModifArtist({ artist, onClose }) {
-  const name = useRef();
-  const firstname = useRef();
-  const lastname = useRef();
-  const biography = useRef();
+  const [artist_name, setArtist_name] = useState(artist?.artist_name);
+  const [firstname, setFirstname] = useState(artist?.firstname);
+  const [lastname, setLastname] = useState(artist?.lastname);
+  const [biography, setBiography] = useState(artist?.biography);
 
-  const [erreur, setErreur] = useState(null);
-
+  const { showToastError, showToastSuccess } = useAllDataContext();
   const handleModify = async (id) => {
     try {
       const response = await fetch(
@@ -18,25 +18,23 @@ function ModifArtist({ artist, onClose }) {
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            artist_name: name.current.value,
-            firstname: firstname.current.value,
-            lastname: lastname.current.value,
-            biography: biography.current.value,
+            artist_name,
+            firstname,
+            lastname,
+            biography,
           }),
         }
       );
       console.info(response.status);
       if (response.status === 204) {
         onClose();
+        showToastSuccess("Modification reussie");
       } else {
         console.error("Échec de la modification de l'artiste");
-        setErreur("Échec de la modification de l'artiste");
+        showToastError("Échec de la modification de l'artiste");
       }
     } catch (error) {
       console.error(error);
-      setErreur(
-        "Une erreur inattendue s'est produite lors de la modification de l'artiste."
-      );
     }
   };
   return (
@@ -46,17 +44,18 @@ function ModifArtist({ artist, onClose }) {
         Voulez- vous modifier l'artiste{" "}
         <span className="text-user-information"> {artist?.artist_name} ? </span>
       </p>
-      {erreur && <p style={{ color: "red" }}>{erreur}</p>}
       <form className="containerform">
         <div className="champ">
-          <label htmlFor="name" className="titre_champ">
+          <label htmlFor="artist_name" className="titre_champ">
             Pseudo
           </label>
           <input
             type="text"
-            name="name"
-            ref={name}
-            placeholder={artist?.artist_name}
+            name="artist_name"
+            value={artist_name}
+            onChange={(e) => {
+              setArtist_name(e.target.value);
+            }}
             className="input_login"
           />
         </div>
@@ -67,8 +66,10 @@ function ModifArtist({ artist, onClose }) {
           <input
             type="text"
             name="firstname"
-            placeholder={artist?.firstname}
-            ref={firstname}
+            value={firstname}
+            onChange={(e) => {
+              setFirstname(e.target.value);
+            }}
             className="input_login"
           />
         </div>
@@ -79,8 +80,10 @@ function ModifArtist({ artist, onClose }) {
           <input
             type="text"
             name="lastname"
-            placeholder={artist?.firstname}
-            ref={lastname}
+            value={lastname}
+            onChange={(e) => {
+              setLastname(e.target.value);
+            }}
             className="input_login"
           />
         </div>
@@ -91,7 +94,10 @@ function ModifArtist({ artist, onClose }) {
           <textarea
             type="text"
             name="biography"
-            ref={biography}
+            value={biography}
+            onChange={(e) => {
+              setBiography(e.target.value);
+            }}
             className="input_login"
           />
         </div>
@@ -106,5 +112,6 @@ function ModifArtist({ artist, onClose }) {
     </div>
   );
 }
+/* eslint-disable camelcase */
 
 export default ModifArtist;

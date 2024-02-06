@@ -1,4 +1,6 @@
+import { ToastContainer, toast } from "react-toastify";
 import { useMemo, useState, createContext, useContext, useEffect } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllDataContext = createContext();
 
@@ -94,9 +96,17 @@ export function AllDataProvider({ children }) {
     };
     artiste();
   }, []);
+  const showToastSuccess = (message, options) => {
+    toast.success(message, options);
+  };
+  const showToastError = (message, options) => {
+    toast.error(message, options);
+  };
 
   const value = useMemo(
     () => ({
+      showToastSuccess,
+      showToastError,
       artists,
       setArtists,
       artworks,
@@ -109,7 +119,9 @@ export function AllDataProvider({ children }) {
     [artists, artworks, artworkTechnic, artworkBytech]
   );
   return (
-    <AllDataContext.Provider value={value}>{children}</AllDataContext.Provider>
+    <AllDataContext.Provider value={value}>
+      {children} <ToastContainer />
+    </AllDataContext.Provider>
   );
 }
 export default () => useContext(AllDataContext);

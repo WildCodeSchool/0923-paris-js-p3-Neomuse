@@ -82,6 +82,20 @@ function Users() {
               />
               <p className="text-user-information"> VOS INFORMATIONS</p>
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/favoris");
+              }}
+              className="button-user-favoris"
+            >
+              <img
+                className="favorisheart"
+                src={favorisheart}
+                alt="favorisheart"
+              />
+              <p className="text-user-favoris">VOS FAVORIS</p>
+            </button>{" "}
             <button type="button" className="deconnexion-user" onClick={logout}>
               Déconnexion
             </button>
