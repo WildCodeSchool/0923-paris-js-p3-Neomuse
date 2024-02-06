@@ -26,8 +26,7 @@ function Users() {
   };
   return (
     <>
-      <div className="" />
-
+      <div className="wholepageuser" />
       {user?.role === "admin" ? (
         <div>
           <p className="paragraphe-user-1">
@@ -83,6 +82,20 @@ function Users() {
               />
               <p className="text-user-information"> VOS INFORMATIONS</p>
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/favoris");
+              }}
+              className="button-user-favoris"
+            >
+              <img
+                className="favorisheart"
+                src={favorisheart}
+                alt="favorisheart"
+              />
+              <p className="text-user-favoris">VOS FAVORIS</p>
+            </button>{" "}
             <button type="button" className="deconnexion-user" onClick={logout}>
               Déconnexion
             </button>
@@ -98,15 +111,6 @@ function Users() {
               {user?.firstname} {user?.lastname}
             </span>
           </p>
-          <div>
-            <p className="paragraphe-user-2">
-              Bienvenue dans votre espace personnel
-            </p>
-            <p className="paragraphe-user-3">
-              Retrouvez ici l'historique de vos favoris et gérez vos
-              informations personnelles.
-            </p>
-          </div>
           <div className="maxi-flex-user">
             <h1 className="h1-user">Votre compte</h1>
             <button

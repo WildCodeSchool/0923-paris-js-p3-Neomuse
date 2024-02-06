@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./addArtiste.css";
 
 function GestionArtiste() {
+  const { showToastError, showToastSuccess } = useAllDataContext();
   const artistName = useRef();
   const name = useRef();
   const firstname = useRef();
@@ -27,9 +29,11 @@ function GestionArtiste() {
       );
       console.info(response.status);
       if (response.status === 201) {
-        setConfirmation("Œuvre ajoutée avec succès !");
+        setConfirmation("Artiste ajouté avec succès !");
+        showToastSuccess("Artiste ajouté avec succès !");
       } else {
         console.error("veuillez verifier votre saisie.");
+        showToastError("Erreur d'ajout veuillez verifier votre saisie");
       }
     } catch (error) {
       console.error(error);
