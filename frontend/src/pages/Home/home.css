@@ -20,20 +20,23 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.titre_Home {
+.home-title-2,
+.home-title-1 {
   font-weight: bold;
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.2rem;
-  text-decoration: underline;
+  padding-left: 3rem;
 }
+
 @media screen and (min-width: 1024px) {
   .bouton_voir {
     margin-left: 82%;
     font-size: 1rem;
     padding: 0.5rem;
   }
-  .titre_Home {
-    font-size: 2rem;
+  .home-title-2,
+  .home-title-1 {
+    font-weight: bold;
+  }
+  .home-title-1 {
+    margin-top: 2rem;
   }
 }

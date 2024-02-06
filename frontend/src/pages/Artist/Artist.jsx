@@ -1,6 +1,5 @@
 import { useParams, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
-/* import useAllDataContext from "../../contexts/AllDataContext"; */
 import "./artist.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,9 +8,8 @@ import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 function Artist() {
   const { id } = useParams();
   const artworks = useLoaderData();
-  console.info(artworks);
   const [artists, setArtists] = useState([]);
-  /* const [artworks, setArtworks] = useState([]); */
+  const [showFullBiography, setShowFullBiography] = useState(false);
 
   useEffect(() => {
     const fetchArtists = async () => {
@@ -40,14 +38,10 @@ function Artist() {
     <>
       <img
         src={artists.thumbnail}
-        alt="mr-jones-artwork3"
+        alt="img-desk-top"
         className="art-imgtop-desk"
       />
-      <img
-        src={artworks?.thumbnail}
-        alt="mr-jonesthumb"
-        className="art-imgtop"
-      />
+      <div className="art-imgtop" alt="tof-random" />
       <h3 className="art-name">Artiste : {artists?.artist_name}</h3>
       <div className="art-bio-container">
         <img
@@ -56,9 +50,15 @@ function Artist() {
           className="art-thumb-desk"
         />
         <p className="art-biography">
-          {artists?.biography}
-          <button className="art-bio-seemore" type="button">
-            Voir plus
+          {showFullBiography
+            ? artists?.biography || ""
+            : `${(artists?.biography || "").slice(0, 250)} ...`}
+          <button
+            className="art-bio-seemore"
+            type="button"
+            onClick={() => setShowFullBiography(!showFullBiography)}
+          >
+            {showFullBiography ? "Voir moins" : "Voir plus"}
           </button>
         </p>
       </div>

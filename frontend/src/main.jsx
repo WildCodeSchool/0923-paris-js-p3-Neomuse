@@ -23,6 +23,7 @@ import LoginSignup from "./pages/LoginSignup";
 import ManageArtist from "./pages/Admin/ManageArtist";
 import ManageArtwork from "./pages/Admin/ManageArtwork";
 import GetUser from "./pages/Admin/GetUser";
+import Data from "./pages/data/data";
 
 function PrivateRoute({ children }) {
   const { user, isLoading } = useUser();
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "/artworks/:id",
         element: <Artwork />,
+      },
+      {
+        path: "/data",
+        element: <Data />,
       },
       {
         path: "/favoris",

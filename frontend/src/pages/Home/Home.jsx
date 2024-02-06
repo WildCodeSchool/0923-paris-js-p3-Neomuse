@@ -12,8 +12,8 @@ function Home() {
   return (
     <div>
       <Carousel />
-      <div className="box_titleHome">
-        <h2 className="titre_Home">Des artistes uniques</h2>
+      <div className="slide_artist">
+        <h2 className="home-title-1">Des artistes uniques</h2>
         <button
           type="button"
           className="bouton_voir"
@@ -23,8 +23,8 @@ function Home() {
         </button>
       </div>
       <SliderArtist />
-      <div className="box_titleHome">
-        <h2 className="titre_Home">Des oeuvres uniques</h2>
+      <div className="slide_oeuvre">
+        <h2 className="home-title-2">Des oeuvres uniques</h2>
         <button
           type="button"
           className="bouton_voir"
