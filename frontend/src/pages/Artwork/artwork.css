@@ -14,11 +14,21 @@
 .LinkOeuvreId {
   text-decoration: none;
 }
+.artWorkList {
+  padding-top: 1rem;
+}
+
+.h1listartwork {
+  text-align: center;
+}
 
 /* RESPONSIVE */
 @media screen and (min-width: 1024px) {
   .h1Oeuvres {
     font-size: 2rem;
     margin-top: 2rem;
+  }
+  .h1listartwork {
+    text-align: left;
   }
 }
