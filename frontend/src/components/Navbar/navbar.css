@@ -132,6 +132,8 @@ nav {
   font-size: 24px;
   cursor: pointer;
   color: #616161;
+  background-color: transparent;
+
 }
 
 @media screen and (min-width: 1024px) {

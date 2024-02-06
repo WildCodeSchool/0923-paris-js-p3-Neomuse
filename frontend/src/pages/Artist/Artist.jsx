@@ -9,7 +9,7 @@ function Artist() {
   const { id } = useParams();
   const artworks = useLoaderData();
   const [artists, setArtists] = useState([]);
-  const [randomArtworkIndex, setRandomArtworkIndex] = useState(null);
+  const [showFullBiography, setShowFullBiography] = useState(false);
 
   useEffect(() => {
     const fetchArtists = async () => {
@@ -23,9 +23,6 @@ function Artist() {
         if (response.status === 200) {
           const data = await response.json();
           setArtists(data);
-          // Générer un index aléatoire entre 0 et la longueur du tableau d'œuvres - 1
-          const randomIndex = Math.floor(Math.random() * artworks.length);
-          setRandomArtworkIndex(randomIndex);
         } else {
           console.error("Pas d'artiste trouvé");
         }
@@ -35,23 +32,16 @@ function Artist() {
     };
 
     fetchArtists();
-  }, [id, artworks]);
+  }, [id]);
 
   return (
     <>
       <img
         src={artists.thumbnail}
-        alt="mr-jones-artwork3"
+        alt="img-desk-top"
         className="art-imgtop-desk"
       />
-      {randomArtworkIndex !== null && (
-        <img
-          src={artworks[randomArtworkIndex].thumbnail}
-          alt={`random-artwork-${randomArtworkIndex}`}
-          className="art-imgtop"
-        />
-      )}
-
+      <div className="art-imgtop" alt="tof-random" />
       <h3 className="art-name">Artiste : {artists?.artist_name}</h3>
       <div className="art-bio-container">
         <img
@@ -60,9 +50,15 @@ function Artist() {
           className="art-thumb-desk"
         />
         <p className="art-biography">
-          {artists?.biography}
-          <button className="art-bio-seemore" type="button">
-            Voir plus
+          {showFullBiography
+            ? artists?.biography || ""
+            : `${(artists?.biography || "").slice(0, 250)} ...`}
+          <button
+            className="art-bio-seemore"
+            type="button"
+            onClick={() => setShowFullBiography(!showFullBiography)}
+          >
+            {showFullBiography ? "Voir moins" : "Voir plus"}
           </button>
         </p>
       </div>

@@ -1,3 +1,7 @@
+.box_titleHome {
+  display: flex;
+  justify-content: center;
+}
 .bouton_voir {
   justify-content: center;
   font-family: "Lobster";

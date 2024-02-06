@@ -17,17 +17,17 @@ USE `neo_muse` ;
 -- -----------------------------------------------------
 -- Table `neo_muse`.`artists`
 -- -----------------------------------------------------
-CREATE TABLE
-    IF NOT EXISTS `neo_muse`.`artists` (
-        `artist_id` INT NOT NULL AUTO_INCREMENT,
-        `artist_name` VARCHAR(255) NOT NULL,
-        `firstname` VARCHAR(255) NOT NULL,
-        `lastname` VARCHAR(255) NOT NULL,
-        `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `thumbnail` TEXT NOT NULL,
-        `biography` TEXT NOT NULL,
-        PRIMARY KEY (`artist_id`)
-    );
+
+CREATE TABLE IF NOT EXISTS `neo_muse`.`artists` (
+  `artist_id` INT NOT NULL AUTO_INCREMENT,
+  `artist_name` VARCHAR(255) NOT NULL,
+  `firstname` VARCHAR(255) NOT NULL,
+  `lastname` VARCHAR(255) NOT NULL,
+  `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `thumbnail` TEXT NOT NULL,
+  `biography` TEXT NOT NULL,
+  PRIMARY KEY (`artist_id`));
+
 
 -- -----------------------------------------------------
 -- Table `neo_muse`.`events`
@@ -106,8 +106,10 @@ CREATE TABLE
         PRIMARY KEY (`artworks_id`),
         INDEX `fk_artworks_artists1_idx` (`artists_id` ASC) VISIBLE,
         INDEX `fk_artworks_artwork_technique1_idx` (`artwork_technique_id` ASC) VISIBLE,
-        CONSTRAINT `fk_artworks_artists1` FOREIGN KEY (`artists_id`) REFERENCES `neo_muse`.`artists` (`artist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-        CONSTRAINT `fk_artworks_artwork_technique1` FOREIGN KEY (`artwork_technique_id`) REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+
+        CONSTRAINT `fk_artworks_artists1` FOREIGN KEY (`artists_id`) REFERENCES `neo_muse`.`artists` (`artist_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+        CONSTRAINT `fk_artworks_artwork_technique1` FOREIGN KEY (`artwork_technique_id`) REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`) ON DELETE CASCADE ON UPDATE CASCADE
+
     );
 
 -- -----------------------------------------------------
@@ -127,8 +129,11 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`set_favorite` (
   CONSTRAINT `fk_users_has_artworks_artworks1`
     FOREIGN KEY (`artworks_id`)
     REFERENCES `neo_muse`.`artworks` (`artworks_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+
+    
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
