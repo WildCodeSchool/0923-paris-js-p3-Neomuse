@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from "@mui/joy/Button";
 import Grid from "@mui/joy/Grid";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Oeuvre from "../Oeuvre";
+import useUser from "../../contexts/UserContext";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./OeuvreDetail.css";
 
 function Artwork({ setDeleted }) {
+  const navigate = useNavigate();
+  const { showToastError } = useAllDataContext();
+  const toastFavoriError = () => {
+    showToastError("connexion obligatoire pour ajouter des favoris");
+  };
+  const { user } = useUser();
   const { id } = useParams();
   const [artwork, setArtwork] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -136,7 +144,17 @@ function Artwork({ setDeleted }) {
                 </p>
               </div>
               <div className="boxboutton">
-                <button type="button" onClick={toggleFavorite}>
+                <button
+                  type="button"
+                  onClick={
+                    user
+                      ? () => toggleFavorite()
+                      : () => {
+                          navigate("/login");
+                          toastFavoriError();
+                        }
+                  }
+                >
                   <Button
                     startDecorator={<FavoriteBorder />}
                     sx={{

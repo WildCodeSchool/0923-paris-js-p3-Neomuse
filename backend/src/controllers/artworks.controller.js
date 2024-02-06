@@ -41,7 +41,7 @@ const getById = async (req, res, next) => {
     const { id } = req.params;
     const [[artwork]] = await artworkModel.findById(id);
     const [ArtworkTecniqueList] = await artworkModel.findByArtworkTechniqueList(
-      artwork.artists_id
+      artwork.artwork_technique_id
     );
     // console.log(artwork.artworks_id);
 
