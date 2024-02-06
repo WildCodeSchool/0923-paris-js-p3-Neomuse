@@ -104,6 +104,7 @@ function Artwork({ setDeleted }) {
         );
         if (response.status === 200) {
           const data = await response.json();
+          // console.log(data);
           setArtwork(data);
         } else {
           console.error("Pas d'oeuvre par technique trouvée");
@@ -131,11 +132,16 @@ function Artwork({ setDeleted }) {
             <div className="enTeteOeuvreDetais">
               <div className="titreOeuvre">
                 <p>{artwork.artworkUnique?.title}</p>
-                <p>
-                  {" "}
-                  by {artwork.artworkUnique?.lastname}{" "}
-                  {artwork.artworkUnique?.firstane}
-                </p>
+                <Link
+                  className="nom_Artist"
+                  to={`/artists/${artwork.artworkUnique?.artists_id}`}
+                >
+                  <p>
+                    {" "}
+                    by {artwork.artworkUnique?.lastname}{" "}
+                    {artwork.artworkUnique?.firstane}
+                  </p>
+                </Link>
                 <p>{artwork.artworkUnique?.category}</p>
                 <p>{artwork.artworkUnique?.price} €</p>
                 <p>

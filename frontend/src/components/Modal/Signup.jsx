@@ -182,7 +182,7 @@ function ModalSignup({ onClose }) {
             {password === confirmPassword ? (
               <Icon icon="charm:square-tick" color="#87255B" width="20" />
             ) : (
-              <p style={{ color: "red" }}>Passwords dont match</p>
+              <p style={{ color: "red" }}>Mot de passe non identique</p>
             )}
           </div>
         </div>

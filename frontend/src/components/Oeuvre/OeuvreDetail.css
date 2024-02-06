@@ -7,6 +7,9 @@
   border: 17px solid #fff;
   box-shadow: 16px 7px 4px 0px #d1c8e1;
 }
+.nom_Artist {
+  color: black;
+}
 .imgOeuvreDetail {
   width: 11rem;
   height: 9.7rem;
