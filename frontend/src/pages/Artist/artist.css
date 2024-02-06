@@ -82,6 +82,7 @@
     text-align: center;
     padding: 2rem;
     margin: 2rem;
+    height: max-content;
   }
   .art-title {
     text-align: center;

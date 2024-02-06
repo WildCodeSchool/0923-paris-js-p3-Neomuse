@@ -69,5 +69,6 @@ body {
     padding-top: 3.9rem;
     padding-bottom: 2rem;
     flex-grow: 1;
+    overflow-x: hidden !important;
   }
 }
