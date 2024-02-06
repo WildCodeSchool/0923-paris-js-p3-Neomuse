@@ -8,7 +8,7 @@ function ModifArtist({ artist, onClose }) {
   const [lastname, setLastname] = useState(artist?.lastname);
   const [biography, setBiography] = useState(artist?.biography);
 
-  const { showToastError, showToastSucces } = useAllDataContext();
+  const { showToastError, showToastSuccess } = useAllDataContext();
   const handleModify = async (id) => {
     try {
       const response = await fetch(
@@ -28,7 +28,7 @@ function ModifArtist({ artist, onClose }) {
       console.info(response.status);
       if (response.status === 204) {
         onClose();
-        showToastSucces("Modification reussie");
+        showToastSuccess("Modification reussie");
       } else {
         console.error("Échec de la modification de l'artiste");
         showToastError("Échec de la modification de l'artiste");

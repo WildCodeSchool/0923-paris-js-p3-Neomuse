@@ -17,7 +17,7 @@ function ModifOeuvre({ oeuvre, onClose }) {
     oeuvre?.dimension_depth
   );
 
-  const { showToastError, showToastSucces } = useAllDataContext();
+  const { showToastError, showToastSuccess } = useAllDataContext();
 
   const handleModify = async (id) => {
     try {
@@ -41,7 +41,7 @@ function ModifOeuvre({ oeuvre, onClose }) {
       console.info(response.status);
       if (response.status === 204) {
         onClose();
-        showToastSucces("Modification reussie");
+        showToastSuccess("Modification reussie");
       } else {
         console.error("Échec de la modification de l'œuvre");
         showToastError("Échec de la modification de l'œuvre");
