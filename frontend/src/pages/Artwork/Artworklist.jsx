@@ -5,7 +5,9 @@ function Artworklist() {
   return (
     <section className="artWorkList">
       <div className="list">
-        <h1 className="h1Oeuvres">Découvrir nos oeuvres</h1>
+        <div className="h1listartwork">
+          <h1 className="h1Oeuvres">Découvrir nos oeuvres</h1>
+        </div>
         <TechniqueList />
       </div>
     </section>
