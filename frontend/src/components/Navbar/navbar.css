@@ -124,6 +124,16 @@ nav {
   left: 0%;
   top: 42px;
 }
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #616161;
+}
+
 @media screen and (min-width: 1024px) {
   nav {
     display: flex;

@@ -17,16 +17,17 @@ USE `neo_muse` ;
 -- -----------------------------------------------------
 -- Table `neo_muse`.`artists`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `neo_muse`.`artists` (
-  `artist_id` INT NOT NULL AUTO_INCREMENT,
-  `artist_name` VARCHAR(255) NOT NULL,
-  `firstname` VARCHAR(255) NOT NULL,
-  `lastname` VARCHAR(255) NOT NULL,
-  `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `thumbnail` TEXT NOT NULL,
-  `biography` TEXT NOT NULL,
-  PRIMARY KEY (`artist_id`));
-
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artists` (
+        `artist_id` INT NOT NULL AUTO_INCREMENT,
+        `artist_name` VARCHAR(255) NOT NULL,
+        `firstname` VARCHAR(255) NOT NULL,
+        `lastname` VARCHAR(255) NOT NULL,
+        `date_registration` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `thumbnail` TEXT NOT NULL,
+        `biography` TEXT NOT NULL,
+        PRIMARY KEY (`artist_id`)
+    );
 
 -- -----------------------------------------------------
 -- Table `neo_muse`.`events`
@@ -87,34 +88,27 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`users` (
 -- -----------------------------------------------------
 -- Table `neo_muse`.`artworks`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `neo_muse`.`artworks` (
-  `artworks_id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(255) NOT NULL,
-  `description` TEXT NOT NULL,
-  `art_theme` VARCHAR(255) NOT NULL,
-  `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `price` INT NOT NULL,
-  `dimension_height` INT NOT NULL,
-  `dimension_width` INT NOT NULL,
-  `dimension_depth` INT NOT NULL,
-  `price_on_demand` TINYINT NOT NULL,
-  `thumbnail` TEXT NOT NULL,
-  `artists_id` INT NOT NULL,
-  `artwork_technique_id` INT NOT NULL,
-  PRIMARY KEY (`artworks_id`),
-  INDEX `fk_artworks_artists1_idx` (`artists_id` ASC) VISIBLE,
-  INDEX `fk_artworks_artwork_technique1_idx` (`artwork_technique_id` ASC) VISIBLE,
-  CONSTRAINT `fk_artworks_artists1`
-    FOREIGN KEY (`artists_id`)
-    REFERENCES `neo_muse`.`artists` (`artist_id`)
-    ON DELETE  CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_artworks_artwork_technique1`
-    FOREIGN KEY (`artwork_technique_id`)
-    REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
+CREATE TABLE
+    IF NOT EXISTS `neo_muse`.`artworks` (
+        `artworks_id` INT NOT NULL AUTO_INCREMENT,
+        `title` VARCHAR(255) NOT NULL,
+        `description` TEXT NOT NULL,
+        `art_theme` VARCHAR(255) NOT NULL,
+        `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `price` INT NOT NULL,
+        `dimension_height` INT NOT NULL,
+        `dimension_width` INT NOT NULL,
+        `dimension_depth` INT NOT NULL,
+        `price_on_demand` TINYINT NOT NULL DEFAULT 0,
+        `thumbnail` TEXT NOT NULL,
+        `artists_id` INT NOT NULL,
+        `artwork_technique_id` INT NOT NULL,
+        PRIMARY KEY (`artworks_id`),
+        INDEX `fk_artworks_artists1_idx` (`artists_id` ASC) VISIBLE,
+        INDEX `fk_artworks_artwork_technique1_idx` (`artwork_technique_id` ASC) VISIBLE,
+        CONSTRAINT `fk_artworks_artists1` FOREIGN KEY (`artists_id`) REFERENCES `neo_muse`.`artists` (`artist_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+        CONSTRAINT `fk_artworks_artwork_technique1` FOREIGN KEY (`artwork_technique_id`) REFERENCES `neo_muse`.`artwork_technique` (`artwork_technique_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    );
 
 -- -----------------------------------------------------
 -- Table `neo_muse`.`set_favorite`
@@ -128,13 +122,13 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`set_favorite` (
   CONSTRAINT `fk_users_has_artworks_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `neo_muse`.`users` (`users_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_has_artworks_artworks1`
     FOREIGN KEY (`artworks_id`)
     REFERENCES `neo_muse`.`artworks` (`artworks_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

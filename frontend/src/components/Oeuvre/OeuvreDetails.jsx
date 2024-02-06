@@ -109,7 +109,11 @@ function Artwork({ setDeleted }) {
 
   return (
     <section>
-      <Link to="/artworks">Toute la collection</Link>
+      <div className="bouton_collection">
+        <Link className="link_collection" to="/artworks">
+          Toute la collection
+        </Link>
+      </div>
       {artwork && (
         <div className="sectionOeuvreD">
           <figure className="boximgOeuvreDetail">
