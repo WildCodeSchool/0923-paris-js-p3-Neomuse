@@ -24,6 +24,8 @@ import ManageArtist from "./pages/Admin/ManageArtist";
 import ManageArtwork from "./pages/Admin/ManageArtwork";
 import GetUser from "./pages/Admin/GetUser";
 import Data from "./pages/data/data";
+// eslint-disable-next-line import/no-unresolved
+import Loader from "./components/loader/loader";
 
 function PrivateRoute({ children }) {
   const { user, isLoading } = useUser();
@@ -31,7 +33,7 @@ function PrivateRoute({ children }) {
   const redirect = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (isLoading) setPage(<p>...loading</p>);
+    if (isLoading) setPage(<Loader />);
     else if (!user) redirect("./login");
     else setPage(children);
     return () => setPage(null);
@@ -44,7 +46,7 @@ function PublicRoute({ children }) {
   const redirect = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (isLoading) setPage(<p>...loading</p>);
+    if (isLoading) setPage(<Loader />);
     else if (user) redirect(-1);
     else setPage(children);
   }, [user, isLoading, location]);
