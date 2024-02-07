@@ -6,7 +6,6 @@ import useAllDataContext from "../../contexts/AllDataContext";
 import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
-import "react-toastify/dist/ReactToastify.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
@@ -43,16 +42,10 @@ function Connexion() {
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {
-        showToastError("Renseignez correctement vos identifiants !", {
-          autoClose: 3000,
-          pauseOnFocusLoss: false,
-        });
+        showToastError("Renseignez correctement vos identifiants !");
       }
     } catch (error) {
-      toast.error("Saisie incorrecte", {
-        autoClose: 3000,
-        pauseOnFocusLoss: false,
-      });
+      console.error(error);
     }
   };
 
@@ -111,7 +104,6 @@ function Connexion() {
           </button>
         </div>
       </form>
-      <ToastContainer />
       <Modal open={openSignup} onClose={() => setOpenSignup(false)} center>
         <ModalSignup onClose={() => setOpenSignup(false)} />
       </Modal>

@@ -49,7 +49,7 @@ function TechniqueList() {
       <div className="gridcontainer">
         <Grid
           container
-          spacing={{ xs: 3, md: 6 }}
+          spacing={{ xs: 1, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 15 }}
           sx={{ flexGrow: 1 }}
         >

@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { Icon } from "@iconify/react";
 import useAllDataContext from "../../contexts/AllDataContext";
 import "./connexion.css";
-import "react-toastify/dist/ReactToastify.css";
 
 function ModalSignup({ onClose }) {
   const { showToastError, showToastSuccess } = useAllDataContext();
@@ -45,12 +44,10 @@ function ModalSignup({ onClose }) {
       );
       console.info(response.status);
       if (response.status === 201) {
-
         showToastSuccess("Connexion réussie !");
         onClose();
       } else {
         showToastError("veuillez vérifier votre saisie.");
-
       }
     } catch (error) {
       console.error(error);
@@ -185,7 +182,7 @@ function ModalSignup({ onClose }) {
             {password === confirmPassword ? (
               <Icon icon="charm:square-tick" color="#87255B" width="20" />
             ) : (
-              <p style={{ color: "red" }}>Passwords dont match</p>
+              <p style={{ color: "red" }}>Mot de passe non identique</p>
             )}
           </div>
         </div>
@@ -195,7 +192,6 @@ function ModalSignup({ onClose }) {
           </button>
         </div>
       </form>
-      <ToastContainer />
     </div>
   );
 }

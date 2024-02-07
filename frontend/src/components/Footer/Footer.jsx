@@ -22,7 +22,7 @@ function Footer() {
         <Link to="/data" className="footer_2_1">
           Données personnelles et mention légales
         </Link>
-        <Link to="/user" className="footer_2_2">
+        <Link to="/users" className="footer_2_2">
           Mon compte
         </Link>
         <p className="footer_2_3"> +33130394834</p>
