@@ -24,7 +24,6 @@ nav {
 
 .logouser {
   align-items: center;
-  width: 1.5rem;
 }
 
 .div-nav-burger {
@@ -118,6 +117,7 @@ nav {
 
 .logoneomuse {
   width: 8rem;
+  margin-left: 2rem;
 }
 
 .menu-open {
@@ -183,10 +183,12 @@ nav {
     text-decoration: none;
     color: #87255b;
     font-family: "Montserrat", sans-serif;
+    margin-right: 3rem;
   }
 
   .logoneomuse {
     width: 12rem;
+    margin-left: 0rem;
   }
 
   .div-nav-collections {
