@@ -42,10 +42,7 @@ function Connexion() {
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {
-        showToastError("Renseignez correctement vos identifiants !", {
-          autoClose: 3000,
-          pauseOnFocusLoss: false,
-        });
+        showToastError("Renseignez correctement vos identifiants !");
       }
     } catch (error) {
       console.error(error);
