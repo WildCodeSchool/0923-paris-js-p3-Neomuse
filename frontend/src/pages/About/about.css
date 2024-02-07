@@ -3,8 +3,10 @@
   background-image: url(../../assets/expo.jpg);
   position: relative;
   min-height: 390px;
+  margin-top: -6rem;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 100%;
 }
 .background2 {
   background-image: url(../../assets/rgpd.jpg);
@@ -16,6 +18,7 @@
 .h1_about {
   color: #87255b;
   margin: 2rem;
+  margin-top: -2rem;
   font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
