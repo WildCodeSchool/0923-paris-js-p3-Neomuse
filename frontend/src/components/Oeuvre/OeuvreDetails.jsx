@@ -243,7 +243,12 @@ function Artwork({ setDeleted }) {
           ))}
         </Grid>
       </div>
-      <Modal open={openimg} onClose={() => setOpenimg(false)} center>
+      <Modal
+        open={openimg}
+        onClose={() => setOpenimg(false)}
+        center
+        className="modalImg"
+      >
         <img src={selectedimg?.thumbnail} alt="" className="imgOeuvreModal" />
       </Modal>
     </section>
