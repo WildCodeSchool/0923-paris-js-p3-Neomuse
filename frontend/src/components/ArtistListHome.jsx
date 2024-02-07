@@ -9,12 +9,15 @@ function ArtistlistHome({ artist }) {
         <Box
           className="box"
           sx={{
-            border: "0.6rem solid white",
+            border: "1px solid white",
             width: "100%",
             height: "100%",
             margin: "0 auto",
             overflow: "hidden",
             "&:hover": { opacity: "0.8", cursor: "pointer" },
+            "@media screen and (min-width: 1024px)": {
+              width: "80%",
+            },
           }}
         >
           <img

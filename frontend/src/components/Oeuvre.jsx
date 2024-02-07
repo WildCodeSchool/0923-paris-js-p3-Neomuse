@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -82,7 +81,7 @@ function Oeuvre({ artwork, setDeleted = () => {} }) {
         if (response.status === 201) {
           setIsFavorite(true);
         } else {
-          toast.error("erreur ajout du favori.");
+          showToastError("erreur ajout du favori.");
         }
       }
     } catch (error) {
@@ -199,7 +198,6 @@ function Oeuvre({ artwork, setDeleted = () => {} }) {
           </button>
         </Stack>
       </Card>
-      <ToastContainer />
     </section>
   );
 }
