@@ -1,9 +1,10 @@
 import { useParams, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Grid from "@mui/joy/Grid";
+import Oeuvre from "../../components/Oeuvre";
 import "./artist.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SliderOeuvre from "../../components/Slider/SliderOeuvre";
 
 function Artist() {
   const { id } = useParams();
@@ -44,11 +45,13 @@ function Artist() {
       <div className="art-imgtop" alt="tof-random" />
       <h3 className="art-name">Artiste : {artists?.artist_name}</h3>
       <div className="art-bio-container">
-        <img
-          src={artists?.thumbnail}
-          alt="mr-jonesthumb"
-          className="art-thumb-desk"
-        />
+        <div className="box_art-thumb-desk">
+          <img
+            src={artists?.thumbnail}
+            alt="mr-jonesthumb"
+            className="art-thumb-desk"
+          />
+        </div>
         <p className="art-biography">
           {showFullBiography
             ? artists?.biography || ""
@@ -63,7 +66,20 @@ function Artist() {
         </p>
       </div>
       <h3 className="art-title">Oeuvres de l'artiste</h3>
-      <SliderOeuvre artworks={artworks} />
+      <div className="gridcontainer">
+        <Grid
+          container
+          spacing={{ xs: 1, md: 6 }}
+          columns={{ xs: 4, sm: 8, md: 15 }}
+          sx={{ flexGrow: 1 }}
+        >
+          {artworks.map((oeuvre) => (
+            <Grid xs={2} sm={4} md={4.6} key={oeuvre.artworks_id}>
+              <Oeuvre artwork={oeuvre} />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </>
   );
 }
