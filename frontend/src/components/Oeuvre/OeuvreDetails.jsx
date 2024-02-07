@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 import Button from "@mui/joy/Button";
 import Grid from "@mui/joy/Grid";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
@@ -10,6 +12,12 @@ import "./OeuvreDetail.css";
 
 function Artwork({ setDeleted }) {
   const navigate = useNavigate();
+  const [openimg, setOpenimg] = useState(false);
+  const [selectedimg, setSelectedimg] = useState(null);
+  const createOpenImg = (artwork) => {
+    setSelectedimg(artwork.artworkUnique);
+    setOpenimg(true);
+  };
   const { showToastError } = useAllDataContext();
   const toastFavoriError = () => {
     showToastError("connexion obligatoire pour ajouter des favoris");
@@ -126,11 +134,21 @@ function Artwork({ setDeleted }) {
       {artwork && (
         <div className="sectionOeuvreD">
           <figure className="boximgOeuvreDetail">
-            <img
-              src={artwork.artworkUnique?.thumbnail}
-              alt=""
-              className="imgOeuvreDetail"
-            />
+            <div
+              onClick={() => createOpenImg(artwork)}
+              onKeyDown={() => createOpenImg(artwork)}
+              tabIndex={0}
+              role="button"
+            >
+              <img
+                src={artwork.artworkUnique?.thumbnail}
+                alt=""
+                className="imgOeuvreDetail"
+                id="imagedetails"
+                name="imagedetails"
+                aria-label="Save"
+              />
+            </div>
           </figure>
           <div className="aside">
             <div className="enTeteOeuvreDetais">
@@ -225,6 +243,9 @@ function Artwork({ setDeleted }) {
           ))}
         </Grid>
       </div>
+      <Modal open={openimg} onClose={() => setOpenimg(false)} center>
+        <img src={selectedimg?.thumbnail} alt="" className="imgOeuvreModal" />
+      </Modal>
     </section>
   );
 }

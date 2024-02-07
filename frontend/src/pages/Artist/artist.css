@@ -71,8 +71,6 @@
   }
   .box_art-thumb-desk {
     display: block;
-    width: 25%;
-    height: 50%;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -92,7 +90,7 @@
     text-align: center;
     padding: 2rem;
     margin: 2rem;
-    width: 50%;
+    width: 100%;
   }
   .art-title {
     margin: 2rem;
@@ -112,7 +110,6 @@
   .art-bio-container {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
   }
   .art-display {
     width: 50%;
