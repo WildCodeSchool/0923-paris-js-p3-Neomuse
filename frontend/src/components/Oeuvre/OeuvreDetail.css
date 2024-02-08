@@ -36,16 +36,19 @@
   letter-spacing: 0.05rem;
 }
 .descripOeuvre {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   font-size: 0.9rem;
   line-height: 0.9rem;
   font-weight: 500;
 }
 .descripOeuvre-1 {
-  width: 40%;
-  text-align: justify;
+  width: 90%;
+  margin: 0 auto;
+  line-height: 2rem;
+}
+.descripOeuvre-2 {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 .dimensionimage {
   font-size: 0.95rem;
