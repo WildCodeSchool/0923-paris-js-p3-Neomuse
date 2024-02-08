@@ -320,7 +320,7 @@ const artwork = [
     dimension_width: 15,
     dimension_depth: 3,
     price_on_demand: false,
-    thumbnail: `${imageBaseUrl}/peinture9.jpeg`,
+    thumbnail: `${imageBaseUrl}/peinture9.jpg`,
     artists_id: 2,
     artwork_technique_id: 1,
   },

@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `neo_muse`.`users` (
   `firstname` VARCHAR(255) NOT NULL,
   `lastname` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
-  `phone` VARCHAR(10) NOT NULL,
+  `phone` VARCHAR(13) NOT NULL,
   `adress` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `role` ENUM("user", "admin") NOT NULL DEFAULT 'user',
