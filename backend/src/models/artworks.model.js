@@ -54,11 +54,21 @@ const findBytech = () => {
 const deleteById = (id) => {
   return db.query("DELETE FROM artworks WHERE artworks_id = ? ", [id]);
 };
-const Update = (artworks, id) => {
-  return db.query("UPDATE artworks SET ? WHERE artworks_id = ?", [
-    artworks,
-    id,
-  ]);
+const Update = (artwork, id) => {
+  const { title, description, price } = artwork;
+  return db.query(
+    "UPDATE artworks SET title = ?, description = ?, art_theme = ?, price = ?, dimension_height = ?, dimension_width = ?, dimension_depth = ? WHERE artworks_id = ?",
+    [
+      title,
+      description,
+      artwork.art_theme,
+      price,
+      artwork.dimension_height,
+      artwork.dimension_width,
+      artwork.dimension_depth,
+      id,
+    ]
+  );
 };
 
 module.exports = {

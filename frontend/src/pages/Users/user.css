@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@500;900&family=Playfair+Display:wght@500&display=swap");
+
+.wholepageuser {
+  padding-top: 1rem;
+}
+
 .maxi-flex-user {
   display: flex;
   flex-direction: column;
@@ -52,7 +57,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.1rem 6.7rem 1.1rem;
+  padding: 1.5rem 7.8rem 1.5rem;
   border: 4px #d1c8e1 solid;
   border-radius: 10px;
   gap: 0.5rem;
@@ -115,7 +120,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.2rem 12.8rem 1.2rem;
+    padding: 1.7rem 14.2rem 1.7rem;
     border: 8px #d1c8e1 solid;
     border-radius: 10px;
     gap: 0.5rem;
@@ -147,5 +152,8 @@
   }
   .text-user-information {
     font-size: 20px;
+  }
+  .wholepageuser {
+    padding-top: 0;
   }
 }

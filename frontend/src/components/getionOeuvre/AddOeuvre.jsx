@@ -3,7 +3,8 @@ import useAllDataContext from "../../contexts/AllDataContext";
 import "./addOeuvre.css";
 
 function GestionOeuvre() {
-  const { artworkTechnic, artists } = useAllDataContext();
+  const { artworkTechnic, artists, showToastError, showToastSuccess } =
+    useAllDataContext();
 
   const title = useRef();
   const description = useRef();
@@ -43,8 +44,10 @@ function GestionOeuvre() {
       console.info(response.status);
       if (response.status === 201) {
         setConfirmation("Œuvre ajoutée avec succès !");
+        showToastSuccess("Œuvre ajoutée avec succès !");
       } else {
         console.error("veuillez verifier votre saisie.");
+        showToastError("Erreur d'ajout veuillez verifier votre saisie");
       }
     } catch (error) {
       console.error(error);

@@ -51,6 +51,7 @@ table {
 body {
   background-color: #f6f3ec;
   font-family: "Playfair Display", Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 .app-overall {
   display: flex;

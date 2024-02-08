@@ -2,12 +2,14 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { Modal } from "react-responsive-modal";
+import useAllDataContext from "../../contexts/AllDataContext";
 import useUser from "../../contexts/UserContext";
 import "react-responsive-modal/styles.css";
 import "./connexion.css";
 import ModalSignup from "./Signup";
 
 function Connexion() {
+  const { showToastError } = useAllDataContext();
   const navigate = useNavigate();
   const { setUser, setIsLoading } = useUser();
   const email = useRef();
@@ -40,7 +42,7 @@ function Connexion() {
         if (user.role === "admin") navigate("/users");
         else navigate("/");
       } else {
-        console.error("veuillez verifier votre saisie.");
+        showToastError("Renseignez correctement vos identifiants !");
       }
     } catch (error) {
       console.error(error);

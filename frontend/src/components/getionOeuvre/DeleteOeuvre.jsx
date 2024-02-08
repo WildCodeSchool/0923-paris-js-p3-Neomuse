@@ -17,7 +17,8 @@ function DeleteOeuvre() {
     setSelectedOeuvre(oeuvre);
     setOpenModify(true);
   };
-  const { artworks, setArtworks } = useAllDataContext();
+  const { artworks, setArtworks, showToastError, showToastSuccess } =
+    useAllDataContext();
   const handledelete = async (id) => {
     try {
       const response = await fetch(
@@ -35,8 +36,10 @@ function DeleteOeuvre() {
       if (response.status === 204) {
         setArtworks(artworks.filter((artwork) => artwork.artworks_id !== id));
         setOpenconfirmdelete(false);
+        showToastSuccess("supression reusie");
       } else {
         console.error("Échec de la suppression de l'œuvre");
+        showToastError("Échec de la suppression de l'œuvre");
       }
     } catch (error) {
       console.error(error);

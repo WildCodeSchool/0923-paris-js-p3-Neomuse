@@ -1,14 +1,22 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/material/Box";
 import Favorite from "@mui/icons-material/Favorite";
 import Stack from "@mui/joy/Stack";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import useAllDataContext from "../contexts/AllDataContext";
+import useUser from "../contexts/UserContext";
 
-function Oeuvre({ artwork, setDeleted }) {
+function Oeuvre({ artwork, setDeleted = () => {} }) {
+  const { showToastError } = useAllDataContext();
+  const toastFavoriError = () => {
+    showToastError("connexion obligatoire pour ajouter des favoris");
+  };
   const [isFavorite, setIsFavorite] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useUser();
   useEffect(() => {
     const loadFavorites = async () => {
       try {
@@ -73,7 +81,7 @@ function Oeuvre({ artwork, setDeleted }) {
         if (response.status === 201) {
           setIsFavorite(true);
         } else {
-          console.error("erreur ajout du favori.");
+          showToastError("erreur ajout du favori.");
         }
       }
     } catch (error) {
@@ -167,7 +175,17 @@ function Oeuvre({ artwork, setDeleted }) {
               {artwork?.price} €
             </Typography>
           </Box>
-          <button type="button" onClick={toggleFavorite}>
+          <button
+            type="button"
+            onClick={
+              user
+                ? () => toggleFavorite()
+                : () => {
+                    navigate("/login");
+                    toastFavoriError();
+                  }
+            }
+          >
             <Favorite
               sx={{
                 backgroundColor: "white",

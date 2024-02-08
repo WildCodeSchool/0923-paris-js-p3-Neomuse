@@ -36,6 +36,9 @@ function MyNavbar() {
           tabIndex="0"
           role="button"
         >
+          <button type="button" className="close-btn" onClick={closeMenu}>
+            ×
+          </button>
           <li>
             <Link to="/artists" className="menu__item">
               Artistes

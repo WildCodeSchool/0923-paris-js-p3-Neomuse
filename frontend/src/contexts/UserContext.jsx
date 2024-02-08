@@ -23,6 +23,7 @@ export function UserProvider({ children }) {
         }
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     };
     getCurrentUser();

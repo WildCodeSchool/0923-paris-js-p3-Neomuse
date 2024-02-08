@@ -5,13 +5,11 @@
     font-family: "Playfair Display", Helvetica, sans-serif;
   }
   .art-imgtop-desk {
-    /*display: none; */
     width: 100%;
     height: auto;
   }
   .art-imgtop {
     display: none;
-    width: 100%;
   }
 
   .bio-container {
@@ -23,7 +21,6 @@
 
   .art-biography {
     border-radius: 0.3rem;
-    background-color: #d9d9d9;
     text-align: center;
     padding: 1rem;
     margin: 2rem;
@@ -58,10 +55,22 @@
     border-radius: 0.5rem;
   }
 }
+.art-title {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 900;
+  line-height: 0.9rem;
+  letter-spacing: 0.05rem;
+  text-decoration: underline;
+}
 @media screen and (min-width: 1024px) {
   .art-imgtop {
-    width: 100%;
+    background-image: url(../../assets/girl.jpg);
     height: 20rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-position: 50% 20%;
   }
   .art-imgtop-desk {
     display: none;
@@ -75,7 +84,6 @@
 
   .art-biography {
     border-radius: 0.3rem;
-    background-color: #d9d9d9;
     text-align: center;
     padding: 2rem;
     margin: 2rem;
@@ -103,5 +111,14 @@
     border: 0.1rem solid;
     padding: 0.2rem;
     border-radius: 0.5rem;
+  }
+  .art-title {
+    margin: 2rem;
+    text-align: center;
+    font-weight: 900;
+    line-height: 0.9rem;
+    letter-spacing: 0.05rem;
+    text-decoration: underline;
+    font-size: 1.3rem;
   }
 }

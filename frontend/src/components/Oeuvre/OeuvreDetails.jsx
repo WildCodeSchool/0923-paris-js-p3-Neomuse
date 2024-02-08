@@ -1,12 +1,28 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 import Button from "@mui/joy/Button";
 import Grid from "@mui/joy/Grid";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Oeuvre from "../Oeuvre";
+import useUser from "../../contexts/UserContext";
+import useAllDataContext from "../../contexts/AllDataContext";
 import "./OeuvreDetail.css";
 
 function Artwork({ setDeleted }) {
+  const navigate = useNavigate();
+  const [openimg, setOpenimg] = useState(false);
+  const [selectedimg, setSelectedimg] = useState(null);
+  const createOpenImg = (artwork) => {
+    setSelectedimg(artwork.artworkUnique);
+    setOpenimg(true);
+  };
+  const { showToastError } = useAllDataContext();
+  const toastFavoriError = () => {
+    showToastError("connexion obligatoire pour ajouter des favoris");
+  };
+  const { user } = useUser();
   const { id } = useParams();
   const [artwork, setArtwork] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -96,6 +112,7 @@ function Artwork({ setDeleted }) {
         );
         if (response.status === 200) {
           const data = await response.json();
+          // console.log(data);
           setArtwork(data);
         } else {
           console.error("Pas d'oeuvre par technique trouvée");
@@ -109,25 +126,44 @@ function Artwork({ setDeleted }) {
 
   return (
     <section>
-      <Link to="/artworks">Toute la collection</Link>
+      <div className="bouton_collection">
+        <Link className="link_collection" to="/artworks">
+          Toute la collection
+        </Link>
+      </div>
       {artwork && (
         <div className="sectionOeuvreD">
           <figure className="boximgOeuvreDetail">
-            <img
-              src={artwork.artworkUnique?.thumbnail}
-              alt=""
-              className="imgOeuvreDetail"
-            />
+            <div
+              onClick={() => createOpenImg(artwork)}
+              onKeyDown={() => createOpenImg(artwork)}
+              tabIndex={0}
+              role="button"
+            >
+              <img
+                src={artwork.artworkUnique?.thumbnail}
+                alt=""
+                className="imgOeuvreDetail"
+                id="imagedetails"
+                name="imagedetails"
+                aria-label="Save"
+              />
+            </div>
           </figure>
           <div className="aside">
             <div className="enTeteOeuvreDetais">
               <div className="titreOeuvre">
                 <p>{artwork.artworkUnique?.title}</p>
-                <p>
-                  {" "}
-                  by {artwork.artworkUnique?.lastname}{" "}
-                  {artwork.artworkUnique?.firstane}
-                </p>
+                <Link
+                  className="nom_Artist"
+                  to={`/artists/${artwork.artworkUnique?.artists_id}`}
+                >
+                  <p>
+                    {" "}
+                    by {artwork.artworkUnique?.lastname}{" "}
+                    {artwork.artworkUnique?.firstane}
+                  </p>
+                </Link>
                 <p>{artwork.artworkUnique?.category}</p>
                 <p>{artwork.artworkUnique?.price} €</p>
                 <p>
@@ -136,7 +172,17 @@ function Artwork({ setDeleted }) {
                 </p>
               </div>
               <div className="boxboutton">
-                <button type="button" onClick={toggleFavorite}>
+                <button
+                  type="button"
+                  onClick={
+                    user
+                      ? () => toggleFavorite()
+                      : () => {
+                          navigate("/login");
+                          toastFavoriError();
+                        }
+                  }
+                >
                   <Button
                     startDecorator={<FavoriteBorder />}
                     sx={{
@@ -186,7 +232,7 @@ function Artwork({ setDeleted }) {
       <div className="gridcontainer">
         <Grid
           container
-          spacing={{ xs: 3, md: 6 }}
+          spacing={{ xs: 1, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 15 }}
           sx={{ flexGrow: 1 }}
         >
@@ -197,6 +243,14 @@ function Artwork({ setDeleted }) {
           ))}
         </Grid>
       </div>
+      <Modal
+        open={openimg}
+        onClose={() => setOpenimg(false)}
+        center
+        className="modalImg"
+      >
+        <img src={selectedimg?.thumbnail} alt="" className="imgOeuvreModal" />
+      </Modal>
     </section>
   );
 }
