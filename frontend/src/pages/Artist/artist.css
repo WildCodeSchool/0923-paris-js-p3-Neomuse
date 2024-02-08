@@ -21,7 +21,7 @@
 
   .art-biography {
     border-radius: 0.3rem;
-    text-align: center;
+    text-align: justify;
     padding: 1rem;
     margin: 2rem;
   }
@@ -83,10 +83,13 @@
   }
 
   .art-biography {
-    border-radius: 0.3rem;
-    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 2rem;
+    text-align: justify;
     padding: 2rem;
     margin: 2rem;
+    width: 100%;
   }
   .art-title {
     text-align: center;
