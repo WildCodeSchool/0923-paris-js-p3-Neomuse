@@ -22,7 +22,7 @@
   .art-biography {
     border-radius: 0.3rem;
     background-color: #d9d9d9;
-    text-align: center;
+    text-align: justify;
     padding: 1rem;
     margin: 2rem;
   }
@@ -85,9 +85,10 @@
   }
 
   .art-biography {
-    border-radius: 0.3rem;
-    background-color: #d9d9d9;
-    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 2rem;
+    text-align: justify;
     padding: 2rem;
     margin: 2rem;
     width: 100%;
